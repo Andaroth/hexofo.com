@@ -1,4 +1,6 @@
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider } from '@chakra-ui/react';
+
+import "./styles/App.scss";
 
 function App() {
   return (
