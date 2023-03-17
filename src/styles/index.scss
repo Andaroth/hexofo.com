@@ -32,11 +32,11 @@ a.underline { text-decoration: underline !important; }
 
 .player .video-react-control-bar { display: none !important; }
 
-.mobileOny, .mobileonly, .mobile-only { display: none !important; }
+.mobileOnly, .mobileonly, .mobile-only { display: none !important; }
 
 @media screen and (max-width:800px) {
   .noMobile, .nomobile, .no-mobile { display: none !important; }
-  .mobileOny, .mobileonly, .mobile-only { display: initial !important; }
+  .mobileOnly, .mobileonly, .mobile-only { display: initial !important; }
 }
 
 .hidden { display: none !important; }

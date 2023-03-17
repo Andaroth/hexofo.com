@@ -122,7 +122,7 @@ const Home: FC = () => {
                   </Flex>
                   <Stack>
                     <Text textAlign="center" fontSize="2xl">AndaLixe</Text>
-                    <Text textAlign="center" fontSize="sm" lineHeight="36px">Fondateur / Manager</Text>
+                    <Text textAlign="center" fontSize="sm">Fondateur / Manager <br/>Lead</Text>
                   </Stack>
                 </Stack>
               </Flex>
@@ -133,7 +133,7 @@ const Home: FC = () => {
                   </Flex>
                   <Stack>
                     <Text textAlign="center" fontSize="2xl">DJ_Camelico</Text>
-                    <Text textAlign="center" fontSize="sm" lineHeight="36px">DJ / Admin</Text>
+                    <Text textAlign="center" fontSize="sm">DJ / Admin <br/>Senior</Text>
                   </Stack>
                 </Stack>
               </Flex>
@@ -144,29 +144,29 @@ const Home: FC = () => {
                   </Flex>
                   <Stack>
                     <Text textAlign="center" fontSize="2xl">DJ_Jeebee</Text>
-                    <Text textAlign="center" fontSize="sm" lineHeight="36px">DJ / Représentant</Text>
+                    <Text textAlign="center" fontSize="sm">DJ / Représentant <br/>Promoteur</Text>
                   </Stack>
                 </Stack>
               </Flex>
             </Grid>
             <Text as="h4" mt="6" mb="2" color="white" fontSize="2xl" textAlign="center">Les représentants du clan</Text>
             <Grid templateColumns={{base:"1", md:'repeat(3, 1fr)'}} gap={4}>
-              <Stack className="user" bg="blackAlpha.400" borderRadius="xl" p="2">
+              <Stack className="user" bg="blackAlpha.600" borderRadius="xl" p="2">
                 <Stack>
                   <Text textAlign="center" fontSize="2xl">Cyeme</Text>
-                  <Text textAlign="center" fontSize="sm" lineHeight="36px">Admin / Représentant</Text>
+                  <Text textAlign="center" fontSize="sm" lineHeight="36px">Admin / Organisatrice</Text>
                 </Stack>
               </Stack>
-              <Stack className="user" bg="blackAlpha.400" borderRadius="xl" p="2">
+              <Stack className="user" bg="blackAlpha.600" borderRadius="xl" p="2">
                 <Stack>
                   <Text textAlign="center" fontSize="2xl">Elf_ie</Text>
-                  <Text textAlign="center" fontSize="sm" lineHeight="36px">Admin / Représentant</Text>
+                  <Text textAlign="center" fontSize="sm" lineHeight="36px">Admin / Modératrice</Text>
                 </Stack>
               </Stack>
-              <Stack className="user" bg="blackAlpha.400" borderRadius="xl" p="2">
+              <Stack className="user" bg="blackAlpha.600" borderRadius="xl" p="2">
                 <Stack>
                   <Text textAlign="center" fontSize="2xl">D.Chtulhu</Text>
-                  <Text textAlign="center" fontSize="sm" lineHeight="36px">Admin / Représentant</Text>
+                  <Text textAlign="center" fontSize="sm" lineHeight="36px">Admin</Text>
                 </Stack>
               </Stack>
             </Grid>
