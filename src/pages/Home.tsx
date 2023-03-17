@@ -257,10 +257,10 @@ const Home: FC = () => {
     </Stack> : ''}
 
     <Stack as="section" id="main"
-      bg="url('./hexofo_flames.jpg')"
+      backgroundImage={{base:"url('./hexofo_big_mobile.jpg')", md:"url('./hexofo_big.jpg')"}}
+      backgroundPosition={{base:"center", md:"top"}}
+      backgroundAttachment={{base:"initial", md:"fixed"}}
       backgroundSize="cover"
-      backgroundPosition="top center"
-      backgroundAttachment="fixed"
       mt="0 !important"
       flexDirection={{base:'column', md:'row'}}
     >
