@@ -79,16 +79,21 @@ const Home: FC = () => {
   ];
 
   return <Stack minH="100vh" pb="0">
-    <Stack as="section" minH="calc(100vh - 24px)" justifyContent="space-around" mt="0 !important">
+    <Stack as="section" bg="black" minH="calc(100vh - 24px)" justifyContent="space-around" mt="0 !important">
       <Container>
-        <Text as="h1" display="none" fontSize="4xl" color="white" textAlign="center" mb="4">Hexofo</Text>
-        <Image src="./logo512.png" alt="Hexofo logo" w="400px" mx="auto" />
-        <Text as="h2" color="white" fontSize="2xl" fontWeight="400" textAlign="center">Les plus grosses&nbsp;soirées se passent <br />sur <Link className="underline" to="https://highrise.game/fr/feed/HEXOFO" target="_blank">HighRise</Link>&nbsp;France!</Text>
-        <Flex justifyContent="space-around" mt="8" py="6">
-          <Scroll to="team" smooth={true}>
-            <Button as="div" className="heartbeat" cursor="pointer" bg="#0F0" borderRadius="18px" h="36px" rightIcon={<ChevronDownIcon />}>Découvrir</Button>
-          </Scroll>
-        </Flex>
+        <Image src="./bg.jpg" className="fadeOpacity" alt="bg" position="absolute" top="0" left="0" w="100vw" h="calc(100vh - 24px)" />
+        <Stack position="relative">
+          <Text as="h1" display="none" fontSize="4xl" color="white" textAlign="center" mb="4">Hexofo</Text>
+          <Flex justifyContent="center">
+            <Image src="./logo512.png" alt="Hexofo logo" w="400px" mx="auto" />
+          </Flex>
+          <Text as="h2" color="white" fontSize="2xl" fontWeight="400" textAlign="center">Les plus grosses&nbsp;soirées se passent <br />sur <Link className="underline" to="https://highrise.game/fr/feed/HEXOFO" target="_blank">HighRise</Link>&nbsp;France!</Text>
+          <Flex justifyContent="space-around" mt="8" py="6">
+            <Scroll to="team" smooth={true}>
+              <Button as="div" className="heartbeat" cursor="pointer" bg="#0F0" borderRadius="18px" h="36px" rightIcon={<ChevronDownIcon />}>Découvrir</Button>
+            </Scroll>
+          </Flex>
+        </Stack>
       </Container>
     </Stack>
 

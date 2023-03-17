@@ -4,6 +4,12 @@
   100% { transform: scale(1); }
 }
 
+@keyframes fadeOpacity {
+  0% { opacity: .5; }
+  50% { opacity: .9; }
+  100% { opacity: .5; }
+}
+
 .heartbeat {
   animation-name: heartbeat;
   animation-iteration-count: infinite;
@@ -14,4 +20,10 @@
     animation-name: none;
     transform: scale(1.1);
   }
+}
+
+.fadeOpacity {
+  animation-name: fadeOpacity;
+  animation-iteration-count: infinite;
+  animation-duration: 5s;
 }
