@@ -225,7 +225,7 @@ const Home: FC = () => {
 
                     <Stack as="article" textAlign="center">
                       <Stack color="white" mb="2" justifyContent="space-between">
-                        <Text fontSize="2xl">Abonnes-toi !</Text>
+                        <Text fontSize="2xl">Abonne-toi !</Text>
                       </Stack>
                       <Flex my="2" justifyContent="center">
                         <AspectRatio w="240px" ratio={1}>
