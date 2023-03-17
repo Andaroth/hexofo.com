@@ -38,3 +38,6 @@ a.underline { text-decoration: underline !important; }
   .noMobile, .nomobile, .no-mobile { display: none !important; }
   .mobileOny, .mobileonly, .mobile-only { display: initial !important; }
 }
+
+.hidden { display: none !important; }
+.nopacity { opacity: 0 !important; }
