@@ -99,8 +99,8 @@ const Home: FC = () => {
       mt="0 !important"
     >
       <Stack w="100vw" m="0" p="0" bg="url('./Mascot.png')" bgPosition={{base:"bottom", md: "-100px 24px"}} bgRepeat="no-repeat" backgroundSize="contain">
-        <Flex bgSize="contain" justify="center">
-          <Container py="16">
+        <Flex bgSize="contain" justify="center" pt="16" pb="4">
+          <Container>
             <Text as="h3" mb="2" color="white" fontSize="2xl" textAlign="center">L'équipe #HEXOFO</Text>
             <Grid templateColumns={{base:"1", md:'repeat(3, 1fr)'}} gap={4}>
               <Flex className="user" bg="whiteAlpha.700" borderRadius="xl" justifyContent="center" p="2">
@@ -160,7 +160,7 @@ const Home: FC = () => {
             </Grid>
           </Container>
         </Flex>
-        <Flex justifyContent="space-around" pt={{base:"calc(100vw - 128px)", md:"8"}} pb="6">
+        <Flex justifyContent="space-around" pt={{base:"calc(100vw - 128px)", md:"4"}} pb="16">
           <Scroll to="upcoming" smooth={true}>
             <Button as="div" color="black" cursor="pointer" bg="#0F0" borderRadius="18px" h="36px" rightIcon={<ChevronDownIcon />}>Nos soirées</Button>
           </Scroll>
@@ -270,7 +270,7 @@ const Home: FC = () => {
 
     <Stack as="section" id="community" bg="black" pt="20" mt="0 !important">
       <Container pb="20">
-        <Text as="h3" fontSize="2xl" color="white" textAlign="center" mb="12">Rejoins notre communauté!</Text>
+        <Text as="h3" fontSize="2xl" color="white" textAlign="center" mb="12">Rejoins notre communauté !</Text>
         <Flex mt="4" flexDirection={{base:"column", md:"row"}} justifyContent="space-around">
           <Button my={{base:"2", md:"0"}} colorScheme="whatsapp" onClick={() => window.open('https://discord.gg/jnJXVAKwnV', "_blank")}>Discord</Button>
           <Button my={{base:"2", md:"0"}} colorScheme="whatsapp" onClick={() => window.open('https://instagram.com/hexofo', "_blank")}>Instagram</Button>
@@ -278,7 +278,7 @@ const Home: FC = () => {
         </Flex>
       </Container>
       <Flex justifyContent="center" p="4">
-        <Text textAlign="center" color="teal">#<strong>HEXOFO</strong> { new Date().getFullYear() } &copy; <br/>Made in React by <Link className="underline" to="https://anda.ninja" target="_blank">@AndaLixe</Link></Text>
+        <Text textAlign="center" color="teal">#<strong>HEXOFO</strong> { new Date().getFullYear() } &copy; <br/>Made in ReactJS by <Link className="underline" to="https://anda.ninja" target="_blank">@AndaLixe</Link></Text>
       </Flex>
     </Stack>
     
