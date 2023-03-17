@@ -79,7 +79,7 @@ const Home: FC = () => {
   ];
 
   return <Stack minH="100vh" pb="0">
-    <Stack as="section" minH="100vh" justifyContent="space-around" mt="0 !important">
+    <Stack as="section" minH="calc(100vh - 24px)" justifyContent="space-around" mt="0 !important">
       <Container>
         <Text as="h1" display="none" fontSize="4xl" color="white" textAlign="center" mb="4">Hexofo</Text>
         <Image src="./logo512.png" alt="Hexofo logo" w="400px" mx="auto" />
@@ -94,75 +94,78 @@ const Home: FC = () => {
 
     <Stack as="section" id="team"
       bg="#070"
+      background="linear-gradient(135deg, rgba(0,119,0,1) 0%, rgba(0,119,0,1) 35%, rgba(22,180,22,1) 100%)"
       color="white"
       mt="0 !important"
     >
-      <Flex justify="center">
-        <Container py="8">
-          <Text as="h3" mb="2" color="white" fontSize="2xl" textAlign="center">L'équipe #HEXOFO</Text>
-          <Grid templateColumns={{base:"1", md:'repeat(3, 1fr)'}} gap={4}>
-            <Flex className="user" bg="whiteAlpha.500" borderRadius="xl" justifyContent="center" p="2">
-              <Stack>
-                <Flex justifyContent="center">
-                  <Image src="./AndaLixe.png" w="200px" alt="AndaLixe" />
-                </Flex>
+      <Stack w="100vw" m="0" p="0" bg="url('./Mascot.png')" bgPosition={{base:"bottom", md: "-100px 24px"}} bgRepeat="no-repeat" backgroundSize="contain">
+        <Flex bgSize="contain" justify="center">
+          <Container py="16">
+            <Text as="h3" mb="2" color="white" fontSize="2xl" textAlign="center">L'équipe #HEXOFO</Text>
+            <Grid templateColumns={{base:"1", md:'repeat(3, 1fr)'}} gap={4}>
+              <Flex className="user" bg="whiteAlpha.700" borderRadius="xl" justifyContent="center" p="2">
                 <Stack>
-                  <Text textAlign="center" fontSize="2xl">AndaLixe</Text>
-                  <Text textAlign="center" fontSize="sm" lineHeight="36px">Fondateur / Manager</Text>
+                  <Flex justifyContent="center">
+                    <Image src="./AndaLixe.png" w="200px" alt="AndaLixe" />
+                  </Flex>
+                  <Stack>
+                    <Text textAlign="center" fontSize="2xl">AndaLixe</Text>
+                    <Text textAlign="center" fontSize="sm" lineHeight="36px">Fondateur / Manager</Text>
+                  </Stack>
+                </Stack>
+              </Flex>
+              <Flex className="user" bg="whiteAlpha.700" borderRadius="xl" justifyContent="center" p="2">
+                <Stack>
+                  <Flex justifyContent="center">
+                    <Image src="./DJ_Camelico.png" w="200px" alt="DJ_Camelico" />
+                  </Flex>
+                  <Stack>
+                    <Text textAlign="center" fontSize="2xl">DJ_Camelico</Text>
+                    <Text textAlign="center" fontSize="sm" lineHeight="36px">DJ / Admin</Text>
+                  </Stack>
+                </Stack>
+              </Flex>
+              <Flex className="user" bg="whiteAlpha.700" borderRadius="xl" justifyContent="center" p="2">
+                <Stack>
+                  <Flex justifyContent="center">
+                    <Image src="./DJ_Jeebee.png" w="200px" alt="DJ_Jeebee" />
+                  </Flex>
+                  <Stack>
+                    <Text textAlign="center" fontSize="2xl">DJ_Jeebee</Text>
+                    <Text textAlign="center" fontSize="sm" lineHeight="36px">DJ / Représentant</Text>
+                  </Stack>
+                </Stack>
+              </Flex>
+            </Grid>
+            <Text as="h4" mt="6" mb="2" color="white" fontSize="2xl" textAlign="center">Les représentants du clan</Text>
+            <Grid templateColumns={{base:"1", md:'repeat(3, 1fr)'}} gap={4}>
+              <Stack className="user" bg="blackAlpha.400" borderRadius="xl" p="2">
+                <Stack>
+                  <Text textAlign="center" fontSize="2xl">Cyeme</Text>
+                  <Text textAlign="center" fontSize="sm" lineHeight="36px">Admin / Représentant</Text>
                 </Stack>
               </Stack>
-            </Flex>
-            <Flex className="user" bg="whiteAlpha.500" borderRadius="xl" justifyContent="center" p="2">
-              <Stack>
-                <Flex justifyContent="center">
-                  <Image src="./DJ_Camelico.png" w="200px" alt="DJ_Camelico" />
-                </Flex>
+              <Stack className="user" bg="blackAlpha.400" borderRadius="xl" p="2">
                 <Stack>
-                  <Text textAlign="center" fontSize="2xl">DJ_Camelico</Text>
-                  <Text textAlign="center" fontSize="sm" lineHeight="36px">DJ / Admin</Text>
+                  <Text textAlign="center" fontSize="2xl">Elf_ie</Text>
+                  <Text textAlign="center" fontSize="sm" lineHeight="36px">Admin / Représentant</Text>
                 </Stack>
               </Stack>
-            </Flex>
-            <Flex className="user" bg="whiteAlpha.500" borderRadius="xl" justifyContent="center" p="2">
-              <Stack>
-                <Flex justifyContent="center">
-                  <Image src="./DJ_Jeebee.png" w="200px" alt="DJ_Jeebee" />
-                </Flex>
+              <Stack className="user" bg="blackAlpha.400" borderRadius="xl" p="2">
                 <Stack>
-                  <Text textAlign="center" fontSize="2xl">DJ_Jeebee</Text>
-                  <Text textAlign="center" fontSize="sm" lineHeight="36px">DJ / Représentant</Text>
+                  <Text textAlign="center" fontSize="2xl">D.Chtulhu</Text>
+                  <Text textAlign="center" fontSize="sm" lineHeight="36px">Admin / Représentant</Text>
                 </Stack>
               </Stack>
-            </Flex>
-          </Grid>
-          <Text as="h4" mt="6" mb="2" color="white" fontSize="2xl" textAlign="center">Les représentants du clan</Text>
-          <Grid templateColumns={{base:"1", md:'repeat(3, 1fr)'}} gap={4}>
-            <Stack className="user" bg="whiteAlpha.200" borderRadius="xl" p="2">
-              <Stack>
-                <Text textAlign="center" fontSize="2xl">Cyeme</Text>
-                <Text textAlign="center" fontSize="sm" lineHeight="36px">Admin / Représentant</Text>
-              </Stack>
-            </Stack>
-            <Stack className="user" bg="whiteAlpha.200" borderRadius="xl" p="2">
-              <Stack>
-                <Text textAlign="center" fontSize="2xl">Elf_ie</Text>
-                <Text textAlign="center" fontSize="sm" lineHeight="36px">Admin / Représentant</Text>
-              </Stack>
-            </Stack>
-            <Stack className="user" bg="whiteAlpha.200" borderRadius="xl" p="2">
-              <Stack>
-                <Text textAlign="center" fontSize="2xl">D.Chtulhu</Text>
-                <Text textAlign="center" fontSize="sm" lineHeight="36px">Admin / Représentant</Text>
-              </Stack>
-            </Stack>
-          </Grid>
-        </Container>
-      </Flex>
-      <Flex justifyContent="space-around" mt="8" pb="6">
-        <Scroll to="upcoming" smooth={true}>
-          <Button as="div" color="black" cursor="pointer" bg="#0F0" borderRadius="18px" h="36px" rightIcon={<ChevronDownIcon />}>Nos soirées</Button>
-        </Scroll>
-      </Flex>
+            </Grid>
+          </Container>
+        </Flex>
+        <Flex justifyContent="space-around" pt={{base:"calc(100vw - 128px)", md:"8"}} pb="6">
+          <Scroll to="upcoming" smooth={true}>
+            <Button as="div" color="black" cursor="pointer" bg="#0F0" borderRadius="18px" h="36px" rightIcon={<ChevronDownIcon />}>Nos soirées</Button>
+          </Scroll>
+        </Flex>
+      </Stack>
     </Stack>
 
     { events.length ? <Stack as="section" id="upcoming"
@@ -171,7 +174,7 @@ const Home: FC = () => {
       minH={{base:"100vh", md:"initial"}}
       justifyContent="space-around"
     >
-      <Container py="8">
+      <Container py="16">
         <Text as="h3" fontSize="xl" mb="6" textAlign="center" color="white">&Eacute;vènement{events.length > 1 ? "s" : ""} à venir</Text>
           <Container>
             <Slider
