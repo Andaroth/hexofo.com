@@ -46,7 +46,7 @@ const Home: FC = () => {
       <Container>
         <Text as="h1" display="none" fontSize="4xl" color="white" textAlign="center" mb="4">Hexofo</Text>
         <Image src="./logo512.png" alt="Hexofo logo" w="400px" mx="auto" />
-        <Text as="h2" color="white" fontSize="2xl" fontWeight="400" textAlign="center">Les plus grands créateurs&nbsp;de&nbsp;soirées <br />sur <Link className="underline" to="https://highrise.game" target="_blank">HighRise</Link>&nbsp;France!</Text>
+        <Text as="h2" color="white" fontSize="2xl" fontWeight="400" textAlign="center">Les plus grosses&nbsp;soirées se passent <br />sur <Link className="underline" to="https://highrise.game" target="_blank">HighRise</Link>&nbsp;France!</Text>
         <Flex justifyContent="space-around" mt="8" py="6">
           <Scroll to="upcoming" smooth={true}>
             <Button as="div" className="heartbeat" cursor="pointer" bg="#0F0" borderRadius="18px" h="36px" rightIcon={<ChevronDownIcon />}>Découvrir</Button>
@@ -97,7 +97,7 @@ const Home: FC = () => {
 
               <Stack as="article" textAlign="center">
                 <Stack color="white" mb="2" justifyContent="space-between">
-                  <Text fontSize="2xl">Restez au courant !</Text>
+                  <Text fontSize="2xl">Abonnes-toi !</Text>
                 </Stack>
                 <Flex my="2" justifyContent="center">
                   <AspectRatio w="240px" ratio={1}>
@@ -109,7 +109,7 @@ const Home: FC = () => {
                   </AspectRatio>
                 </Flex>
                 <Stack px="4" flexGrow="1">
-                  <Text textAlign="center" color="white">Suivez notre actualité sur HighRise <br/>pour ne manquer aucune soirée!</Text>
+                  <Text textAlign="center" color="white">Suis notre actualité sur HighRise <br/>pour ne manquer aucune soirée!</Text>
                 </Stack>
                 <Flex justifyContent="center"><Button mt="2" rightIcon={<ExternalLinkIcon />} borderRadius="2xl" onClick={() => window.open("https://highrise.game/fr/profile/AndaLixe", "_blank")}>Voir plus</Button></Flex>
               </Stack>
@@ -117,7 +117,7 @@ const Home: FC = () => {
 
             <Flex justifyContent="space-around" mt="12" py="6">
               <Scroll to="main" smooth={true}>
-                <Button as="div" py="6" cursor="pointer" bg="#0F0" rightIcon={<ArrowDownIcon />} borderRadius="lg" h="36px">Visiter notre site</Button>
+                <Button as="div" py="6" cursor="pointer" bg="#0F0" rightIcon={<ArrowDownIcon />} borderRadius="lg" h="36px">Visites notre site</Button>
               </Scroll>
             </Flex>
 
@@ -143,11 +143,13 @@ const Home: FC = () => {
         </Stack>
         <Stack justifyContent="space-around">
           <Container>
-            <Text as="h3" color="white" fontSize="2xl">Bienvenue sur le site web de notre valeureux clan !</Text>
-            <Text color="white" fontSize="xl">Où désirez-vous vous rendre ?</Text>
-            <Stack my="6"><Button py="12" px="8" colorScheme="whatsapp">Sponsoring &amp; Promotion</Button></Stack>
-            <Stack my="6"><Button py="12" px="8"><span className="noMobile">Formulaire de&nbsp;</span>Recrutement</Button></Stack>
-            <Stack my="6"><Button py="12" px="8" rightIcon={<ExternalLinkIcon />} onClick={() => window.open('https://highrise.helpshift.com/hc/fr/', "_blank")}>Aide HighRise</Button></Stack>
+            <Box bg="blackAlpha.500" p="4" borderRadius="lg">
+              <Text as="h3" color="white" fontSize="2xl">Bienvenue sur le site web de notre valeureux clan !</Text>
+              <Text color="white" fontSize="xl">Où désires-tu aller ?</Text>
+              <Stack my="6"><Button py="12" px="8" colorScheme="whatsapp">Sponsoring &amp; Promotion</Button></Stack>
+              <Stack my="6"><Button py="12" px="8" rightIcon={<ExternalLinkIcon />} onClick={() => window.open('https://forms.gle/xZCrMSCxsT9j2Kx5A', "_blank")}><span className="noMobile">Formulaire de&nbsp;</span>Recrutement</Button></Stack>
+              <Stack my="6"><Button py="12" px="8" rightIcon={<ExternalLinkIcon />} onClick={() => window.open('https://highrise.helpshift.com/hc/fr/', "_blank")}>Aide HighRise</Button></Stack>
+            </Box>
           </Container>
         </Stack>
       </Flex>
@@ -155,7 +157,7 @@ const Home: FC = () => {
 
     <Stack as="section" bg="black" pt="20" mt="0 !important">
       <Container pb="20">
-        <Text as="h3" fontSize="2xl" color="white" textAlign="center" mb="12">Rejoignez notre communauté!</Text>
+        <Text as="h3" fontSize="2xl" color="white" textAlign="center" mb="12">Rejoins notre communauté!</Text>
         <Flex mt="4" flexDirection={{base:"column", md:"row"}} justifyContent="space-around">
           <Button my={{base:"2", md:"0"}} colorScheme="whatsapp" onClick={() => window.open('https://discord.gg/jnJXVAKwnV', "_blank")}>Discord</Button>
           <Button my={{base:"2", md:"0"}} colorScheme="whatsapp" onClick={() => window.open('https://instagram.com/hexofo', "_blank")}>Instagram</Button>
