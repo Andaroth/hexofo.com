@@ -169,76 +169,78 @@ const Home: FC = () => {
     </Stack>
 
     { events.length ? <Stack as="section" id="upcoming"
-      bg="blackAlpha.700"
+      bg="blackAlpha.400"
       mt="0 !important"
       minH={{base:"100vh", md:"initial"}}
       justifyContent="space-around"
     >
       <Stack w="100vw" m="0" p="0" bg="url('./Mascot2.png')" bgPosition={{base:"bottom", md: "calc(50vw) 24px"}} bgRepeat="no-repeat" backgroundSize="contain">
-        <Flex bgSize="contain" justify="center" pt="16" pb="4">
-          <Container py="16">
-            <Text as="h3" fontSize="xl" mb="6" textAlign="center" color="white">&Eacute;vènement{events.length > 1 ? "s" : ""} à venir</Text>
-              <Container>
-                <Slider
-                  arrows={true}
-                  dots={true}
-                  autoplay={true}
-                  autoplaySpeed={5000}
-                  slidesToShow={1}
-                  slide="article"
-                >
-                  { events.map(ev => <Stack as="article" key={events.indexOf(ev)} textAlign="center">
-                    { ev.name || ev.date ? <Stack color="white" mb="2" justifyContent="space-between">
-                      { ev.name ? <Text fontSize="2xl">{ ev.name }</Text> : ''}
-                      { ev.date ? <Text fontSize="xl" lineHeight="28px">{ ev.date }</Text> : ''}
-                    </Stack> : ''}
-                    { ev.img ? <Flex my="2" justifyContent="center">
-                      <Image w="240px" h="240px" borderRadius="lg"
-                        src={ev.img} alt={`${ev.name} thumbnail`} 
-                        cursor={ ev.link ? "pointer" : "initial" }
-                        onClick={() => ev.link ? window.open(ev.link.url, "_blank") : null}
-                      />
-                    </Flex> : '' }
-                    { ev.video ? <Flex justifyContent="center">
-                      <AspectRatio w="280px" ratio={1} borderRadius="lg" overflow="hidden" flexDirection="column" justifyContent="center">
-                        <Player height={280} fluid={false} src={ev.video} autoPlay muted playsInline />
-                      </AspectRatio>
-                    </Flex> : ''}
-                    { ev.content ? <Stack px="4" flexGrow="1">
-                      { ev.content.map(c => <Text key={ev.content.indexOf(c)} textAlign="center" color="white" w="400px" maxW="calc(100vw - 88px)" mx="auto">{ c }</Text>) }
-                    </Stack> : ''}
-                    { ev.link ? <Flex justifyContent="center"><Button mt="2" borderRadius="24px" rightIcon={!ev.link.url.startsWith('./') ? <ExternalLinkIcon /> : undefined} onClick={() => ev.link ? window.open(ev.link.url, "_blank") : null}>{ ev.link.label }</Button></Flex> : ''}
-                  </Stack>)}
-
-                  <Stack as="article" textAlign="center">
-                    <Stack color="white" mb="2" justifyContent="space-between">
-                      <Text fontSize="2xl">Abonnes-toi !</Text>
-                    </Stack>
-                    <Flex my="2" justifyContent="center">
-                      <AspectRatio w="240px" ratio={1}>
-                        <Image borderRadius="lg"
-                          src="./events/feed.png" alt="Feed thumbnail"
-                          cursor="pointer"
-                          onClick={() => window.open("https://highrise.game/fr/profile/AndaLixe", "_blank")}
+        <Stack bg="blackAlpha.300" w="100vw" m="0" p="0">
+          <Flex bgSize="contain" justify="center" pt="16" pb="4">
+            <Container py="16">
+              <Text as="h3" fontSize="xl" mb="6" textAlign="center" color="white">&Eacute;vènement{events.length > 1 ? "s" : ""} à venir</Text>
+                <Container>
+                  <Slider
+                    arrows={true}
+                    dots={true}
+                    autoplay={true}
+                    autoplaySpeed={5000}
+                    slidesToShow={1}
+                    slide="article"
+                  >
+                    { events.map(ev => <Stack as="article" key={events.indexOf(ev)} textAlign="center">
+                      { ev.name || ev.date ? <Stack color="white" mb="2" justifyContent="space-between">
+                        { ev.name ? <Text fontSize="2xl">{ ev.name }</Text> : ''}
+                        { ev.date ? <Text fontSize="xl" lineHeight="28px">{ ev.date }</Text> : ''}
+                      </Stack> : ''}
+                      { ev.img ? <Flex my="2" justifyContent="center">
+                        <Image w="240px" h="240px" borderRadius="lg"
+                          src={ev.img} alt={`${ev.name} thumbnail`} 
+                          cursor={ ev.link ? "pointer" : "initial" }
+                          onClick={() => ev.link ? window.open(ev.link.url, "_blank") : null}
                         />
-                      </AspectRatio>
-                    </Flex>
-                    <Stack px="4" flexGrow="1">
-                      <Text textAlign="center" color="white">Suis notre actualité sur HighRise <br/>pour ne manquer aucune soirée!</Text>
+                      </Flex> : '' }
+                      { ev.video ? <Flex justifyContent="center">
+                        <AspectRatio w="280px" ratio={1} borderRadius="lg" overflow="hidden" flexDirection="column" justifyContent="center">
+                          <Player height={280} fluid={false} src={ev.video} autoPlay muted playsInline />
+                        </AspectRatio>
+                      </Flex> : ''}
+                      { ev.content ? <Stack px="4" flexGrow="1">
+                        { ev.content.map(c => <Text key={ev.content.indexOf(c)} textAlign="center" color="white" w="400px" maxW="calc(100vw - 88px)" mx="auto">{ c }</Text>) }
+                      </Stack> : ''}
+                      { ev.link ? <Flex justifyContent="center"><Button mt="2" borderRadius="24px" rightIcon={!ev.link.url.startsWith('./') ? <ExternalLinkIcon /> : undefined} onClick={() => ev.link ? window.open(ev.link.url, "_blank") : null}>{ ev.link.label }</Button></Flex> : ''}
+                    </Stack>)}
+
+                    <Stack as="article" textAlign="center">
+                      <Stack color="white" mb="2" justifyContent="space-between">
+                        <Text fontSize="2xl">Abonnes-toi !</Text>
+                      </Stack>
+                      <Flex my="2" justifyContent="center">
+                        <AspectRatio w="240px" ratio={1}>
+                          <Image borderRadius="lg"
+                            src="./events/feed.png" alt="Feed thumbnail"
+                            cursor="pointer"
+                            onClick={() => window.open("https://highrise.game/fr/profile/AndaLixe", "_blank")}
+                          />
+                        </AspectRatio>
+                      </Flex>
+                      <Stack px="4" flexGrow="1">
+                        <Text textAlign="center" color="white">Suis notre actualité sur HighRise <br/>pour ne manquer aucune soirée!</Text>
+                      </Stack>
+                      <Flex justifyContent="center"><Button mt="2" rightIcon={<ExternalLinkIcon />} borderRadius="24px" onClick={() => window.open("https://highrise.game/fr/profile/AndaLixe", "_blank")}>Voir plus</Button></Flex>
                     </Stack>
-                    <Flex justifyContent="center"><Button mt="2" rightIcon={<ExternalLinkIcon />} borderRadius="24px" onClick={() => window.open("https://highrise.game/fr/profile/AndaLixe", "_blank")}>Voir plus</Button></Flex>
-                  </Stack>
-                </Slider>
+                  </Slider>
 
-                <Flex justifyContent="center" pt={{base:"calc(100vw - 128px)", md:"4"}} mb="4">
-                  <Scroll to="main" smooth={true}>
-                    <Button as="div" py="6" cursor="pointer" bg="#0F0" rightIcon={<ArrowDownIcon />} borderRadius="xl">Visites notre site</Button>
-                  </Scroll>
-                </Flex>
+                  <Flex justifyContent="center" pt={{base:"calc(100vw - 128px)", md:"4"}} mb="4">
+                    <Scroll to="main" smooth={true}>
+                      <Button as="div" py="6" cursor="pointer" bg="#0F0" rightIcon={<ArrowDownIcon />} borderRadius="xl">Visites notre site</Button>
+                    </Scroll>
+                  </Flex>
 
-              </Container>
-          </Container>
-        </Flex>
+                </Container>
+            </Container>
+          </Flex>
+        </Stack>
       </Stack>
     </Stack> : ''}
 
