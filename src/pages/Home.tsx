@@ -188,7 +188,7 @@ const Home: FC = () => {
                     slidesToShow={1}
                     slide="article"
                   >
-                    { events.map(ev => <Stack as="article" key={events.indexOf(ev)} textAlign="center">
+                    { events.map(ev => <Stack as="article" key={events.indexOf(ev)} textAlign="center" pb="4">
                       { ev.name || ev.date ? <Stack color="white" mb="2" justifyContent="space-between">
                         { ev.name ? <Text fontSize="2xl">{ ev.name }</Text> : ''}
                         { ev.date ? <Text fontSize="xl" lineHeight="28px">{ ev.date }</Text> : ''}
@@ -231,7 +231,7 @@ const Home: FC = () => {
                     </Stack>
                   </Slider>
 
-                  <Flex justifyContent="center" pt={{base:"calc(100vw - 128px)", md:"4"}} mb="4">
+                  <Flex justifyContent="center" pt={{base:"calc(100vw - 128px)", md:"12"}} mb="4">
                     <Scroll to="main" smooth={true}>
                       <Button as="div" py="6" cursor="pointer" bg="#0F0" rightIcon={<ArrowDownIcon />} borderRadius="xl">Visites notre site</Button>
                     </Scroll>
