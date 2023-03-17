@@ -19,26 +19,63 @@ import {
   Image,
   Text,
   Button,
+  Grid,
   AspectRatio,
 } from '@chakra-ui/react';
 
 import { ExternalLinkIcon, ChevronDownIcon, ArrowDownIcon } from '@chakra-ui/icons';
 
 const Home: FC = () => {
-  const events = [
+  const events: Array<{
+    name: string
+    date: string
+    img?: string
+    video?: null,
+    content: Array<string>,
+    link?: {
+      url: string
+      label: string
+    }
+  }> = [
     {
       name: "HR Live #HEXOFO",
       date: "24 Mars à 20h (CET)",
-      img: "./events/340324.jpg",
-      video: null, // "./video/63de15b7058ba9b0359065f7_0.mov",
+      img: "./events/230324.jpg",
+      video: null,
       content: [
-        "Soirée DJ Mix & Tips sur HR France organisée par le clan #HEXOFO! 💚",
+        "Énorme soirée DJ Mix & Tips organisée par l’incroyable clan français #HEXOFO avec @AndaLixe et @DJ_Jeebee! 💚",
       ],
       link: {
         url: "https://highrise.game/fr/room/63deadb458755bdf24dd7c27",
         label: "Voir la salle"
       }
-    }
+    },
+    {
+      name: "Karaoke #HEXOFO",
+      date: "13 Mars à 18h (CET)",
+      img: "./events/230318.jpg",
+      video: null,
+      content: [
+        "Karaoke Hexofo Open-Mic (17+) gratuit !! ",
+      ],
+      link: {
+        url: "https://highrise.game/fr/room/63ac759c2ed5e6f11019f14f",
+        label: "Voir la salle"
+      }
+    },
+    {
+      name: "Giveaway #HEXOFO",
+      date: "06 Mars à 18h (CET)",
+      img: "./events/230306.jpg",
+      video: null,
+      content: [
+        "Giveaway par #HEXOFO ! 🎁 ✨ 2 x 100 #GOLD à GAGNER !! ",
+      ],
+      link: {
+        url: "https://highrise.game/fr/post/6405dff14d11b0cd816ea85f",
+        label: "Voir la publication"
+      }
+    },
   ];
 
   return <Stack minH="100vh" pb="0">
@@ -46,13 +83,86 @@ const Home: FC = () => {
       <Container>
         <Text as="h1" display="none" fontSize="4xl" color="white" textAlign="center" mb="4">Hexofo</Text>
         <Image src="./logo512.png" alt="Hexofo logo" w="400px" mx="auto" />
-        <Text as="h2" color="white" fontSize="2xl" fontWeight="400" textAlign="center">Les plus grosses&nbsp;soirées se passent <br />sur <Link className="underline" to="https://highrise.game" target="_blank">HighRise</Link>&nbsp;France!</Text>
+        <Text as="h2" color="white" fontSize="2xl" fontWeight="400" textAlign="center">Les plus grosses&nbsp;soirées se passent <br />sur <Link className="underline" to="https://highrise.game/fr/feed/HEXOFO" target="_blank">HighRise</Link>&nbsp;France!</Text>
         <Flex justifyContent="space-around" mt="8" py="6">
-          <Scroll to="upcoming" smooth={true}>
+          <Scroll to="team" smooth={true}>
             <Button as="div" className="heartbeat" cursor="pointer" bg="#0F0" borderRadius="18px" h="36px" rightIcon={<ChevronDownIcon />}>Découvrir</Button>
           </Scroll>
         </Flex>
       </Container>
+    </Stack>
+
+    <Stack as="section" id="team"
+      bg="#070"
+      color="white"
+      mt="0 !important"
+    >
+      <Flex justify="center">
+        <Container py="8">
+          <Text as="h3" mb="2" color="white" fontSize="2xl" textAlign="center">L'équipe #HEXOFO</Text>
+          <Grid templateColumns={{base:"1", md:'repeat(3, 1fr)'}} gap={4}>
+            <Flex className="user" bg="whiteAlpha.500" borderRadius="xl" justifyContent="center" p="2">
+              <Stack>
+                <Flex justifyContent="center">
+                  <Image src="./AndaLixe.png" w="200px" alt="AndaLixe" />
+                </Flex>
+                <Stack>
+                  <Text textAlign="center" fontSize="2xl">AndaLixe</Text>
+                  <Text textAlign="center" fontSize="sm" lineHeight="36px">Fondateur / Manager</Text>
+                </Stack>
+              </Stack>
+            </Flex>
+            <Flex className="user" bg="whiteAlpha.500" borderRadius="xl" justifyContent="center" p="2">
+              <Stack>
+                <Flex justifyContent="center">
+                  <Image src="./DJ_Camelico.png" w="200px" alt="DJ_Camelico" />
+                </Flex>
+                <Stack>
+                  <Text textAlign="center" fontSize="2xl">DJ_Camelico</Text>
+                  <Text textAlign="center" fontSize="sm" lineHeight="36px">DJ / Admin</Text>
+                </Stack>
+              </Stack>
+            </Flex>
+            <Flex className="user" bg="whiteAlpha.500" borderRadius="xl" justifyContent="center" p="2">
+              <Stack>
+                <Flex justifyContent="center">
+                  <Image src="./DJ_Jeebee.png" w="200px" alt="DJ_Jeebee" />
+                </Flex>
+                <Stack>
+                  <Text textAlign="center" fontSize="2xl">DJ_Jeebee</Text>
+                  <Text textAlign="center" fontSize="sm" lineHeight="36px">DJ / Représentant</Text>
+                </Stack>
+              </Stack>
+            </Flex>
+          </Grid>
+          <Text as="h4" mt="6" mb="2" color="white" fontSize="2xl" textAlign="center">Les représentants du clan</Text>
+          <Grid templateColumns={{base:"1", md:'repeat(3, 1fr)'}} gap={4}>
+            <Stack className="user" bg="whiteAlpha.200" borderRadius="xl" p="2">
+              <Stack>
+                <Text textAlign="center" fontSize="2xl">Cyeme</Text>
+                <Text textAlign="center" fontSize="sm" lineHeight="36px">Admin / Représentant</Text>
+              </Stack>
+            </Stack>
+            <Stack className="user" bg="whiteAlpha.200" borderRadius="xl" p="2">
+              <Stack>
+                <Text textAlign="center" fontSize="2xl">Elf_ie</Text>
+                <Text textAlign="center" fontSize="sm" lineHeight="36px">Admin / Représentant</Text>
+              </Stack>
+            </Stack>
+            <Stack className="user" bg="whiteAlpha.200" borderRadius="xl" p="2">
+              <Stack>
+                <Text textAlign="center" fontSize="2xl">D.Chtulhu</Text>
+                <Text textAlign="center" fontSize="sm" lineHeight="36px">Admin / Représentant</Text>
+              </Stack>
+            </Stack>
+          </Grid>
+        </Container>
+      </Flex>
+      <Flex justifyContent="space-around" mt="8" pb="6">
+        <Scroll to="upcoming" smooth={true}>
+          <Button as="div" color="black" cursor="pointer" bg="#0F0" borderRadius="18px" h="36px" rightIcon={<ChevronDownIcon />}>Nos soirées</Button>
+        </Scroll>
+      </Flex>
     </Stack>
 
     { events.length ? <Stack as="section" id="upcoming"
@@ -90,9 +200,9 @@ const Home: FC = () => {
                   </AspectRatio>
                 </Flex> : ''}
                 { ev.content ? <Stack px="4" flexGrow="1">
-                  { ev.content.map(c => <Text key={ev.content.indexOf(c)} textAlign="left" color="white" w="400px" mx="auto">{ c }</Text>) }
+                  { ev.content.map(c => <Text key={ev.content.indexOf(c)} textAlign="center" color="white" w="400px" maxW="calc(100vw - 88px)" mx="auto">{ c }</Text>) }
                 </Stack> : ''}
-                { ev.link ? <Flex justifyContent="center"><Button mt="2" borderRadius="2xl" rightIcon={!ev.link.url.startsWith('./') ? <ExternalLinkIcon /> : undefined} onClick={() => window.open(ev.link.url, "_blank")}>{ ev.link.label }</Button></Flex> : ''}
+                { ev.link ? <Flex justifyContent="center"><Button mt="2" borderRadius="24px" rightIcon={!ev.link.url.startsWith('./') ? <ExternalLinkIcon /> : undefined} onClick={() => ev.link ? window.open(ev.link.url, "_blank") : null}>{ ev.link.label }</Button></Flex> : ''}
               </Stack>)}
 
               <Stack as="article" textAlign="center">
@@ -111,13 +221,13 @@ const Home: FC = () => {
                 <Stack px="4" flexGrow="1">
                   <Text textAlign="center" color="white">Suis notre actualité sur HighRise <br/>pour ne manquer aucune soirée!</Text>
                 </Stack>
-                <Flex justifyContent="center"><Button mt="2" rightIcon={<ExternalLinkIcon />} borderRadius="2xl" onClick={() => window.open("https://highrise.game/fr/profile/AndaLixe", "_blank")}>Voir plus</Button></Flex>
+                <Flex justifyContent="center"><Button mt="2" rightIcon={<ExternalLinkIcon />} borderRadius="24px" onClick={() => window.open("https://highrise.game/fr/profile/AndaLixe", "_blank")}>Voir plus</Button></Flex>
               </Stack>
             </Slider>
 
-            <Flex justifyContent="space-around" mt="12" py="6">
+            <Flex justifyContent="center" mt="12" mb="4">
               <Scroll to="main" smooth={true}>
-                <Button as="div" py="6" cursor="pointer" bg="#0F0" rightIcon={<ArrowDownIcon />} borderRadius="lg" h="36px">Visites notre site</Button>
+                <Button as="div" py="6" cursor="pointer" bg="#0F0" rightIcon={<ArrowDownIcon />} borderRadius="xl">Visites notre site</Button>
               </Scroll>
             </Flex>
 
@@ -144,9 +254,9 @@ const Home: FC = () => {
         <Stack justifyContent="space-around">
           <Container>
             <Box bg="blackAlpha.500" p="4" borderRadius="lg">
-              <Text as="h3" color="white" fontSize="2xl">Bienvenue sur le site web de notre valeureux clan !</Text>
-              <Text color="white" fontSize="xl">Où désires-tu aller ?</Text>
-              <Stack my="6"><Button py="12" px="8" colorScheme="whatsapp">Sponsoring &amp; Promotion</Button></Stack>
+              <Text as="h3" mb="4" color="white" textAlign="center" fontSize="2xl">Bienvenue sur le site web de notre valeureux clan !</Text>
+              <Text color="white" textAlign="center" fontSize="xl">Où désires-tu aller ?</Text>
+              <Stack my="6"><Button py="12" px="8" colorScheme="whatsapp" rightIcon={<ExternalLinkIcon />} onClick={() => window.open('https://forms.gle/sp1iURoUERscds9B9', "_blank")}>Sponsoring &amp; Promotion</Button></Stack>
               <Stack my="6"><Button py="12" px="8" rightIcon={<ExternalLinkIcon />} onClick={() => window.open('https://forms.gle/xZCrMSCxsT9j2Kx5A', "_blank")}><span className="noMobile">Formulaire de&nbsp;</span>Recrutement</Button></Stack>
               <Stack my="6"><Button py="12" px="8" rightIcon={<ExternalLinkIcon />} onClick={() => window.open('https://highrise.helpshift.com/hc/fr/', "_blank")}>Aide HighRise</Button></Stack>
             </Box>
@@ -155,7 +265,7 @@ const Home: FC = () => {
       </Flex>
     </Stack>
 
-    <Stack as="section" bg="black" pt="20" mt="0 !important">
+    <Stack as="section" id="community" bg="black" pt="20" mt="0 !important">
       <Container pb="20">
         <Text as="h3" fontSize="2xl" color="white" textAlign="center" mb="12">Rejoins notre communauté!</Text>
         <Flex mt="4" flexDirection={{base:"column", md:"row"}} justifyContent="space-around">
