@@ -22,7 +22,7 @@ import {
   AspectRatio,
 } from '@chakra-ui/react';
 
-import { ExternalLinkIcon, ChevronDownIcon } from '@chakra-ui/icons';
+import { ExternalLinkIcon, ChevronDownIcon, ArrowDownIcon } from '@chakra-ui/icons';
 
 const Home: FC = () => {
   const events = [
@@ -92,7 +92,7 @@ const Home: FC = () => {
                 { ev.content ? <Stack px="4" flexGrow="1">
                   { ev.content.map(c => <Text key={ev.content.indexOf(c)} textAlign="left" color="white" w="400px" mx="auto">{ c }</Text>) }
                 </Stack> : ''}
-                { ev.link ? <Stack><Button mt="2" onClick={() => window.open(ev.link.url, "_blank")}>{ ev.link.label }</Button></Stack> : ''}
+                { ev.link ? <Flex justifyContent="center"><Button mt="2" borderRadius="2xl" rightIcon={!ev.link.url.startsWith('./') ? <ExternalLinkIcon /> : undefined} onClick={() => window.open(ev.link.url, "_blank")}>{ ev.link.label }</Button></Flex> : ''}
               </Stack>)}
 
               <Stack as="article" textAlign="center">
@@ -111,55 +111,60 @@ const Home: FC = () => {
                 <Stack px="4" flexGrow="1">
                   <Text textAlign="center" color="white">Suivez notre actualité sur HighRise <br/>pour ne manquer aucune soirée!</Text>
                 </Stack>
-                <Flex justifyContent="center"><Button mt="2" onClick={() => window.open("https://highrise.game/fr/profile/AndaLixe", "_blank")}>Voir plus</Button></Flex>
+                <Flex justifyContent="center"><Button mt="2" rightIcon={<ExternalLinkIcon />} borderRadius="2xl" onClick={() => window.open("https://highrise.game/fr/profile/AndaLixe", "_blank")}>Voir plus</Button></Flex>
               </Stack>
             </Slider>
+
+            <Flex justifyContent="space-around" mt="12" py="6">
+              <Scroll to="main" smooth={true}>
+                <Button as="div" py="6" cursor="pointer" bg="#0F0" rightIcon={<ArrowDownIcon />} borderRadius="lg" h="36px">Visiter notre site</Button>
+              </Scroll>
+            </Flex>
+
           </Container>
       </Container>
     </Stack> : ''}
 
-    <Flex as="section" id="main"
-      minH="100vh"
-      justifyContent="space-around"
-      // bg="url('./hexofo_flames.jpg')"
-      // backgroundSize="cover"
-      // backgroundPosition="top center"
-      // backgroundAttachment="fixed"
+    <Stack as="section" id="main"
+      bg="url('./hexofo_flames.jpg')"
+      backgroundSize="cover"
+      backgroundPosition="top center"
+      backgroundAttachment="fixed"
       mt="0 !important"
       flexDirection={{base:'column', md:'row'}}
     >
-      <Stack justifyContent="center" className="player noMobile" py="4">
-        <AspectRatio h="640px" w="480px" ratio={1}>
-          <Flex justifyContent="center">
-            <video height="640px" width="auto" src="./video/63de15b7058ba9b0359065f7_0.mov" muted autoPlay loop />
-          </Flex>
-        </AspectRatio>
-      </Stack>
-      <Stack justifyContent="space-around">
-        <Container>
-          <Box bg="blackAlpha.800" color="white" borderRadius="xl" p="4" mb="4">
-            <Text as="h3" fontSize="xl" textAlign="center">Bienvenue sur le site web de notre valeureux clan !</Text>
-            <Text>Où désirez-vous vous rendre ?</Text>
-          </Box>
-          <Stack>
-            <Button py="12" px="8">Sponsoring &amp; Promotion</Button>
-            <Button py="12" px="8"><span className="noMobile">Formulaire de&nbsp;</span>Recrutement</Button>
-            {/* <Button py="12" px="8" rightIcon={<ExternalLinkIcon />} onClick={() => window.open('https://highrise.game/fr/support/safety/trust-and-safety', "_blank")}>Foire Aux Questions<span className="noMobile">&nbsp;(FAQ)</span></Button> */}
-            <Button py="12" px="8" rightIcon={<ExternalLinkIcon />} onClick={() => window.open('https://highrise.helpshift.com/hc/fr/', "_blank")}>Aide HighRise</Button>
-          </Stack>
-        </Container>
-      </Stack>
-    </Flex>
+      <Flex as="div" className="overlay" position="relative" p="0" w="100vw" minH="100vh" justifyContent="space-around" bg="blackAlpha.600">
+        <Stack justifyContent="center" className="player noMobile" py="4">
+          <AspectRatio h="640px" w="480px" ratio={1}>
+            <Flex justifyContent="center">
+              <video height="640px" width="auto" src="./video/63de15b7058ba9b0359065f7_0.mov" muted autoPlay loop style={{borderRadius: "var(--chakra-radii-lg)"}} />
+            </Flex>
+          </AspectRatio>
+        </Stack>
+        <Stack justifyContent="space-around">
+          <Container>
+            <Text as="h3" color="white" fontSize="2xl">Bienvenue sur le site web de notre valeureux clan !</Text>
+            <Text color="white" fontSize="xl">Où désirez-vous vous rendre ?</Text>
+            <Stack my="6"><Button py="12" px="8" colorScheme="whatsapp">Sponsoring &amp; Promotion</Button></Stack>
+            <Stack my="6"><Button py="12" px="8"><span className="noMobile">Formulaire de&nbsp;</span>Recrutement</Button></Stack>
+            <Stack my="6"><Button py="12" px="8" rightIcon={<ExternalLinkIcon />} onClick={() => window.open('https://highrise.helpshift.com/hc/fr/', "_blank")}>Aide HighRise</Button></Stack>
+          </Container>
+        </Stack>
+      </Flex>
+    </Stack>
 
-    <Stack as="section" bg="black" py="4" mt="0 !important">
-      <Container>
-        <Text as="h3" fontSize="xl" color="white" textAlign="center" mb="4">Rejoignez notre communauté!</Text>
+    <Stack as="section" bg="black" pt="20" mt="0 !important">
+      <Container pb="20">
+        <Text as="h3" fontSize="2xl" color="white" textAlign="center" mb="12">Rejoignez notre communauté!</Text>
         <Flex mt="4" flexDirection={{base:"column", md:"row"}} justifyContent="space-around">
           <Button my={{base:"2", md:"0"}} colorScheme="whatsapp" onClick={() => window.open('https://discord.gg/jnJXVAKwnV', "_blank")}>Discord</Button>
           <Button my={{base:"2", md:"0"}} colorScheme="whatsapp" onClick={() => window.open('https://instagram.com/hexofo', "_blank")}>Instagram</Button>
           <Button my={{base:"2", md:"0"}} colorScheme="whatsapp" onClick={() => window.open('https://twitter.com/hexofo_', "_blank")}>Twitter</Button>
-        </Flex>          
+        </Flex>
       </Container>
+      <Flex justifyContent="center" p="4">
+        <Text textAlign="center" color="teal">#<strong>HEXOFO</strong> { new Date().getFullYear() } &copy; <br/>Made in React by <Link className="underline" to="https://anda.ninja" target="_blank">@AndaLixe</Link></Text>
+      </Flex>
     </Stack>
     
   </Stack>
