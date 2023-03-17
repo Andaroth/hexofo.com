@@ -122,7 +122,7 @@ const Home: FC = () => {
                   </Flex>
                   <Stack>
                     <Text textAlign="center" fontSize="2xl">AndaLixe</Text>
-                    <Text textAlign="center" fontSize="sm">Fondateur / Manager <br/>Lead</Text>
+                    <Text textAlign="center" fontSize="sm"><strong>Fondateur</strong> / <strong>Manager</strong> <br/>Lead</Text>
                   </Stack>
                 </Stack>
               </Flex>
@@ -133,7 +133,7 @@ const Home: FC = () => {
                   </Flex>
                   <Stack>
                     <Text textAlign="center" fontSize="2xl">DJ_Camelico</Text>
-                    <Text textAlign="center" fontSize="sm">DJ / Admin <br/>Senior</Text>
+                    <Text textAlign="center" fontSize="sm"><strong>DJ</strong> / <strong>Admin</strong> <br/>Senior</Text>
                   </Stack>
                 </Stack>
               </Flex>
@@ -144,7 +144,7 @@ const Home: FC = () => {
                   </Flex>
                   <Stack>
                     <Text textAlign="center" fontSize="2xl">DJ_Jeebee</Text>
-                    <Text textAlign="center" fontSize="sm">DJ / Représentant <br/>Promoteur</Text>
+                    <Text textAlign="center" fontSize="sm"><strong>DJ</strong> / <strong>Représentant</strong> <br/>Promoteur</Text>
                   </Stack>
                 </Stack>
               </Flex>
