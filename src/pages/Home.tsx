@@ -149,7 +149,7 @@ const Home: FC = () => {
                 </Stack>
               </Flex>
             </Grid>
-            <Text as="h4" mt="6" mb="2" color="white" fontSize="2xl" textAlign="center">Les représentants du clan</Text>
+            <Text as="h4" mt="6" mb="2" color="white" fontSize="2xl" textAlign="center">Les chefs du clan</Text>
             <Grid templateColumns={{base:"1", md:'repeat(3, 1fr)'}} gap={4}>
               <Stack className="user" bg="blackAlpha.600" borderRadius="xl" p="2">
                 <Stack>
@@ -166,7 +166,7 @@ const Home: FC = () => {
               <Stack className="user" bg="blackAlpha.600" borderRadius="xl" p="2">
                 <Stack>
                   <Text textAlign="center" fontSize="2xl">D.Chtulhu</Text>
-                  <Text textAlign="center" fontSize="sm" lineHeight="36px">Admin</Text>
+                  <Text textAlign="center" fontSize="sm" lineHeight="36px">Admin / Senior</Text>
                 </Stack>
               </Stack>
             </Grid>
