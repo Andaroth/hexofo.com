@@ -1,0 +1,17 @@
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.heartbeat {
+  animation-name: heartbeat;
+  animation-iteration-count: infinite;
+  animation-duration: 1.2s;
+  transition: .5s ease;
+
+  &:hover {
+    animation-name: none;
+    transform: scale(1.1);
+  }
+}

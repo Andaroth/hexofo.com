@@ -1,3 +1,5 @@
+@import "./animations.scss";
+
 body {
   background-image: url('../../public/bg.jpg') !important;
   background-position: center !important;
@@ -5,7 +7,23 @@ body {
   background-attachment: fixed !important;
 }
 
-a.underline { text-decoration: underline !important;}
+a.underline { text-decoration: underline !important; }
+
+.slick-dots {
+  li > button::before {
+    color: white !important;
+  }
+}
+
+.slick-track {
+  display: flex;
+  vertical-align: middle;
+  .slick-slide {
+    height: 100%;
+  }
+}
+
+.player .video-react-control-bar { display: none !important; }
 
 .mobileOny, .mobileonly, .mobile-only { display: none !important; }
 

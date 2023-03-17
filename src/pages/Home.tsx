@@ -7,6 +7,9 @@ import Slider from "react-slick";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import 'video-react/dist/video-react.css';
+
+import { Player } from 'video-react';
 
 import {
   Container,
@@ -16,7 +19,7 @@ import {
   Image,
   Text,
   Button,
-  Spacer
+  AspectRatio,
 } from '@chakra-ui/react';
 
 import { ExternalLinkIcon, ChevronDownIcon } from '@chakra-ui/icons';
@@ -24,84 +27,114 @@ import { ExternalLinkIcon, ChevronDownIcon } from '@chakra-ui/icons';
 const Home: FC = () => {
   const events = [
     {
-      name: "HR Talent",
-      date: "10/10/23",
+      name: "HR Live #HEXOFO",
+      date: "24 Mars à 20h (CET)",
+      img: "./events/340324.jpg",
+      video: null, // "./video/63de15b7058ba9b0359065f7_0.mov",
       content: [
-        "Welcome to Survival, a playable murder mystery game where you can either do the killing or the protecting. Put your detective skills to the test and find out who is committing such atrocities. Do you dare to test your luck? Do you have what it takes to survive the night? All participants will win a gold prize, and multiple rounds of the game will be played with 25 players per round.",
+        "Soirée DJ Mix & Tips sur HR France organisée par le clan #HEXOFO! 💚",
       ],
       link: {
-        url: "/",
-        label: "Learn more"
+        url: "https://highrise.game/fr/room/63deadb458755bdf24dd7c27",
+        label: "Voir la salle"
       }
-    },
-    {
-      name: "HR Karaoke",
-      date: "12/10/23",
-      content: [
-        "Welcome to the Chronicle Corner! A space for terrifying tales, fantastical fiction and all of the realms between. Enjoy 3 HOURS of live narration and interactive games from top vocalist @NineViolets & Co Hosts. Dare you dive into the unknown and let your imagination run wild?",
-      ],
-      link: {
-        url: "/",
-        label: "Discover"
-      }
-    },
-    {
-      name: "HEXOFO",
-      date: "16/10/23",
-      content: [
-        "Not all that it seems for the Far Realms of HighRise. As a distant world falls into petrified chaos we will embark on a Magical Journey as we follow our Heroes on a Quest to restore the long-forgotten magical balance of their new world.  Welcome to HR’s Dungeons and Dragons will challenge our players to explore ancient lore, encounter fiendish foes, and risk it all with a roll of the dice.",
-      ],
-      link: {
-        url: "/",
-        label: "About"
-      }
-    },
+    }
   ];
 
   return <Stack minH="100vh" pb="0">
-    <Stack as="section" minH="100vh" justifyContent="space-around">
+    <Stack as="section" minH="100vh" justifyContent="space-around" mt="0 !important">
       <Container>
-        <Image src="./logo512.png" h="200px" w="200px" alt="logo Hexofo" mx="auto" />
-        <Text as="h1" display="none">Hexofo</Text>
-        <Text as="h2" color="white" fontSize="2xl" fontWeight="400" textAlign="center">Nous&nbsp;sommes les plus grands créateurs&nbsp;de&nbsp;soirées de <Link className="underline" to="https://highrise.game" target="_blank">HighRise</Link>&nbsp;France!</Text>
-        <Box my="8" p="8" bg="blackAlpha.500" borderRadius="xl">
-          <Slider
-            arrows={true}
-            dots={true}
-            autoplay={true}
-            autoplaySpeed={5000}
-            slidesToShow={1}
-          >
-            { events.map(ev => <Stack as="div" textAlign="center">
-              <Flex color="white" px="2">
-                <Text fontSize="xl">{ ev.name }</Text>
-                <Spacer />
-                <Text lineHeight="28px">{ ev.date }</Text>
-              </Flex>
-              <hr />
-              <Stack px="2">
-                { ev.content.map(c => <Text textAlign="left" color="white">{ c }</Text>)}
-                { ev.link ? <Button mt="2" onClick={() => window.open(ev.link.url, "_blank")}>{ ev.link.label }</Button> : ''}
-              </Stack>
-            </Stack>)}
-          </Slider>
-        </Box>
+        <Text as="h1" display="none" fontSize="4xl" color="white" textAlign="center" mb="4">Hexofo</Text>
+        <Image src="./logo512.png" alt="Hexofo logo" w="400px" mx="auto" />
+        <Text as="h2" color="white" fontSize="2xl" fontWeight="400" textAlign="center">Les plus grands créateurs&nbsp;de&nbsp;soirées <br />sur <Link className="underline" to="https://highrise.game" target="_blank">HighRise</Link>&nbsp;France!</Text>
         <Flex justifyContent="space-around" mt="8" py="6">
-          <Scroll to="main" smooth={true}>
-            <Button as="div" cursor="pointer" bg="whiteAlpha.500" borderRadius="18px" h="36px" rightIcon={<ChevronDownIcon />}>Visiter</Button>
+          <Scroll to="upcoming" smooth={true}>
+            <Button as="div" className="heartbeat" cursor="pointer" bg="#0F0" borderRadius="18px" h="36px" rightIcon={<ChevronDownIcon />}>Découvrir</Button>
           </Scroll>
         </Flex>
       </Container>
     </Stack>
 
+    { events.length ? <Stack as="section" id="upcoming"
+      bg="blackAlpha.700"
+      mt="0 !important"
+      minH={{base:"100vh", md:"initial"}}
+      justifyContent="space-around"
+    >
+      <Container py="8">
+        <Text as="h3" fontSize="xl" mb="6" textAlign="center" color="white">&Eacute;vènement{events.length > 1 ? "s" : ""} à venir</Text>
+          <Container>
+            <Slider
+              arrows={true}
+              dots={true}
+              autoplay={true}
+              autoplaySpeed={5000}
+              slidesToShow={1}
+              slide="article"
+            >
+              { events.map(ev => <Stack as="article" key={events.indexOf(ev)} textAlign="center">
+                { ev.name || ev.date ? <Stack color="white" mb="2" justifyContent="space-between">
+                  { ev.name ? <Text fontSize="2xl">{ ev.name }</Text> : ''}
+                  { ev.date ? <Text fontSize="xl" lineHeight="28px">{ ev.date }</Text> : ''}
+                </Stack> : ''}
+                { ev.img ? <Flex my="2" justifyContent="center">
+                  <Image w="240px" h="240px" borderRadius="lg"
+                    src={ev.img} alt={`${ev.name} thumbnail`} 
+                    cursor={ ev.link ? "pointer" : "initial" }
+                    onClick={() => ev.link ? window.open(ev.link.url, "_blank") : null}
+                  />
+                </Flex> : '' }
+                { ev.video ? <Flex justifyContent="center">
+                  <AspectRatio w="280px" ratio={1} borderRadius="lg" overflow="hidden" flexDirection="column" justifyContent="center">
+                    <Player height={280} fluid={false} src={ev.video} autoPlay muted playsInline />
+                  </AspectRatio>
+                </Flex> : ''}
+                { ev.content ? <Stack px="4" flexGrow="1">
+                  { ev.content.map(c => <Text key={ev.content.indexOf(c)} textAlign="left" color="white" w="400px" mx="auto">{ c }</Text>) }
+                </Stack> : ''}
+                { ev.link ? <Stack><Button mt="2" onClick={() => window.open(ev.link.url, "_blank")}>{ ev.link.label }</Button></Stack> : ''}
+              </Stack>)}
+
+              <Stack as="article" textAlign="center">
+                <Stack color="white" mb="2" justifyContent="space-between">
+                  <Text fontSize="2xl">Restez au courant !</Text>
+                </Stack>
+                <Flex my="2" justifyContent="center">
+                  <AspectRatio w="240px" ratio={1}>
+                    <Image borderRadius="lg"
+                      src="./events/feed.png" alt="Feed thumbnail"
+                      cursor="pointer"
+                      onClick={() => window.open("https://highrise.game/fr/profile/AndaLixe", "_blank")}
+                    />
+                  </AspectRatio>
+                </Flex>
+                <Stack px="4" flexGrow="1">
+                  <Text textAlign="center" color="white">Suivez notre actualité sur HighRise <br/>pour ne manquer aucune soirée!</Text>
+                </Stack>
+                <Flex justifyContent="center"><Button mt="2" onClick={() => window.open("https://highrise.game/fr/profile/AndaLixe", "_blank")}>Voir plus</Button></Flex>
+              </Stack>
+            </Slider>
+          </Container>
+      </Container>
+    </Stack> : ''}
+
     <Flex as="section" id="main"
       minH="100vh"
       justifyContent="space-around"
-      bg="url('./hexofo_flames.jpg')"
-      backgroundSize="cover"
-      backgroundPosition="top center"
-      backgroundAttachment="fixed"
+      // bg="url('./hexofo_flames.jpg')"
+      // backgroundSize="cover"
+      // backgroundPosition="top center"
+      // backgroundAttachment="fixed"
+      mt="0 !important"
+      flexDirection={{base:'column', md:'row'}}
     >
+      <Stack justifyContent="center" className="player noMobile" py="4">
+        <AspectRatio h="640px" w="480px" ratio={1}>
+          <Flex justifyContent="center">
+            <video height="640px" width="auto" src="./video/63de15b7058ba9b0359065f7_0.mov" muted autoPlay loop />
+          </Flex>
+        </AspectRatio>
+      </Stack>
       <Stack justifyContent="space-around">
         <Container>
           <Box bg="blackAlpha.800" color="white" borderRadius="xl" p="4" mb="4">
@@ -110,9 +143,9 @@ const Home: FC = () => {
           </Box>
           <Stack>
             <Button py="12" px="8">Sponsoring &amp; Promotion</Button>
-            <Button py="12" px="8" rightIcon={<ExternalLinkIcon />} onClick={() => window.open('https://highrise.game/fr/support/safety/trust-and-safety', "_blank")}>Foire Aux Questions<span className="noMobile">&nbsp;(FAQ)</span></Button>
-            <Button py="12" px="8" rightIcon={<ExternalLinkIcon />} onClick={() => window.open('https://highrise.helpshift.com/hc/fr/', "_blank")}>Aide HighRise</Button>
             <Button py="12" px="8"><span className="noMobile">Formulaire de&nbsp;</span>Recrutement</Button>
+            {/* <Button py="12" px="8" rightIcon={<ExternalLinkIcon />} onClick={() => window.open('https://highrise.game/fr/support/safety/trust-and-safety', "_blank")}>Foire Aux Questions<span className="noMobile">&nbsp;(FAQ)</span></Button> */}
+            <Button py="12" px="8" rightIcon={<ExternalLinkIcon />} onClick={() => window.open('https://highrise.helpshift.com/hc/fr/', "_blank")}>Aide HighRise</Button>
           </Stack>
         </Container>
       </Stack>
