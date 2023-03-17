@@ -167,7 +167,7 @@ const Home: FC = () => {
         </Flex>
         <Flex justifyContent="space-around" pt={{base:"calc(100vw - 128px)", md:"4"}} pb="16">
           <Scroll to="upcoming" smooth={true}>
-            <Button as="div" colorScheme="whiteAlpha" bg="white" color="black" cursor="pointer" borderRadius="18px" h="36px" rightIcon={<ChevronDownIcon />}>Nos soirées</Button>
+            <Button as="div" bg="white" borderBottom="4px solid #CCC" color="black" cursor="pointer" borderRadius="18px" h="36px" rightIcon={<ChevronDownIcon />}>Nos soirées</Button>
           </Scroll>
         </Flex>
       </Stack>
@@ -238,7 +238,7 @@ const Home: FC = () => {
 
                   <Flex justifyContent="center" pt={{base:"calc(100vw - 128px)", md:"12"}} mb="4">
                     <Scroll to="main" smooth={true}>
-                      <Button as="div" py="6" cursor="pointer" bg="#0F0" rightIcon={<ArrowDownIcon />} borderRadius="xl">Visites notre site</Button>
+                      <Button as="div" py="6" cursor="pointer" colorScheme="green" color="black" bg="#0F0" borderBottom="4px solid #070" rightIcon={<ArrowDownIcon />} borderRadius="xl">Visites notre site</Button>
                     </Scroll>
                   </Flex>
 
@@ -271,9 +271,9 @@ const Home: FC = () => {
               <Box bg="blackAlpha.500" p="4" borderRadius="lg" w="100%">
                 <Text as="h3" mb="4" color="white" textAlign="center" fontSize="2xl">Bienvenue sur notre site !</Text>
                 <Text color="white" textAlign="center" fontSize="xl">Où désires-tu aller ?</Text>
-                <Stack my="6"><Button py="12" px="8" colorScheme="whatsapp" rightIcon={<ExternalLinkIcon />} onClick={() => window.open('https://forms.gle/sp1iURoUERscds9B9', "_blank")}>Sponsoring &amp; Promotion</Button></Stack>
-                <Stack my="6"><Button py="12" px="8" rightIcon={<ExternalLinkIcon />} onClick={() => window.open('https://forms.gle/xZCrMSCxsT9j2Kx5A', "_blank")}><span className="noMobile">Formulaire de&nbsp;</span>Recrutement</Button></Stack>
-                <Stack my="6"><Button py="12" px="8" rightIcon={<ExternalLinkIcon />} onClick={() => window.open('https://highrise.helpshift.com/hc/fr/', "_blank")}>Aide HighRise</Button></Stack>
+                <Stack my="6"><Button py="12" px="8" borderBottom="4px solid #070" colorScheme="whatsapp" rightIcon={<ExternalLinkIcon />} onClick={() => window.open('https://forms.gle/sp1iURoUERscds9B9', "_blank")}>Sponsoring &amp; Promotion</Button></Stack>
+                <Stack my="6"><Button py="12" px="8" borderBottom="4px solid #777" rightIcon={<ExternalLinkIcon />} onClick={() => window.open('https://forms.gle/xZCrMSCxsT9j2Kx5A', "_blank")}><span className="noMobile">Formulaire de&nbsp;</span>Recrutement</Button></Stack>
+                <Stack my="6"><Button py="12" px="8" borderBottom="4px solid #777" rightIcon={<ExternalLinkIcon />} onClick={() => window.open('https://highrise.helpshift.com/hc/fr/', "_blank")}>Aide HighRise</Button></Stack>
               </Box>
             </Stack>
           </Flex>
@@ -285,9 +285,9 @@ const Home: FC = () => {
       <Container pb="20">
         <Text as="h3" fontSize="2xl" color="white" textAlign="center" mb="12">Rejoins notre communauté !</Text>
         <Flex mt="4" flexDirection={{base:"column", md:"row"}} justifyContent="space-around">
-          <Button my={{base:"2", md:"0"}} colorScheme="whatsapp" onClick={() => window.open('https://discord.gg/jnJXVAKwnV', "_blank")}>Discord</Button>
-          <Button my={{base:"2", md:"0"}} colorScheme="whatsapp" onClick={() => window.open('https://instagram.com/hexofo', "_blank")}>Instagram</Button>
-          <Button my={{base:"2", md:"0"}} colorScheme="whatsapp" onClick={() => window.open('https://twitter.com/hexofo_', "_blank")}>Twitter</Button>
+          <Button my={{base:"2", md:"0"}} py="6" px="8" borderBottom="4px solid #070" colorScheme="whatsapp" onClick={() => window.open('https://discord.gg/jnJXVAKwnV', "_blank")}>Discord</Button>
+          <Button my={{base:"2", md:"0"}} py="6" px="8" borderBottom="4px solid #070" colorScheme="whatsapp" onClick={() => window.open('https://instagram.com/hexofo', "_blank")}>Instagram</Button>
+          <Button my={{base:"2", md:"0"}} py="6" px="8" borderBottom="4px solid #070" colorScheme="whatsapp" onClick={() => window.open('https://twitter.com/hexofo_', "_blank")}>Twitter</Button>
         </Flex>
       </Container>
       <Flex justifyContent="center" p="4">
