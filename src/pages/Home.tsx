@@ -87,7 +87,7 @@ const Home: FC = () => {
           <Flex justifyContent="center">
             <Image src="./logo512.png" alt="Hexofo logo" w="400px" mx="auto" />
           </Flex>
-          <Text as="h2" color="white" fontSize="2xl" fontWeight="400" textAlign="center">Les plus grosses&nbsp;soirées se passent <br />sur <Link className="underline" to="https://highrise.game/fr/feed/HEXOFO" target="_blank">HighRise</Link>&nbsp;France!</Text>
+          <Text as="h2" color="white" maxW="calc(100vw - 40px)" fontSize={{base:"2xl", lg:"3xl"}} fontWeight="400" textAlign="center">Les plus grosses&nbsp;soirées <span className="noMobile">du métavers</span> se passent sur <Link className="underline" to="https://highrise.game/fr/feed/HEXOFO" target="_blank">HighRise</Link>&nbsp;<span className="noMobile">France</span> avec&nbsp;HEXOFO!</Text>
           <Flex justifyContent="space-around" mt="8" py="6">
             <Scroll to="team" smooth={true}>
               <Button as="div" className="heartbeat" cursor="pointer" bg="#0F0" borderRadius="18px" h="36px" rightIcon={<ChevronDownIcon />}>Découvrir</Button>
@@ -103,10 +103,10 @@ const Home: FC = () => {
       color="white"
       mt="0 !important"
     >
-      <Stack w="100vw" m="0" p="0" bg="url('./Mascot.png')" bgPosition={{base:"bottom", md: "-100px 24px"}} bgRepeat="no-repeat" backgroundSize="contain">
+      <Stack w="100vw" minH="calc(100vh - 24px)" m="0" p="0" bg="url('./Mascot.png')" bgPosition={{base:"bottom", md: "-100px 24px"}} bgRepeat="no-repeat" backgroundSize="contain" justifyContent="center">
         <Flex bgSize="contain" justify="center" pt="16" pb="4">
           <Container>
-            <Text as="h3" mb="2" color="white" fontSize="2xl" textAlign="center">L'équipe #HEXOFO</Text>
+            <Text as="h3" mb="2" color="white" fontSize="3xl" textAlign="center">L'équipe #HEXOFO</Text>
             <Grid templateColumns={{base:"1", md:'repeat(3, 1fr)'}} gap={4}>
               <Flex className="user" bg="whiteAlpha.800" color="black" borderRadius="xl" justifyContent="center" p="2">
                 <Stack>
@@ -167,7 +167,7 @@ const Home: FC = () => {
         </Flex>
         <Flex justifyContent="space-around" pt={{base:"calc(100vw - 128px)", md:"4"}} pb="16">
           <Scroll to="upcoming" smooth={true}>
-            <Button as="div" color="black" cursor="pointer" bg="#0F0" borderRadius="18px" h="36px" rightIcon={<ChevronDownIcon />}>Nos soirées</Button>
+            <Button as="div" colorScheme="whiteAlpha" bg="white" color="black" cursor="pointer" borderRadius="18px" h="36px" rightIcon={<ChevronDownIcon />}>Nos soirées</Button>
           </Scroll>
         </Flex>
       </Stack>
@@ -179,11 +179,11 @@ const Home: FC = () => {
       minH={{base:"100vh", md:"initial"}}
       justifyContent="space-around"
     >
-      <Stack w="100vw" m="0" p="0" bg="url('./Mascot2.png')" bgPosition={{base:"bottom", md: "calc(50vw) 24px"}} bgRepeat="no-repeat" backgroundSize="contain">
-        <Stack bg="blackAlpha.300" w="100vw" m="0" p="0">
+      <Stack w="100vw" minH="calc(100vh - 24px)" m="0" p="0" bg="url('./Mascot2.png')" bgPosition={{base:"bottom", md: "calc(50vw) 24px"}} bgRepeat="no-repeat" backgroundSize="contain">
+        <Stack bg="blackAlpha.300" minH="calc(100vh - 24px)" w="100vw" m="0" p="0" justifyContent="center">
           <Flex bgSize="contain" justify="center" pt="16" pb="4">
             <Container py="16">
-              <Text as="h3" fontSize="xl" mb="6" textAlign="center" color="white">&Eacute;vènement{events.length > 1 ? "s" : ""} à venir</Text>
+              <Text as="h3" fontSize="3xl" mb="6" textAlign="center" color="white">&Eacute;vènement{events.length > 1 ? "s" : ""} à venir</Text>
                 <Container>
                   <Slider
                     arrows={true}
@@ -211,7 +211,7 @@ const Home: FC = () => {
                         </AspectRatio>
                       </Flex> : ''}
                       { ev.content ? <Stack px="4" flexGrow="1">
-                        { ev.content.map(c => <Text key={ev.content.indexOf(c)} textAlign="center" color="white" w="400px" maxW="calc(100vw - 88px)" mx="auto">{ c }</Text>) }
+                        { ev.content.map(c => <Text key={ev.content.indexOf(c)} textAlign="center" fontSize="xl" color="white" w="400px" maxW="calc(100vw - 88px)" mx="auto">{ c }</Text>) }
                       </Stack> : ''}
                       { ev.link ? <Flex justifyContent="center"><Button mt="2" borderRadius="24px" rightIcon={!ev.link.url.startsWith('./') ? <ExternalLinkIcon /> : undefined} onClick={() => ev.link ? window.open(ev.link.url, "_blank") : null}>{ ev.link.label }</Button></Flex> : ''}
                     </Stack>)}
@@ -257,29 +257,31 @@ const Home: FC = () => {
       mt="0 !important"
       flexDirection={{base:'column', md:'row'}}
     >
-      <Flex as="div" className="overlay" position="relative" p="0" w="100vw" minH="100vh" justifyContent="space-around" bg="blackAlpha.600">
-        <Stack justifyContent="center" className="player noMobile" py="4">
-          <AspectRatio h="640px" w="480px" ratio={1}>
-            <Flex justifyContent="center">
-              <video height="640px" width="auto" src="./video/63de15b7058ba9b0359065f7_0.mov" muted autoPlay loop style={{borderRadius: "var(--chakra-radii-lg)"}} />
-            </Flex>
-          </AspectRatio>
-        </Stack>
-        <Stack justifyContent="space-around">
-          <Container>
-            <Box bg="blackAlpha.500" p="4" borderRadius="lg">
-              <Text as="h3" mb="4" color="white" textAlign="center" fontSize="2xl">Bienvenue sur le site web de notre valeureux clan !</Text>
-              <Text color="white" textAlign="center" fontSize="xl">Où désires-tu aller ?</Text>
-              <Stack my="6"><Button py="12" px="8" colorScheme="whatsapp" rightIcon={<ExternalLinkIcon />} onClick={() => window.open('https://forms.gle/sp1iURoUERscds9B9', "_blank")}>Sponsoring &amp; Promotion</Button></Stack>
-              <Stack my="6"><Button py="12" px="8" rightIcon={<ExternalLinkIcon />} onClick={() => window.open('https://forms.gle/xZCrMSCxsT9j2Kx5A', "_blank")}><span className="noMobile">Formulaire de&nbsp;</span>Recrutement</Button></Stack>
-              <Stack my="6"><Button py="12" px="8" rightIcon={<ExternalLinkIcon />} onClick={() => window.open('https://highrise.helpshift.com/hc/fr/', "_blank")}>Aide HighRise</Button></Stack>
-            </Box>
-          </Container>
+      <Flex as="div" className="overlay" position="relative" p="0" w="100vw" minH="100vh" bg="blackAlpha.600" justifyContent="center">
+        <Stack justifyContent="center">
+          <Flex>
+            <Stack justifyContent="center" className="player noMobile" py="4">
+              <AspectRatio h="640px" w="480px" ratio={1}>
+                <Flex justifyContent="center">
+                  <video height="640px" width="auto" src="./video/63de15b7058ba9b0359065f7_0.mov" muted autoPlay loop style={{borderRadius: "var(--chakra-radii-lg)"}} />
+                </Flex>
+              </AspectRatio>
+            </Stack>
+            <Stack justifyContent="space-around">
+              <Box bg="blackAlpha.500" p="4" borderRadius="lg" w="100%">
+                <Text as="h3" mb="4" color="white" textAlign="center" fontSize="2xl">Bienvenue sur notre site !</Text>
+                <Text color="white" textAlign="center" fontSize="xl">Où désires-tu aller ?</Text>
+                <Stack my="6"><Button py="12" px="8" colorScheme="whatsapp" rightIcon={<ExternalLinkIcon />} onClick={() => window.open('https://forms.gle/sp1iURoUERscds9B9', "_blank")}>Sponsoring &amp; Promotion</Button></Stack>
+                <Stack my="6"><Button py="12" px="8" rightIcon={<ExternalLinkIcon />} onClick={() => window.open('https://forms.gle/xZCrMSCxsT9j2Kx5A', "_blank")}><span className="noMobile">Formulaire de&nbsp;</span>Recrutement</Button></Stack>
+                <Stack my="6"><Button py="12" px="8" rightIcon={<ExternalLinkIcon />} onClick={() => window.open('https://highrise.helpshift.com/hc/fr/', "_blank")}>Aide HighRise</Button></Stack>
+              </Box>
+            </Stack>
+          </Flex>
         </Stack>
       </Flex>
     </Stack>
 
-    <Stack as="section" id="community" bg="black" pt="20" mt="0 !important">
+    <Stack as="footer" id="community" bg="black" background="radial-gradient(circle, rgba(0,71,0,1) 0%, rgba(0,44,0,1) 24%, rgba(0,18,0,1) 100%)" pt="20" mt="0 !important">
       <Container pb="20">
         <Text as="h3" fontSize="2xl" color="white" textAlign="center" mb="12">Rejoins notre communauté !</Text>
         <Flex mt="4" flexDirection={{base:"column", md:"row"}} justifyContent="space-around">

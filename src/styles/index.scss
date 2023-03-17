@@ -5,6 +5,13 @@ body {
   background-position: center !important;
   background-size: cover !important;
   background-attachment: fixed !important;
+
+  font-family: 'Ubuntu', sans-serif !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto', sans-serif !important;
+  font-weight: 400;
 }
 
 a.underline { text-decoration: underline !important; }
