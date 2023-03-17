@@ -87,7 +87,14 @@ const Home: FC = () => {
           <Flex justifyContent="center">
             <Image src="./logo512.png" alt="Hexofo logo" w="400px" mx="auto" />
           </Flex>
-          <Text as="h2" color="white" maxW="calc(100vw - 40px)" fontSize={{base:"2xl", lg:"3xl"}} fontWeight="400" textAlign="center">Les plus grosses&nbsp;soirées <span className="hidden">du métavers</span> se passent sur <Link className="underline" to="https://highrise.game/fr/feed/HEXOFO" target="_blank">HighRise</Link><span className="noMobile"> avec&nbsp;HEXOFO</span>!</Text>
+          <Text as="h2"
+            color="white"
+            maxW="calc(100vw - 40px)"
+            fontSize={{base:"2xl", lg:"3xl"}}
+            fontWeight="400"
+            textAlign="center"
+            fontFamily="'Ubuntu', sans-serif !important"
+          >Les plus grosses&nbsp;soirées <span className="hidden">du métavers</span> se passent sur <Link className="underline" to="https://highrise.game/fr/feed/HEXOFO" target="_blank">HighRise</Link><span className="noMobile"> avec&nbsp;HEXOFO</span>!</Text>
           <Flex justifyContent="space-around" mt="8" py="6">
             <Scroll to="team" smooth={true}>
               <Button as="div" className="heartbeat" cursor="pointer" bg="#0F0" borderRadius="18px" h="36px" rightIcon={<ChevronDownIcon />}>Découvrir</Button>
