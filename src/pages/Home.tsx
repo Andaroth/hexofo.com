@@ -245,7 +245,7 @@ const Home: FC = () => {
 
                   <Flex justifyContent="center" pt={{base:"calc(100vw - 128px)", md:"12"}} mb="4">
                     <Scroll to="main" smooth={true}>
-                      <Button as="div" py="6" cursor="pointer" colorScheme="green" color="black" bg="#0F0" borderBottom="4px solid #070" rightIcon={<ArrowDownIcon />} borderRadius="xl">Visites notre site</Button>
+                      <Button as="div" py="6" cursor="pointer" colorScheme="green" color="black" bg="#0F0" borderBottom="4px solid #070" rightIcon={<ArrowDownIcon />} borderRadius="xl">Visite notre site</Button>
                     </Scroll>
                   </Flex>
 
