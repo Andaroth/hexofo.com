@@ -38,6 +38,13 @@ a.underline { text-decoration: underline !important; }
   background: transparent !important;
 }
 
+.hoverpop, .hoverPop {
+  transition: all .5 ease;
+  &:hover { transform: scale(1.05); }
+}
+
+.cursoralias, .cursorAlias { cursor: alias !important; }
+
 @media screen and (max-width:800px) {
   .noMobile, .nomobile, .no-mobile { display: none !important; }
   .mobileOnly, .mobileonly, .mobile-only { display: initial !important; }

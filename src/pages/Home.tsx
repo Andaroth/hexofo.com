@@ -117,7 +117,7 @@ const Home: FC = () => {
               fontWeight="400"
               textAlign="center"
               fontFamily="'Ubuntu', sans-serif !important"
-            >Les plus grosses&nbsp;soirées <span className="hidden">du métavers</span> se passent sur <Link className="underline" to="https://highrise.game/fr/feed/HEXOFO" target="_blank">HighRise</Link> avec&nbsp;HEXOFO&nbsp;!</Text>
+            >Les plus grosses&nbsp;soirées <span className="hidden">du métavers</span> se passent sur <Link className="underline cursorAlias" to="https://highrise.game/fr/feed/HEXOFO" target="_blank">HighRise</Link> avec&nbsp;HEXOFO&nbsp;!</Text>
             <Flex justifyContent="center" mt="8" py="6">
               {/* <Flex justifyContent="center" mr="4">
                 <Scroll to="upcoming" smooth={true}>
@@ -145,18 +145,34 @@ const Home: FC = () => {
             <Container>
               <Text as="h3" mb="2" color="white" fontSize="3xl" textAlign="center">L'équipe #HEXOFO</Text>
               <Grid templateColumns={{base:"1", md:'repeat(3, 1fr)'}} gap={4}>
-                <Flex className="user" bg="whiteAlpha.800" color="black" borderRadius="xl" justifyContent="center" p="2">
+                <Flex className="user hoverPop"
+                  bg="whiteAlpha.800"
+                  color="black"
+                  borderRadius="xl"
+                  justifyContent="center"
+                  p="2"
+                  cursor="alias"
+                  onClick={() => window.open("https://highrise.game/fr/profile/AndaLixe", "_blank")}
+                >
                   <Stack>
                     <Flex justifyContent="center">
                       <Image src="./AndaLixe.png" w="200px" alt="AndaLixe" />
                     </Flex>
                     <Stack>
                       <Text textAlign="center" fontSize="2xl">AndaLixe</Text>
-                      <Text textAlign="center" fontSize="sm"><strong>Fondateur</strong> / <strong>Manager</strong> <br/>Lead</Text>
+                      <Text textAlign="center" fontSize="sm"><strong>Fondateur</strong> / <strong>Manager</strong> <br/>Leader</Text>
                     </Stack>
                   </Stack>
                 </Flex>
-                <Flex className="user" bg="whiteAlpha.800" color="black" borderRadius="xl" justifyContent="center" p="2">
+                <Flex className="user hoverPop"
+                  bg="whiteAlpha.800"
+                  color="black"
+                  borderRadius="xl"
+                  justifyContent="center"
+                  p="2"
+                  cursor="alias"
+                  onClick={() => window.open("https://highrise.game/fr/profile/DJ_Camelico", "_blank")}
+                >
                   <Stack>
                     <Flex justifyContent="center">
                       <Image src="./DJ_Camelico.png" w="200px" alt="DJ_Camelico" />
@@ -167,7 +183,15 @@ const Home: FC = () => {
                     </Stack>
                   </Stack>
                 </Flex>
-                <Flex className="user" bg="whiteAlpha.800" color="black" borderRadius="xl" justifyContent="center" p="2">
+                <Flex className="user hoverPop"
+                  bg="whiteAlpha.800"
+                  color="black"
+                  borderRadius="xl"
+                  justifyContent="center"
+                  p="2"
+                  cursor="alias"
+                  onClick={() => window.open("https://highrise.game/fr/profile/DJ_Jeebee", "_blank")}
+                >
                   <Stack>
                     <Flex justifyContent="center">
                       <Image src="./DJ_Jeebee.png" w="200px" alt="DJ_Jeebee" />
@@ -181,19 +205,19 @@ const Home: FC = () => {
               </Grid>
               <Text as="h4" mt="6" mb="2" color="white" fontSize="2xl" textAlign="center">Les chefs de clan</Text>
               <Grid templateColumns={{base:"1", md:'repeat(3, 1fr)'}} gap={4}>
-                <Stack className="user" bg="blackAlpha.600" borderRadius="xl" p="2">
+                <Stack className="user hoverPop" bg="blackAlpha.600" borderRadius="xl" p="2" cursor="alias" onClick={() => window.open("https://highrise.game/fr/profile/Cyeme", "_blank")}>
                   <Stack>
                     <Text textAlign="center" fontSize="2xl">Cyeme</Text>
                     <Text textAlign="center" fontSize="sm" lineHeight="36px">Admin / Organisatrice</Text>
                   </Stack>
                 </Stack>
-                <Stack className="user" bg="blackAlpha.600" borderRadius="xl" p="2">
+                <Stack className="user hoverPop" bg="blackAlpha.600" borderRadius="xl" p="2" cursor="alias" onClick={() => window.open("https://highrise.game/fr/profile/Elf_ie", "_blank")}>
                   <Stack>
                     <Text textAlign="center" fontSize="2xl">Elf_ie</Text>
                     <Text textAlign="center" fontSize="sm" lineHeight="36px">Admin / Modératrice</Text>
                   </Stack>
                 </Stack>
-                <Stack className="user" bg="blackAlpha.600" borderRadius="xl" p="2">
+                <Stack className="user hoverPop" bg="blackAlpha.600" borderRadius="xl" p="2" cursor="alias" onClick={() => window.open("https://highrise.game/fr/profile/D.Chtulhu", "_blank")}>
                   <Stack>
                     <Text textAlign="center" fontSize="2xl">D.Chtulhu</Text>
                     <Text textAlign="center" fontSize="sm" lineHeight="36px">Admin / Senior</Text>
@@ -334,9 +358,9 @@ const Home: FC = () => {
         <Container pb="20">
           <Text as="h3" fontSize="2xl" color="white" textAlign="center" mb="12">Rejoins notre communauté !</Text>
           <Flex mt="4" flexDirection={{base:"column", md:"row"}} justifyContent="space-around">
-            <Button my={{base:"2", md:"0"}} py="6" px="8" borderBottom="4px solid #070" colorScheme="whatsapp" onClick={() => window.open('https://discord.gg/jnJXVAKwnV', "_blank")}>Discord</Button>
-            <Button my={{base:"2", md:"0"}} py="6" px="8" borderBottom="4px solid #070" colorScheme="whatsapp" onClick={() => window.open('https://instagram.com/hexofo', "_blank")}>Instagram</Button>
-            <Button my={{base:"2", md:"0"}} py="6" px="8" borderBottom="4px solid #070" colorScheme="whatsapp" onClick={() => window.open('https://twitter.com/hexofo_', "_blank")}>Twitter</Button>
+            <Button cursor="alias" my={{base:"2", md:"0"}} py="6" px="8" borderBottom="4px solid #070" colorScheme="whatsapp" onClick={() => window.open('https://discord.gg/jnJXVAKwnV', "_blank")}>Discord</Button>
+            <Button cursor="alias" my={{base:"2", md:"0"}} py="6" px="8" borderBottom="4px solid #070" colorScheme="whatsapp" onClick={() => window.open('https://instagram.com/hexofo', "_blank")}>Instagram</Button>
+            <Button cursor="alias" my={{base:"2", md:"0"}} py="6" px="8" borderBottom="4px solid #070" colorScheme="whatsapp" onClick={() => window.open('https://twitter.com/hexofo_', "_blank")}>Twitter</Button>
           </Flex>
         </Container>
         <Flex justifyContent="center" p="4">
