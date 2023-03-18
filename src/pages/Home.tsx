@@ -81,7 +81,7 @@ const Home: FC = () => {
   return <Stack minH="100vh" pb="0">
     <Stack as="section" bg="black" minH="calc(100vh - 24px)" justifyContent="space-around" mt="0 !important">
       <Container>
-        <Image src="./bg.jpg" className="fadeOpacity" alt="bg" position="absolute" top="0" left="0" w="100vw" h="calc(100vh - 24px)" />
+        <Stack backgroundImage="url('./bg.jpg')" backgroundSize="cover" backgroundPosition="center" className="fadeOpacity" position="absolute" top="0" left="0" w="100vw" h="calc(100vh - 24px)" />
         <Stack position="relative">
           <Text as="h1" display="none" fontSize="4xl" color="white" textAlign="center" mb="4">Hexofo</Text>
           <Flex justifyContent="center">
@@ -144,7 +144,7 @@ const Home: FC = () => {
                   </Flex>
                   <Stack>
                     <Text textAlign="center" fontSize="2xl">DJ_Jeebee</Text>
-                    <Text textAlign="center" fontSize="sm"><strong>DJ</strong> / <strong>Représentant</strong> <br/>Promoteur</Text>
+                    <Text textAlign="center" fontSize="sm"><strong>DJ</strong> / <strong>Promoteur</strong> <br/>Représentant</Text>
                   </Stack>
                 </Stack>
               </Flex>
