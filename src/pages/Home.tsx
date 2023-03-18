@@ -217,7 +217,7 @@ const Home: FC = () => {
         justifyContent="space-around"
       >
         <Stack w="100vw" minH="100vh" m="0" p="0" bg="url('./Mascot2.png')" bgPosition={{base:"0 calc(100% - 128px)", md: "calc(50vw) 24px"}} bgRepeat="no-repeat" backgroundSize="contain">
-          <Stack bg="blackAlpha.300" minH="100vh" w="100vw" m="0" p="0" justifyContent="center">
+          <Stack minH="100vh" w="100vw" m="0" p="0" justifyContent="center">
             <Flex bgSize="contain" justify="center" pt="16" pb="4">
               <Container py="16" pb={{base:"0", md:"16"}}>
                 <Text as="h3" fontSize="3xl" mb="6" textAlign="center" color="white">&Eacute;vènement{events.length > 1 ? "s" : ""} à venir</Text>
@@ -279,13 +279,13 @@ const Home: FC = () => {
 
                     <Flex justifyContent="center" flexDirection={{base:"column", md:"row"}} pt={{base:"100vw", md:"12"}} mb="4">
                       <Flex justifyContent="center" mb="2">
-                        <Button onClick={() => setModalCalendar(true)} py="6" cursor="pointer" color="black" bg="white" borderBottom="4px solid #777" leftIcon={<CalendarIcon />} borderRadius="xl"
+                        <Button minW={{base:"160px", md: "auto"}} onClick={() => setModalCalendar(true)} py="6" cursor="pointer" color="black" bg="white" borderBottom="4px solid #777" leftIcon={<CalendarIcon />} borderRadius="xl"
                           mr={{base:"O", md:"2"}}
                         >Calendrier</Button>
                       </Flex>
                       <Flex justifyContent="center">
                         <Scroll to="main" smooth={true}>
-                          <Button as="div" py="6" cursor="pointer" color="black" bg="#0F0" borderBottom="4px solid #070" _hover={{bg: "#0C0"}} rightIcon={<ArrowDownIcon />} borderRadius="xl">Visite notre site</Button>
+                          <Button minW={{base:"160px", md: "auto"}} as="div" py="6" cursor="pointer" color="black" bg="#0F0" borderBottom="4px solid #070" _hover={{bg: "#0C0"}} rightIcon={<ArrowDownIcon />} borderRadius="xl">Rejoins-nous !</Button>
                         </Scroll>
                       </Flex>
                     </Flex>
