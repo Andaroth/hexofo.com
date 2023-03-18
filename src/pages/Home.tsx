@@ -110,7 +110,7 @@ const Home: FC = () => {
       color="white"
       mt="0 !important"
     >
-      <Stack w="100vw" minH="calc(100vh - 24px)" m="0" p="0" bg="url('./Mascot.png')" bgPosition={{base:"bottom", md: "-100px 24px"}} bgRepeat="no-repeat" backgroundSize="contain" justifyContent="center">
+      <Stack w="100vw" minH="100vh" m="0" p="0" bg="url('./Mascot.png')" bgPosition={{base:"bottom", md: "-100px 24px"}} bgRepeat="no-repeat" backgroundSize="contain" justifyContent="center">
         <Flex bgSize="contain" justify="center" pt="16" pb="4">
           <Container>
             <Text as="h3" mb="2" color="white" fontSize="3xl" textAlign="center">L'équipe #HEXOFO</Text>
@@ -186,8 +186,8 @@ const Home: FC = () => {
       minH={{base:"100vh", md:"initial"}}
       justifyContent="space-around"
     >
-      <Stack w="100vw" minH="calc(100vh - 24px)" m="0" p="0" bg="url('./Mascot2.png')" bgPosition={{base:"bottom", md: "calc(50vw) 24px"}} bgRepeat="no-repeat" backgroundSize="contain">
-        <Stack bg="blackAlpha.300" minH="calc(100vh - 24px)" w="100vw" m="0" p="0" justifyContent="center">
+      <Stack w="100vw" minH="100vh" m="0" p="0" bg="url('./Mascot2.png')" bgPosition={{base:"bottom", md: "calc(50vw) 24px"}} bgRepeat="no-repeat" backgroundSize="contain">
+        <Stack bg="blackAlpha.300" minH="100vh" w="100vw" m="0" p="0" justifyContent="center">
           <Flex bgSize="contain" justify="center" pt="16" pb="4">
             <Container py="16">
               <Text as="h3" fontSize="3xl" mb="6" textAlign="center" color="white">&Eacute;vènement{events.length > 1 ? "s" : ""} à venir</Text>
