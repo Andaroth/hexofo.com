@@ -29,7 +29,7 @@ import {
   ModalCloseButton
 } from '@chakra-ui/react';
 
-import { ExternalLinkIcon, ChevronDownIcon, ArrowDownIcon } from '@chakra-ui/icons';
+import { ExternalLinkIcon, ChevronDownIcon, ArrowDownIcon, CalendarIcon } from '@chakra-ui/icons';
 
 const Home: FC = () => {
   const events: Array<{
@@ -84,6 +84,7 @@ const Home: FC = () => {
     },
   ];
 
+  const [modalCalendar,setModalCalendar] = useState(false);
   const [modalCollab,setModalCollab] = useState(false);
   const [modalJoin,setModalJoin] = useState(false);
 
@@ -91,7 +92,17 @@ const Home: FC = () => {
     <Stack minH="100vh" pb="0">
       <Stack as="section" bg="black" minH="calc(100vh - 24px)" justifyContent="space-around" mt="0 !important">
         <Container>
-          <Stack bg="radial-gradient(circle, rgba(0,128,0,1) 0%, rgba(0,88,0,1) 39%, rgba(0,18,0,1) 100%)" backgroundSize={{base:"100vh", md:"100vw"}} backgroundPosition="center" className="fadeOpacity" position="absolute" top="0" left="0" w="100vw" h="calc(100vh - 24px)" />
+          <Stack
+            bg="radial-gradient(circle, rgba(0,128,0,1) 0%, rgba(0,88,0,1) 39%, rgba(0,18,0,1) 100%)"
+            backgroundSize={{base:"100vh", md:"100vw"}}
+            backgroundPosition="center"
+            className="fadeOpacity"
+            position="absolute"
+            top="0"
+            left="0"
+            w="100vw"
+            h="calc(100vh - 24px)" 
+          />
           <Stack position="relative">
             <Text as="h1" display="none" fontSize="4xl" color="white" textAlign="center" mb="4">Hexofo</Text>
             <Flex justifyContent="center">
@@ -159,7 +170,7 @@ const Home: FC = () => {
                   </Stack>
                 </Flex>
               </Grid>
-              <Text as="h4" mt="6" mb="2" color="white" fontSize="2xl" textAlign="center">Les chefs du clan</Text>
+              <Text as="h4" mt="6" mb="2" color="white" fontSize="2xl" textAlign="center">Les chefs de clan</Text>
               <Grid templateColumns={{base:"1", md:'repeat(3, 1fr)'}} gap={4}>
                 <Stack className="user" bg="blackAlpha.600" borderRadius="xl" p="2">
                   <Stack>
@@ -257,10 +268,17 @@ const Home: FC = () => {
                       </Slider>
                     </Box>
 
-                    <Flex justifyContent="center" pt={{base:"calc(100vw - 128px)", md:"12"}} mb="4">
-                      <Scroll to="main" smooth={true}>
-                        <Button as="div" py="6" cursor="pointer" color="black" bg="#0F0" borderBottom="4px solid #070" _hover={{bg: "#0C0"}} rightIcon={<ArrowDownIcon />} borderRadius="xl">Visite notre site</Button>
-                      </Scroll>
+                    <Flex justifyContent="center" flexDirection={{base:"column", md:"row"}} pt={{base:"calc(100vw - 128px)", md:"12"}} mb="4">
+                      <Flex justifyContent="center" mb="2">
+                        <Button onClick={() => setModalCalendar(true)} py="6" cursor="pointer" color="black" bg="white" borderBottom="4px solid #777" leftIcon={<CalendarIcon />} borderRadius="xl"
+                          mr="2"
+                        >Calendrier</Button>
+                      </Flex>
+                      <Flex justifyContent="center">
+                        <Scroll to="main" smooth={true}>
+                          <Button as="div" py="6" cursor="pointer" color="black" bg="#0F0" borderBottom="4px solid #070" _hover={{bg: "#0C0"}} rightIcon={<ArrowDownIcon />} borderRadius="xl">Visite notre site</Button>
+                        </Scroll>
+                      </Flex>
                     </Flex>
 
                   </Container>
@@ -317,6 +335,26 @@ const Home: FC = () => {
       </Stack>
       
     </Stack>
+
+    <Modal isOpen={modalCalendar} onClose={() => setModalCalendar(false)} isCentered motionPreset="slideInBottom" closeOnOverlayClick={false} size="full">
+      <ModalOverlay
+        bg='blackAlpha.300'
+        backdropFilter='blur(10px)'
+      />
+      <ModalContent>
+        <ModalHeader color="white">Calendar</ModalHeader>
+        <ModalCloseButton bg="#0F0" borderRadius="50%" />
+        <ModalBody pb="2">
+          <iframe src="https://calendar.google.com/calendar/u/0/embed?src=52e6cc8e24869170880be720289d52b4360782553828f57d80f7cfedea1a6efb@group.calendar.google.com&ctz=Europe/Paris" style={{
+            border: "0",
+            height: "calc(100vh - 120px)",
+            width: "100%",
+            borderRadius: "8px",
+            background: "radial-gradient(circle, rgba(0,128,0,1) 0%, rgba(0,88,0,1) 39%, rgba(0,18,0,1) 100%)"
+          }} />
+        </ModalBody>
+      </ModalContent>
+    </Modal>
 
     <Modal isOpen={modalCollab} onClose={() => setModalCollab(false)} isCentered motionPreset="slideInBottom" closeOnOverlayClick={false} size="full">
       <ModalOverlay
