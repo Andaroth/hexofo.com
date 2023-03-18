@@ -318,33 +318,41 @@ const Home: FC = () => {
       
     </Stack>
 
-    <Modal isOpen={modalCollab} onClose={() => setModalCollab(false)} isCentered>
-      <ModalOverlay />
+    <Modal isOpen={modalCollab} onClose={() => setModalCollab(false)} isCentered motionPreset="slideInBottom" closeOnOverlayClick={false} size="full">
+      <ModalOverlay
+        bg='blackAlpha.300'
+        backdropFilter='blur(10px)'
+      />
       <ModalContent>
-        <ModalHeader>Collaboration</ModalHeader>
-        <ModalCloseButton />
+        <ModalHeader color="white">Collaboration</ModalHeader>
+        <ModalCloseButton bg="#0F0" borderRadius="50%" />
         <ModalBody pb="2">
           <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScc3HjIt7VB0LK-IMGOWdTokFMVLPsG6etj0rJrj0YlCc73OQ/viewform?usp=sf_link" style={{
             border: "0",
-            height: "50vh",
+            height: "calc(100vh - 120px)",
             width: "100%",
-            borderRadius: "8px"
+            borderRadius: "8px",
+            background: "radial-gradient(circle, rgba(0,128,0,1) 0%, rgba(0,88,0,1) 39%, rgba(0,18,0,1) 100%)"
           }} />
         </ModalBody>
       </ModalContent>
     </Modal>
 
-    <Modal isOpen={modalJoin} onClose={() => setModalJoin(false)} isCentered>
-      <ModalOverlay />
+    <Modal isOpen={modalJoin} onClose={() => setModalJoin(false)} isCentered motionPreset="slideInBottom" closeOnOverlayClick={false} size="full">
+      <ModalOverlay
+        bg='blackAlpha.300'
+        backdropFilter='blur(10px)'
+      />
       <ModalContent>
-        <ModalHeader>Recrutement</ModalHeader>
-        <ModalCloseButton />
+        <ModalHeader color="white">Recrutement</ModalHeader>
+        <ModalCloseButton bg="#0F0" borderRadius="50%" />
         <ModalBody pb="2">
           <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScOq61gb-sET6_GV5QiaxjcecQhGlajB-qn7_C-n_j8fKebCQ/viewform?usp=sf_link" style={{
             border: "0",
-            height: "50vh",
+            height: "calc(100vh - 120px)",
             width: "100%",
-            borderRadius: "8px"
+            borderRadius: "8px",
+            background: "radial-gradient(circle, rgba(0,128,0,1) 0%, rgba(0,88,0,1) 39%, rgba(0,18,0,1) 100%)"
           }} />
         </ModalBody>
       </ModalContent>

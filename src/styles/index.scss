@@ -35,8 +35,7 @@ a.underline { text-decoration: underline !important; }
 .mobileOnly, .mobileonly, .mobile-only { display: none !important; }
 
 .chakra-modal__content {
-  width: 640px !important;
-  max-width: calc(100vw - 40px) !important;
+  background: transparent !important;
 }
 
 @media screen and (max-width:800px) {
