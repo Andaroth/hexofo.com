@@ -11,6 +11,8 @@ import 'video-react/dist/video-react.css';
 
 import { Player } from 'video-react';
 
+import TopBar from "../components/TopBar";
+
 import {
   Container,
   Stack,
@@ -89,7 +91,7 @@ const Home: FC = () => {
   const [modalJoin,setModalJoin] = useState(false);
 
   return <>
-    <Stack minH="100vh" pb="0">
+    <Stack minH="100vh" pb="0" id="top">
       <Stack as="section" bg="black" minH="calc(100vh - 24px)" justifyContent="space-around" mt="0 !important">
         <Container>
           <Stack
@@ -115,13 +117,13 @@ const Home: FC = () => {
               fontWeight="400"
               textAlign="center"
               fontFamily="'Ubuntu', sans-serif !important"
-            >Les plus grosses&nbsp;soirées <span className="hidden">du métavers</span> se passent sur <Link className="underline" to="https://highrise.game/fr/feed/HEXOFO" target="_blank">HighRise</Link><span className="noMobile"> avec&nbsp;HEXOFO</span>!</Text>
+            >Les plus grosses&nbsp;soirées <span className="hidden">du métavers</span> se passent sur <Link className="underline" to="https://highrise.game/fr/feed/HEXOFO" target="_blank">HighRise</Link> avec&nbsp;HEXOFO&nbsp;!</Text>
             <Flex justifyContent="center" mt="8" py="6">
-              <Flex justifyContent="center" mr="4">
+              {/* <Flex justifyContent="center" mr="4">
                 <Scroll to="upcoming" smooth={true}>
                   <Button as="div" cursor="pointer" bg="white" borderRadius="18px" h="36px">Soirées</Button>
                 </Scroll>
-              </Flex>
+              </Flex> */}
               <Flex justifyContent="center">
                 <Scroll to="team" smooth={true}>
                   <Button as="div" className="heartbeat" cursor="pointer" bg="#0F0" borderRadius="18px" h="36px" rightIcon={<ChevronDownIcon />}>Découvrir</Button>
@@ -315,8 +317,9 @@ const Home: FC = () => {
               </Stack>
               <Stack justifyContent="space-around">
                 <Box bg="blackAlpha.500" p="4" borderRadius="lg" w="100%">
-                  <Text as="h3" mb="4" color="white" textAlign="center" fontSize="2xl">Bienvenue sur notre site !</Text>
-                  <Text color="white" textAlign="center" fontSize="xl">Où désires-tu aller ?</Text>
+                  <Text as="h3" mb="4" color="white" textAlign="center" fontSize="2xl">Bienvenue chez Hexofo</Text>
+                  {/* <Text color="white" textAlign="center" fontSize="xl">Nous sommes spécialistes de HR!</Text> */}
+                  <Text color="white" textAlign="center">Comment pouvons-nous t'aider ?</Text>
                   <Stack my="6"><Button py="12" px="8" borderBottom="4px solid #070" colorScheme="whatsapp" onClick={() => setModalCollab(true)}><span className="noMobile">Formulaire de&nbsp;</span>Collaboration</Button></Stack>
                   <Stack my="6"><Button py="12" px="8" borderBottom="4px solid #070" colorScheme="whatsapp" onClick={() => setModalJoin(true)}><span className="noMobile">Formulaire de&nbsp;</span>Recrutement</Button></Stack>
                   <Stack my="6"><Button py="12" px="8" borderBottom="4px solid #777" rightIcon={<ExternalLinkIcon />} onClick={() => window.open('https://highrise.helpshift.com/hc/fr/', "_blank")}>Aide HighRise</Button></Stack>
@@ -402,6 +405,8 @@ const Home: FC = () => {
         </ModalBody>
       </ModalContent>
     </Modal>
+
+    <TopBar />
   </>
 }
 
