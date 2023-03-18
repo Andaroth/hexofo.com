@@ -81,7 +81,7 @@ const Home: FC = () => {
   return <Stack minH="100vh" pb="0">
     <Stack as="section" bg="black" minH="calc(100vh - 24px)" justifyContent="space-around" mt="0 !important">
       <Container>
-        <Stack backgroundImage="url('./bg.jpg')" backgroundSize="cover" backgroundPosition="center" className="fadeOpacity" position="absolute" top="0" left="0" w="100vw" h="calc(100vh - 24px)" />
+        <Stack bg="radial-gradient(circle, rgba(0,128,0,1) 0%, rgba(0,88,0,1) 39%, rgba(0,18,0,1) 100%)" backgroundSize={{base:"100vh", md:"100vw"}} backgroundPosition="center" className="fadeOpacity" position="absolute" top="0" left="0" w="100vw" h="calc(100vh - 24px)" />
         <Stack position="relative">
           <Text as="h1" display="none" fontSize="4xl" color="white" textAlign="center" mb="4">Hexofo</Text>
           <Flex justifyContent="center">
