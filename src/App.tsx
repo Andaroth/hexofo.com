@@ -15,7 +15,7 @@ const App: FC = () => {
       <ChakraProvider theme={theme}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </ChakraProvider>
     </HashRouter>

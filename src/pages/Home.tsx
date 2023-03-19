@@ -87,9 +87,13 @@ const Home: FC = () => {
     },
   ];
 
-  const [modalCalendar,setModalCalendar] = useState(false);
-  const [modalCollab,setModalCollab] = useState(false);
-  const [modalJoin,setModalJoin] = useState(false);
+  const shouldOpenCalendar = ():boolean => window.location.href.includes('/calend') || window.location.href.includes('/date')
+  const shouldOpenCollab = ():boolean => window.location.href.includes('/collab') || window.location.href.includes('/event') || window.location.href.includes('/hrlive')
+  const shouldOpenJoin = ():boolean => window.location.href.includes('join') || window.location.href.includes('inscri')
+
+  const [modalCalendar,setModalCalendar] = useState(shouldOpenCalendar());
+  const [modalCollab,setModalCollab] = useState(shouldOpenCollab());
+  const [modalJoin,setModalJoin] = useState(shouldOpenJoin());
 
   return <>
     <Stack minH="100vh" pb="0" id="top">
@@ -377,7 +381,7 @@ const Home: FC = () => {
         backdropFilter='blur(10px)'
       />
       <ModalContent>
-        <ModalHeader color="white">Calendar</ModalHeader>
+        <ModalHeader color="white">Calendrier</ModalHeader>
         <ModalCloseButton bg="#0F0" borderRadius="50%" />
         <ModalBody pb="2">
         <Spinner color="#0F0" position="fixed" top="50vh" left="50vw" transform="translate(-50%,-50%)" zIndex="-1" />

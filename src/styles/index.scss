@@ -11,7 +11,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Roboto', sans-serif !important;
-  font-weight: 400;
+  font-weight: 400 !important;
 }
 
 a.underline { text-decoration: underline !important; }
@@ -26,6 +26,7 @@ a.underline { text-decoration: underline !important; }
 
   li.slick-active > button::before {
     font-size: 16px !important;
+    color: #0F0 !important;
   }
 }
 
