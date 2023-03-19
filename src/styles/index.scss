@@ -19,6 +19,13 @@ a.underline { text-decoration: underline !important; }
 .slick-dots {
   li > button::before {
     color: white !important;
+    font-size: 8px !important;
+    height: 20px !important;
+    width: 20px !important;
+  }
+
+  li.slick-active > button::before {
+    font-size: 16px !important;
   }
 }
 
@@ -28,6 +35,19 @@ a.underline { text-decoration: underline !important; }
   .slick-slide {
     height: 100%;
   }
+}
+
+.slick-prev, .slick-next {
+  height: 36px !important;
+  width: 36px !important;
+  transition: all .2s ease;
+  z-index: 20;
+}
+.slick-prev:hover { transform: translate(-4px,-50%) !important; }
+.slick-next:hover { transform: translate(4px,-50%) !important; }
+.slick-prev:before, .slick-next:before {
+  color: #0F0 !important;
+  font-size: 36px !important;
 }
 
 .player .video-react-control-bar { display: none !important; }
@@ -44,6 +64,13 @@ a.underline { text-decoration: underline !important; }
 }
 
 .cursoralias, .cursorAlias { cursor: alias !important; }
+
+.chakra-modal__close-btn {
+  transition: all .5s ease !important;
+  &:hover {
+    transform: rotate(-360deg) !important;
+  }
+}
 
 @media screen and (max-width:800px) {
   .noMobile, .nomobile, .no-mobile { display: none !important; }
