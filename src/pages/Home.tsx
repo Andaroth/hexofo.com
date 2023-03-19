@@ -28,10 +28,11 @@ import {
   ModalContent,
   ModalHeader,
   ModalBody,
-  ModalCloseButton
+  ModalCloseButton,
+  Spinner
 } from '@chakra-ui/react';
 
-import { ExternalLinkIcon, ChevronDownIcon, ArrowDownIcon, CalendarIcon } from '@chakra-ui/icons';
+import { ExternalLinkIcon, ChevronDownIcon, CalendarIcon } from '@chakra-ui/icons';
 
 const Home: FC = () => {
   const events: Array<{
@@ -309,7 +310,7 @@ const Home: FC = () => {
                       </Flex>
                       <Flex justifyContent="center">
                         <Scroll to="main" smooth={true}>
-                          <Button minW={{base:"160px", md: "auto"}} as="div" py="6" cursor="pointer" color="black" bg="#0F0" borderBottom="4px solid #070" _hover={{bg: "#0C0"}} rightIcon={<ArrowDownIcon />} borderRadius="xl">Rejoins-nous !</Button>
+                          <Button minW={{base:"160px", md: "auto"}} as="div" py="6" cursor="pointer" color="black" bg="#0F0" borderBottom="4px solid #070" _hover={{bg: "#0C0"}} rightIcon={<ChevronDownIcon />} borderRadius="xl">Rejoins-nous !</Button>
                         </Scroll>
                       </Flex>
                     </Flex>
@@ -379,12 +380,14 @@ const Home: FC = () => {
         <ModalHeader color="white">Calendar</ModalHeader>
         <ModalCloseButton bg="#0F0" borderRadius="50%" />
         <ModalBody pb="2">
+        <Spinner color="#0F0" position="fixed" top="50vh" left="50vw" transform="translate(-50%,-50%)" zIndex="-1" />
           <iframe src="https://calendar.google.com/calendar/u/0/embed?src=52e6cc8e24869170880be720289d52b4360782553828f57d80f7cfedea1a6efb@group.calendar.google.com&ctz=Europe/Paris" style={{
             border: "0",
             height: "calc(100vh - 120px)",
             width: "100%",
             borderRadius: "8px",
-            background: "radial-gradient(circle, rgba(0,128,0,1) 0%, rgba(0,88,0,1) 39%, rgba(0,18,0,1) 100%)"
+            zIndex: "10",
+            // background: "radial-gradient(circle, rgba(0,128,0,1) 0%, rgba(0,88,0,1) 39%, rgba(0,18,0,1) 100%)",
           }} />
         </ModalBody>
       </ModalContent>
@@ -399,12 +402,14 @@ const Home: FC = () => {
         <ModalHeader color="white">Collaboration</ModalHeader>
         <ModalCloseButton bg="#0F0" borderRadius="50%" />
         <ModalBody pb="2">
+          <Spinner color="#0F0" position="fixed" top="50vh" left="50vw" transform="translate(-50%,-50%)" zIndex="-1" />
           <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScc3HjIt7VB0LK-IMGOWdTokFMVLPsG6etj0rJrj0YlCc73OQ/viewform?usp=sf_link" style={{
             border: "0",
             height: "calc(100vh - 120px)",
             width: "100%",
             borderRadius: "8px",
-            background: "radial-gradient(circle, rgba(0,128,0,1) 0%, rgba(0,88,0,1) 39%, rgba(0,18,0,1) 100%)"
+            zIndex: "10",
+            // background: "radial-gradient(circle, rgba(0,128,0,1) 0%, rgba(0,88,0,1) 39%, rgba(0,18,0,1) 100%)"
           }} />
         </ModalBody>
       </ModalContent>
@@ -419,12 +424,14 @@ const Home: FC = () => {
         <ModalHeader color="white">Recrutement</ModalHeader>
         <ModalCloseButton bg="#0F0" borderRadius="50%" />
         <ModalBody pb="2">
+          <Spinner color="#0F0" position="fixed" top="50vh" left="50vw" transform="translate(-50%,-50%)" zIndex="-1" />
           <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScOq61gb-sET6_GV5QiaxjcecQhGlajB-qn7_C-n_j8fKebCQ/viewform?usp=sf_link" style={{
             border: "0",
             height: "calc(100vh - 120px)",
             width: "100%",
             borderRadius: "8px",
-            background: "radial-gradient(circle, rgba(0,128,0,1) 0%, rgba(0,88,0,1) 39%, rgba(0,18,0,1) 100%)"
+            zIndex: "10",
+            // background: "radial-gradient(circle, rgba(0,128,0,1) 0%, rgba(0,88,0,1) 39%, rgba(0,18,0,1) 100%)"
           }} />
         </ModalBody>
       </ModalContent>
