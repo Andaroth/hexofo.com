@@ -52,7 +52,7 @@ const Home: FC = () => {
       img: "./events/230324.jpg",
       video: null,
       content: [
-        "Énorme soirée DJ Mix & Tips organisée par l’incroyable clan français #HEXOFO avec @AndaLixe et @DJ_Jeebee! 💚",
+        "Soirée DJ organisée par l’incroyable clan #HEXOFO avec DJ_Jeebee, UntraceableDJ et Just.Joke ! 💚",
       ],
       link: {
         url: "https://highrise.game/fr/room/63deadb458755bdf24dd7c27",
@@ -337,10 +337,10 @@ const Home: FC = () => {
         <Flex as="div" className="overlay" position="relative" p="0" w="100vw" minH="100vh" bg="blackAlpha.600" justifyContent="center">
           <Stack justifyContent="center">
             <Flex>
-              <Stack justifyContent="center" className="player noMobile" py="4">
-                <AspectRatio h="640px" w="480px" ratio={1}>
-                  <Flex justifyContent="center">
-                    <video height="640px" width="auto" src="./video/63de15b7058ba9b0359065f7_0.mov" muted autoPlay loop style={{borderRadius: "var(--chakra-radii-lg)"}} />
+              <Stack justifyContent="center" className="player noMobile" py="4" mr="6">
+                <AspectRatio h="500px" w="360px" ratio={1} overflow="hidden">
+                  <Flex justifyContent="center" borderRadius="lg">
+                    <video width="360px" height="auto" src="./video/hexofo.mov" muted autoPlay loop />
                   </Flex>
                 </AspectRatio>
               </Stack>
