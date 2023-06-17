@@ -13,6 +13,10 @@ import { Player } from 'video-react';
 
 import TopBar from "../components/TopBar";
 
+import { useNavigate } from "react-router-dom";
+
+import Footer from "../components/Footer";
+
 import {
   Container,
   Stack,
@@ -35,6 +39,14 @@ import {
 import { ExternalLinkIcon, ChevronDownIcon, CalendarIcon } from '@chakra-ui/icons';
 
 const Home: FC = () => {
+  const navigate = useNavigate()
+  const handleNavigate = (link:string) => {
+    if (link.startsWith('https://')) window.open(link,'_blank')
+    else {
+      window.scrollTo(0, 0)
+      navigate(link)
+    }
+  }
   const events: Array<{
     name: string
     date: string
@@ -44,8 +56,83 @@ const Home: FC = () => {
     link?: {
       url: string
       label: string
-    }
+    },
+    reveal?: Date
   }> = [
+    {
+      name: "Summer Beach Party",
+      date: "21 juin à 21h (CET)",
+      img: "./events/230621.jpg",
+      video: null,
+      content: [
+        "Fêtons l'été et la fête de la musique avec DJ_Jeebee et HEXOFO à la plage !",
+      ],
+      link: {
+        url: "https://highrise.game/fr/room/64731141beb8e126fd72bd82",
+        label: "Voir la salle"
+      },
+    },
+    {
+      name: "HR Live HexoVoice #001",
+      date: "05 Mai à 19h (CET)",
+      img: "./events/230505.jpg",
+      video: null,
+      content: [
+        "Découvrez les talents de HR France lors de notre grand concours de chant sur HR Live !",
+      ]
+    },
+    {
+      name: "TXC x HEXOFO",
+      date: "23 Avril à 20h30 (CET)",
+      img: "./events/230423.jpg",
+      video: null,
+      content: [
+        "Venez assister à une soirée DJ en live avec DJ_Jeebee et UntraceableDJ !",
+      ],
+      link: {
+        url: "https://highrise.game/fr/room/633983fad770224f9e568ef5",
+        label: "Voir la salle"
+      }
+    },
+    {
+      name: "Camelico radio live",
+      date: "19 Avril à 21h (CET)",
+      img: "./events/230419.jpg",
+      video: null,
+      content: [
+        "Regardez la redif de DJ_Camelico en live sur RADIOEXTREMIX.BE 💚",
+      ],
+      link: {
+        url: "https://www.facebook.com/radioextremix/videos/207035345397371/",
+        label: "Voir la rediffusion"
+      }
+    },
+    {
+      name: "Jeebee x Camelico",
+      date: "18 Avril",
+      img: "./events/230418.jpg",
+      video: null,
+      content: [
+        "Soirée mix avec les DJ Jeebee & Camelico 💚",
+      ],
+      link: {
+        url: "https://highrise.game/fr/room/63789528c37ffb06f07b4c1f", // 63789528c37ffb06f07b4c1f
+        label: "Voir la salle"
+      }
+    },
+    {
+      name: "HR Live FAQ NFT",
+      date: "7 Avril à 21h (CET)",
+      img: "./events/230407.jpg",
+      video: null,
+      content: [
+        "Soirée Questions/Réponses sur les différents NFT de HighRise 💚",
+      ],
+      link: {
+        url: "https://highrise.game/fr/room/63ac759c2ed5e6f11019f14f",
+        label: "Voir la salle"
+      }
+    },
     {
       name: "HR Live #HEXOFO",
       date: "24 Mars à 20h (CET)",
@@ -129,10 +216,20 @@ const Home: FC = () => {
                   <Button as="div" cursor="pointer" bg="white" borderRadius="18px" h="36px">Soirées</Button>
                 </Scroll>
               </Flex> */}
-              <Flex justifyContent="center">
-                <Scroll to="team" smooth={true}>
-                  <Button as="div" className="heartbeat" cursor="pointer" bg="#0F0" borderRadius="18px" h="36px" rightIcon={<ChevronDownIcon />}>Découvrir</Button>
-                </Scroll>
+              <Flex justifyContent="center" flexDirection={{base:"column",md:"row"}}>
+                <Flex justifyContent="center" mb={{base:"8", md:"0"}} mr={{base:"0", md:"4"}}>
+
+                  <Button as="div" bg="white" cursor="pointer" borderRadius="18px" py={{ base: "6", md: "initial" }} minH="36px"
+                    onClick={() => window.open('https://hexofo.myspreadshop.fr', '_blank')}
+                    rightIcon={<ExternalLinkIcon />}
+                  >Boutique</Button>
+
+                </Flex>
+                <Flex justifyContent="center">
+                  <Scroll to="team" smooth={true}>
+                    <Button as="div" className="heartbeat" cursor="pointer" bg="#0F0" borderRadius="18px" py={{base:"6",md:"initial"}} minH="36px" rightIcon={<ChevronDownIcon />}>Découvrir</Button>
+                  </Scroll>
+                </Flex>
               </Flex>
             </Flex>
           </Stack>
@@ -229,6 +326,21 @@ const Home: FC = () => {
                   </Stack>
                 </Stack>
               </Grid>
+              <Text as="h4" mt="6" mb="2" color="white" fontSize="2xl" textAlign="center">Responsables</Text>
+              <Grid templateColumns={{base:"1", md:'repeat(2, 1fr)'}} gap={4}>
+                <Stack className="user hoverPop" bg="blackAlpha.600" borderRadius="xl" p="2" cursor="pointer" onClick={() => window.open("https://highrise.game/fr/profile/NOmade49", "_blank")}>
+                  <Stack>
+                    <Text textAlign="center" fontSize="2xl">NOmade49</Text>
+                    <Text textAlign="center" fontSize="sm" lineHeight="36px">Admin / Recruteur</Text>
+                  </Stack>
+                </Stack>
+                <Stack className="user hoverPop" bg="blackAlpha.600" borderRadius="xl" p="2" cursor="pointer" onClick={() => window.open("https://highrise.game/fr/profile/wardaaz", "_blank")}>
+                  <Stack>
+                    <Text textAlign="center" fontSize="2xl">wardaaz</Text>
+                    <Text textAlign="center" fontSize="sm" lineHeight="36px">Admin / Recruteuse</Text>
+                  </Stack>
+                </Stack>
+              </Grid>
             </Container>
           </Flex>
           <Flex justifyContent="space-around" pt={{base:"calc(100vw - 48px)", md:"4"}} pb="8">
@@ -249,7 +361,7 @@ const Home: FC = () => {
           <Stack minH="100vh" w="100vw" m="0" p="0" justifyContent="center">
             <Flex bgSize="contain" justify="center" pt="16" pb="4">
               <Container py="16" pb={{base:"0", md:"16"}}>
-                <Text as="h3" fontSize="3xl" mb="6" textAlign="center" color="white">&Eacute;vènement{events.length > 1 ? "s" : ""} à venir</Text>
+                <Text as="h3" fontSize="3xl" mb="6" textAlign="center" color="white">Nos soirées</Text>
                   <Container>
                     <Box bg="blackAlpha.400" pt="2" m="2" borderRadius="lg">
                       <Slider
@@ -262,7 +374,9 @@ const Home: FC = () => {
                         slidesToShow={1}
                         slide="article"
                       >
-                        { events.map(ev => <Stack as="article" key={events.indexOf(ev)} textAlign="center" pb="4">
+                        { events
+                          .filter(ev => ev.reveal ? ev.reveal < new Date() : true)
+                          .map(ev => <Stack as="article" key={events.indexOf(ev)} textAlign="center" pb="4">
                           { ev.name || ev.date ? <Stack color="white" mb="2" justifyContent="space-between">
                             { ev.name ? <Text fontSize="2xl">{ ev.name }</Text> : ''}
                             { ev.date ? <Text fontSize="xl" lineHeight="28px">{ ev.date }</Text> : ''}
@@ -308,7 +422,7 @@ const Home: FC = () => {
 
                     <Flex justifyContent="center" flexDirection={{base:"column", md:"row"}} pt={{base:"100vw", md:"12"}} mb="4">
                       <Flex justifyContent="center" mb="2">
-                        <Button minW={{base:"160px", md: "auto"}} onClick={() => setModalCalendar(true)} py="6" cursor="pointer" color="black" bg="white" borderBottom="4px solid #777" leftIcon={<CalendarIcon />} borderRadius="xl"
+                        <Button minW={{base:"160px", md: "auto"}} onClick={() => window.open('https://calendar.google.com/calendar/u/0/embed?src=52e6cc8e24869170880be720289d52b4360782553828f57d80f7cfedea1a6efb@group.calendar.google.com&ctz=Europe/Paris', '_blank')} py="6" cursor="pointer" color="black" bg="white" borderBottom="4px solid #777" leftIcon={<CalendarIcon />} rightIcon={<ExternalLinkIcon />} borderRadius="xl"
                           mr={{base:"O", md:"2"}}
                         >Calendrier</Button>
                       </Flex>
@@ -349,8 +463,10 @@ const Home: FC = () => {
                   <Text as="h3" mb="4" color="white" textAlign="center" fontSize="2xl">Bienvenue chez Hexofo</Text>
                   {/* <Text color="white" textAlign="center" fontSize="xl">Nous sommes spécialistes de HR!</Text> */}
                   <Text color="white" textAlign="center">Comment pouvons-nous t'aider ?</Text>
-                  <Stack my="6"><Button py="12" px="8" borderBottom="4px solid #070" colorScheme="whatsapp" onClick={() => setModalCollab(true)}><span className="noMobile">Formulaire de&nbsp;</span>Collaboration</Button></Stack>
-                  <Stack my="6"><Button py="12" px="8" borderBottom="4px solid #070" colorScheme="whatsapp" onClick={() => setModalJoin(true)}><span className="noMobile">Formulaire de&nbsp;</span>Recrutement</Button></Stack>
+                  {/* <Stack my="6"><Button py="12" px="8" borderBottom="4px solid #070" colorScheme="whatsapp" rightIcon={<ExternalLinkIcon />}  onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLScOq61gb-sET6_GV5QiaxjcecQhGlajB-qn7_C-n_j8fKebCQ/viewform?usp=sf_link', "_blank")}><span className="noMobile">Formulaire de&nbsp;</span>Recrutement</Button></Stack> */}
+                  <Stack my="6"><Button py="12" px="8" borderBottom="4px solid #070" colorScheme="whatsapp" onClick={() => handleNavigate("/guide")}>Guide Hexofo</Button></Stack>
+                  <Stack my="6"><Button py="12" px="8" borderBottom="4px solid #070" colorScheme="whatsapp" rightIcon={<ExternalLinkIcon />}  onClick={() => window.open('https://bit.ly/hexoshop', "_blank")}><span className="noMobile">Notre&nbsp;</span>Boutique</Button></Stack>
+                  {/* <Stack my="6"><Button py="12" px="8" borderBottom="4px solid #777" rightIcon={<ExternalLinkIcon />} onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLScc3HjIt7VB0LK-IMGOWdTokFMVLPsG6etj0rJrj0YlCc73OQ/viewform?usp=sf_link', "_blank")}><span className="noMobile">Formulaire de&nbsp;</span>Collaboration</Button></Stack> */}
                   <Stack my="6"><Button py="12" px="8" borderBottom="4px solid #777" rightIcon={<ExternalLinkIcon />} onClick={() => window.open('https://highrise.helpshift.com/hc/fr/', "_blank")}>Aide HighRise</Button></Stack>
                 </Box>
               </Stack>
@@ -359,19 +475,7 @@ const Home: FC = () => {
         </Flex>
       </Stack>
 
-      <Stack as="footer" id="community" bg="black" background="radial-gradient(circle, rgba(0,71,0,1) 0%, rgba(0,44,0,1) 24%, rgba(0,18,0,1) 100%)" pt="20" mt="0 !important">
-        <Container pb="20">
-          <Text as="h3" fontSize="2xl" color="white" textAlign="center" mb="12">Rejoins notre communauté !</Text>
-          <Flex mt="4" flexDirection={{base:"column", md:"row"}} justifyContent="space-around">
-            <Button cursor="pointer" my={{base:"2", md:"0"}} py="6" px="8" borderBottom="4px solid #070" colorScheme="whatsapp" onClick={() => window.open('https://discord.gg/jnJXVAKwnV', "_blank")}>Discord</Button>
-            <Button cursor="pointer" my={{base:"2", md:"0"}} py="6" px="8" borderBottom="4px solid #070" colorScheme="whatsapp" onClick={() => window.open('https://instagram.com/hexofo', "_blank")}>Instagram</Button>
-            <Button cursor="pointer" my={{base:"2", md:"0"}} py="6" px="8" borderBottom="4px solid #070" colorScheme="whatsapp" onClick={() => window.open('https://twitter.com/hexofo_', "_blank")}>Twitter</Button>
-          </Flex>
-        </Container>
-        <Flex justifyContent="center" p="4">
-          <Text textAlign="center" color="teal">#<strong>HEXOFO</strong> { new Date().getFullYear() } &copy; <br/>Made in ReactJS by <Link className="underline" to="https://anda.ninja" target="_blank">@AndaLixe</Link></Text>
-        </Flex>
-      </Stack>
+      <Footer />
       
     </Stack>
 
@@ -385,7 +489,7 @@ const Home: FC = () => {
         <ModalCloseButton bg="#0F0" borderRadius="50%" />
         <ModalBody pb="2">
         <Spinner color="#0F0" position="fixed" top="50vh" left="50vw" transform="translate(-50%,-50%)" zIndex="-1" />
-          <iframe src="https://calendar.google.com/calendar/u/0/embed?src=52e6cc8e24869170880be720289d52b4360782553828f57d80f7cfedea1a6efb@group.calendar.google.com&ctz=Europe/Paris" style={{
+          <iframe title="calendar" src="https://calendar.google.com/calendar/u/0/embed?src=52e6cc8e24869170880be720289d52b4360782553828f57d80f7cfedea1a6efb@group.calendar.google.com&ctz=Europe/Paris" style={{
             border: "0",
             height: "calc(100vh - 120px)",
             width: "100%",
@@ -407,7 +511,7 @@ const Home: FC = () => {
         <ModalCloseButton bg="#0F0" borderRadius="50%" />
         <ModalBody pb="2">
           <Spinner color="#0F0" position="fixed" top="50vh" left="50vw" transform="translate(-50%,-50%)" zIndex="-1" />
-          <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScc3HjIt7VB0LK-IMGOWdTokFMVLPsG6etj0rJrj0YlCc73OQ/viewform?usp=sf_link" style={{
+          <iframe title="collab" src="https://docs.google.com/forms/d/e/1FAIpQLScc3HjIt7VB0LK-IMGOWdTokFMVLPsG6etj0rJrj0YlCc73OQ/viewform?usp=sf_link" style={{
             border: "0",
             height: "calc(100vh - 120px)",
             width: "100%",
@@ -429,7 +533,7 @@ const Home: FC = () => {
         <ModalCloseButton bg="#0F0" borderRadius="50%" />
         <ModalBody pb="2">
           <Spinner color="#0F0" position="fixed" top="50vh" left="50vw" transform="translate(-50%,-50%)" zIndex="-1" />
-          <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScOq61gb-sET6_GV5QiaxjcecQhGlajB-qn7_C-n_j8fKebCQ/viewform?usp=sf_link" style={{
+          <iframe title="recruit" src="https://docs.google.com/forms/d/e/1FAIpQLScOq61gb-sET6_GV5QiaxjcecQhGlajB-qn7_C-n_j8fKebCQ/viewform?usp=sf_link" style={{
             border: "0",
             height: "calc(100vh - 120px)",
             width: "100%",
@@ -441,7 +545,32 @@ const Home: FC = () => {
       </ModalContent>
     </Modal>
 
-    <TopBar />
+    <TopBar home
+      links={[
+        {
+          label: "Guide",
+          to: "/guide"
+        },
+        {
+          label: "Boutique",
+          to: "https://hexofo.myspreadshop.fr/"
+        },
+      ]}
+      scrolls={[
+        {
+          label: "Équipe",
+          to: "team"
+        },
+        {
+          label: "Fêtes",
+          to: "upcoming"
+        },
+        {
+          label: "À propos",
+          to: "main"
+        },
+      ]}
+    />
   </>
 }
 
