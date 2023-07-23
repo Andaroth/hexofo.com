@@ -76,7 +76,7 @@ const Home: FC = () => {
             const wpArticle:any = {
               name: decodeHtmlCharCodes(article.title.rendered),
               date: `${day} ${month} à ${hours}h${minutes}`,
-              img: matchMedia?.source_url || "https://hexofo.com/logo512.png",
+              img: matchMedia?.source_url || "./logo512.png",
               // content: article.alt_text,
               link: article.link
             }
@@ -89,7 +89,7 @@ const Home: FC = () => {
   })
 
   const [wpUsers, setUsers]: [Array<any>, any] = useState([])
-  const [wpFonda, setFonda]: [Array<any>, any] = useState([])
+  // const [wpFonda, setFonda]: [Array<any>, any] = useState([])
   const [wpChief, setChief]: [Array<any>, any] = useState([])
   const [wpAdmins, setAdmins]: [Array<any>, any] = useState([])
   
@@ -97,7 +97,7 @@ const Home: FC = () => {
     if (!wpUsers.length) {
       fetch(WP_API + "users?per_page=20").then((res) => res.json()).then(users => {
         setUsers(users)
-        setFonda(users.filter((u:any) => u.roles.includes('founder')))
+        // setFonda(users.filter((u:any) => u.roles.includes('founder')))
         setChief(users.filter((u:any) => u.roles.includes('superchief')))
         setAdmins(users.filter((u:any) => u.roles.includes('crewadmin')))
         // console.log('users', wpFonda, wpChief, wpAdmins)
@@ -246,7 +246,10 @@ const Home: FC = () => {
                     <Text textAlign="center" fontSize="sm" lineHeight="36px">{ user.description }</Text>
                   </Stack>
                 </Stack>
-                }) : <Text>Chargement ...</Text>}
+                }) : ''}
+                { !wpChief.length ? <Text as="h3" textAlign="center" w="100%">Cyeme</Text> : ''}
+                { !wpChief.length ? <Text as="h3" textAlign="center" w="100%">Elf_ie</Text> : ''}
+                { !wpChief.length ? <Text as="h3" textAlign="center" w="100%">D.Chtulhu</Text> : ''}
               </Grid>
 
               <Accordion allowToggle>
@@ -262,7 +265,7 @@ const Home: FC = () => {
                           <Text textAlign="center" fontSize="2xl">{ user.name }</Text>
                         </Stack>
                       </Stack>
-                      }) : <Text>Chargement ...</Text>}
+                      }) : <Text>Nous admins assurent le recrutement et la bonne ambiance dans l'équipe.</Text>}
                     </Grid>
                   </AccordionPanel>
                 </AccordionItem>

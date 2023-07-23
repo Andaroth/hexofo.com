@@ -26,7 +26,7 @@ const Blogroll: FC = () => {
             const matchMedia = wpMedias.find((media: any) => media.id === article.featured_media)
             const wpArticle:wpArticle = {
               title: decodeHtmlCharCodes(article.title.rendered),
-              thumbnail: matchMedia?.source_url || "https://hexofo.com/logo512.png",
+              thumbnail: matchMedia?.source_url || "./logo512.png",
               alt: matchMedia?.alt_text,
               url: article.link
             }
@@ -60,7 +60,7 @@ const Blogroll: FC = () => {
                 <Image src="./AndaLixe_noob.png" alt="loading" w="200px" h="200px" borderRadius="xl" />    
               </AspectRatio>
               <Flex maxW="200px" overflow="hidden">
-                <Text color="white" fontWeight="bold">Chargement ...</Text>
+                <Text as="a" href="./blog" target="_blank" rel="noreferrer" color="white" fontWeight="bold">Visitez notre blog !</Text>
               </Flex>
             </Stack>}
           </Flex>
