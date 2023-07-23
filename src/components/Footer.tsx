@@ -14,7 +14,7 @@ const Footer: FC = () => {
           </Flex>
         </Container>
         <Flex justifyContent="center" p="4">
-          <Text textAlign="center" color="teal">&#35;<strong>HEXOFO</strong> { new Date().getFullYear() } &copy; <br/>Using <a className="underline" href="https://react.dev/" target="_blank" rel="noreferrer">ReactJS</a>, <a className="underline" href="https://chakra-ui.com/docs/" target="_blank" rel="noreferrer">ChakraUI</a> & <a className="underline" href="https://developer.wordpress.org/rest-api/" target="_blank" rel="noreferrer">Wordpress REST API</a> <br />Handmade by <a className="underline" href="https://anda.ninja" target="_blank" rel="noreferrer"><strong>@AndaLixe</strong></a></Text>
+          <Text textAlign="center" color="teal">&#35;<strong>HEXOFO</strong> { new Date().getFullYear() } &copy; <br/>Using <a className="underline" href="https://react.dev/" target="_blank" rel="noreferrer">ReactJS</a>, <a className="underline" href="https://chakra-ui.com/docs/" target="_blank" rel="noreferrer">ChakraUI</a> &amp; <a className="underline" href="https://developer.wordpress.org/rest-api/" target="_blank" rel="noreferrer">Wordpress REST API</a> <br />Handmade by <a className="underline" href="https://anda.ninja" target="_blank" rel="noreferrer"><strong>@AndaLixe</strong></a></Text>
         </Flex>
       </Stack>
 }
