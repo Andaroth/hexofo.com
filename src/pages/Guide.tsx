@@ -14,7 +14,12 @@ const Guide: FC = () => {
     const [wpArticles, setArticles]: [Array<any>, any] = useState([])
     const WP_API = "https://hexofo.com/blog/wp-json/wp/v2/"
 
-    const decodeHtmlCharCodes = (str: string) => str.replace(/(&#(\d+);)/g, (match, capture, charCode) => String.fromCharCode(charCode));
+    const decodeHtmlCharCodes = (str: string) => {
+        str = str.replace(/(&#(\d+);)/g, (match, capture, charCode) => String.fromCharCode(charCode))
+        str = str.replace(/<script[^>]*>([\S\s]*?)<\/script>/gmi, '');
+        str = str.replace(/<\/?\w(?:[^"'>]|"[^"]*"|'[^']*')*>/gmi, '');
+        return str
+    };
 
     useEffect(() => {
     if (!wpArticles.length) {
@@ -23,8 +28,9 @@ const Guide: FC = () => {
           const articles: Array<any> = []
           res.forEach((article: any) => {
             const wpArticle:any = {
-              title: decodeHtmlCharCodes(article.title.rendered),
-              url: article.link
+                title: decodeHtmlCharCodes(article.title.rendered),
+                content: decodeHtmlCharCodes(article.content.rendered).slice(1,100) + '... Clique ici pour lire l\'article !',
+                url: article.link
             }
             articles.push(wpArticle)
           })
@@ -39,9 +45,19 @@ const Guide: FC = () => {
         { label: "Robots", value: "BOT" },
         { label: "NFT", value: "nft" },
         { label: "Hexofo", value: "HEXOFO" },
+        { label: "Blog", value: "blog" },
     ];
+    const db:any = []
+    wpArticles.filter(art => art.title !== "Le guide Hexofo").forEach(article => {
+        db.push({
+            title: article.title,
+            content: article.content,
+            tags: ["comment", "blog"],
+            link: article.url
+        })
+    })
 
-    const db = [
+    const selfDb = [
         {
             title: "Gagner des gold",
             content: "Pour gagner des gold gratuitement tu peux regarder les publicités, tourner la roue de la chance et remplir des sondages sur le jeu. Tu peux également acheter des packs d'or sur le site officiel.",
@@ -106,17 +122,9 @@ const Guide: FC = () => {
             link: "https://calendar.google.com/calendar/u/0/embed?src=52e6cc8e24869170880be720289d52b4360782553828f57d80f7cfedea1a6efb@group.calendar.google.com&ctz=Europe/Paris"
         },
     ]
+    selfDb.forEach(el => db.push(el))
 
-    wpArticles.forEach(article => {
-        db.push({
-            title: article.title,
-            content: "",
-            tags: ["comment"],
-            link: article.url
-        })
-    })
-
-    const searchResults = () => searchText.length ? db.filter(test => JSON.stringify(test).toLowerCase().includes(searchText.toLowerCase())) : []
+    const searchResults = () => searchText.length ? db.filter((test:any) => JSON.stringify(test).toLowerCase().includes(searchText.toLowerCase())) : []
 
     return <>
         <Stack minH="100vh" pb="0" id="top">
@@ -173,7 +181,7 @@ const Guide: FC = () => {
                         </Stack> : <Stack bg="white" color="black" borderRadius="xl" pt="4" w={{ base: "100%", md: "600px" }}>
                                 <Text fontWeight="bold" fontSize="lg" px="6">Résultats:</Text>
                                 <Stack maxH={{base:"200px" ,md:"400px"}} overflowY="scroll" borderTop="1px solid #ccc" px="6" pt="2">
-                                    {searchResults().length ? searchResults().map(data => <Stack key={db.indexOf(data)} pb="1" _hover={data.link ? { bg: "aliceblue" } : {}} cursor={data.link ? 'pointer' : 'initial'}
+                                    {searchResults().length ? searchResults().map((data:any) => <Stack key={db.indexOf(data)} pb="1" _hover={data.link ? { bg: "aliceblue" } : {}} cursor={data.link ? 'pointer' : 'initial'}
                                         onClick={() => data.link ? window.open(data.link,'_blank') : null}
                                     >
                                         <Flex>
