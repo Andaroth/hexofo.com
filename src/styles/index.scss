@@ -74,6 +74,10 @@ a.underline { text-decoration: underline !important; }
   }
 }
 
+footer a {
+  text-decoration: underline;
+}
+
 @media screen and (max-width:800px) {
   .noMobile, .nomobile, .no-mobile { display: none !important; }
   .mobileOnly, .mobileonly, .mobile-only { display: initial !important; }
