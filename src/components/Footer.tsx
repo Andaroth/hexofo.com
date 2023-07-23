@@ -14,7 +14,7 @@ const Footer: FC = () => {
           </Flex>
         </Container>
         <Flex justifyContent="center" p="4">
-          <Text textAlign="center" color="teal">#<strong>HEXOFO</strong> { new Date().getFullYear() } &copy; <br/>Made in ReactJS by <a className="underline" href="https://anda.ninja" target="_blank" rel="noreferrer">@AndaLixe</a></Text>
+          <Text textAlign="center" color="teal">#<strong>HEXOFO</strong> { new Date().getFullYear() } &copy; <br/>Made with ReactJS, ChakraUI & WordPress REST API <br />Handmade by <a className="underline" href="https://anda.ninja" target="_blank" rel="noreferrer">@AndaLixe</a></Text>
         </Flex>
       </Stack>
 }
