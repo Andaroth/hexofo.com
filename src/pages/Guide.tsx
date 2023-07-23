@@ -119,7 +119,7 @@ const Guide: FC = () => {
             title: "Connaître les dates de soirée",
             content: "Même si nous aimons faire des fêtes improvisées, il est possible de trouver notre calendrier sur le site ou en cliquant ici.",
             tags: ["comment", "tips", "party", "mix", "dj", "live", "hrlive", "hexofo", "soirée", "soiree"],
-            link: "https://calendar.google.com/calendar/u/0/embed?src=52e6cc8e24869170880be720289d52b4360782553828f57d80f7cfedea1a6efb@group.calendar.google.com&ctz=Europe/Paris"
+            link: "https://hexofo.com/blog/agenda"
         },
     ]
     selfDb.forEach(el => db.push(el))

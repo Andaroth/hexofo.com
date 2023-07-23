@@ -346,7 +346,7 @@ const Home: FC = () => {
 
                     <Flex justifyContent="center" flexDirection={{base:"column", md:"row"}} pt={{base:"100vw", md:"12"}} mb="4">
                       <Flex justifyContent="center" mb="2">
-                        <Button minW={{base:"160px", md: "auto"}} onClick={() => window.open('https://hexofo.com/blog/agenda-des-soirees/', '_blank')} py="6" cursor="pointer" color="black" bg="white" borderBottom="4px solid #777" leftIcon={<CalendarIcon />} rightIcon={<ExternalLinkIcon />} borderRadius="xl"
+                        <Button minW={{base:"160px", md: "auto"}} onClick={() => window.open('https://hexofo.com/blog/agenda', '_blank')} py="6" cursor="pointer" color="black" bg="white" borderBottom="4px solid #777" leftIcon={<CalendarIcon />} rightIcon={<ExternalLinkIcon />} borderRadius="xl"
                           mr={{base:"O", md:"2"}}
                         >Agenda</Button>
                       </Flex>
