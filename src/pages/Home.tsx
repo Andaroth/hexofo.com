@@ -98,7 +98,7 @@ const Home: FC = () => {
         setFonda(users.filter((u:any) => u.roles.includes('founder')))
         setChief(users.filter((u:any) => u.roles.includes('superchief')))
         setAdmins(users.filter((u:any) => u.roles.includes('crewadmin')))
-        console.log('users', wpFonda, wpChief, wpAdmins)
+        // console.log('users', wpFonda, wpChief, wpAdmins)
       })
     }
   })
@@ -280,7 +280,7 @@ const Home: FC = () => {
         </Stack>
       </Stack>
 
-      { wpEvents.length ? <Stack as="section" id="upcoming"
+      { <Stack as="section" id="upcoming"
         bg="blackAlpha.400"
         mt="0 !important"
         minH={{base:"100vh", md:"initial"}}
@@ -357,7 +357,7 @@ const Home: FC = () => {
             </Flex>
           </Stack>
         </Stack>
-      </Stack> : ''}
+      </Stack> }
 
       <Blogroll />
 

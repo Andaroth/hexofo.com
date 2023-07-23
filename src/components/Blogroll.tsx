@@ -39,7 +39,7 @@ const Blogroll: FC = () => {
   return <Stack id="blog" bg="black" background="#070" py="4" style={{ marginTop: '0'}}>
     <Text as="h3" fontSize="xl" color="white" textAlign="center">Articles de notre blog</Text>
       <Flex mt="4" justifyContent="center">
-        <Flex maxW="100vw" overflowX="auto" justifyContent="left" pl="48px">
+        <Flex maxW="100vw" overflowX="auto" justifyContent="left" pl={ wpArticles.length ? "48px" : "0"}>
           <Flex alignSelf="center">
             { wpArticles.length ? wpArticles.map((article: wpArticle) => <Stack key={wpArticles.indexOf(article)}
               cursor="pointer"
@@ -53,7 +53,7 @@ const Blogroll: FC = () => {
               <Flex maxW="200px" overflow="hidden">
                 <Text color="white" textOverflow="ellipsis">{ article.title }</Text>
               </Flex>
-            </Stack>) : ""}
+            </Stack>) : <Text color="white" fontWeight="bold">Aucun article !</Text>}
           </Flex>
       </Flex>
     </Flex>
