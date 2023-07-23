@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 
 import { Stack, Flex, Text, Image, InputGroup,InputRightElement, Input, Button, Spacer } from "@chakra-ui/react";
 import { MdSearch } from "react-icons/md"
@@ -10,6 +10,28 @@ import Footer from "../components/Footer";
 
 const Guide: FC = () => {
     const [searchText, setSearchText]: [string, any] = useState("");
+
+    const [wpArticles, setArticles]: [Array<any>, any] = useState([])
+    const WP_API = "https://hexofo.com/blog/wp-json/wp/v2/"
+
+    const decodeHtmlCharCodes = (str: string) => str.replace(/(&#(\d+);)/g, (match, capture, charCode) => String.fromCharCode(charCode));
+
+    useEffect(() => {
+    if (!wpArticles.length) {
+
+        fetch(WP_API + "posts?categories=3").then((res) => res.json()).then(res => {
+          const articles: Array<any> = []
+          res.forEach((article: any) => {
+            const wpArticle:any = {
+              title: decodeHtmlCharCodes(article.title.rendered),
+              url: article.link
+            }
+            articles.push(wpArticle)
+          })
+          setArticles(articles);
+        })
+    }
+  })
 
     const trends = [
         { label: "Salles", value: "salles" },
@@ -84,6 +106,15 @@ const Guide: FC = () => {
             link: "https://calendar.google.com/calendar/u/0/embed?src=52e6cc8e24869170880be720289d52b4360782553828f57d80f7cfedea1a6efb@group.calendar.google.com&ctz=Europe/Paris"
         },
     ]
+
+    wpArticles.forEach(article => {
+        db.push({
+            title: article.title,
+            content: "",
+            tags: ["comment"],
+            link: article.url
+        })
+    })
 
     const searchResults = () => searchText.length ? db.filter(test => JSON.stringify(test).toLowerCase().includes(searchText.toLowerCase())) : []
 
@@ -167,6 +198,10 @@ const Guide: FC = () => {
             {
                 label: "Notre site",
                 to: "/"
+            },
+            {
+                label: "Blog",
+                to: "https://hexofo.com/blog"
             },
         ]} />
     </>
