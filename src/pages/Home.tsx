@@ -237,7 +237,7 @@ const Home: FC = () => {
               </Grid>
               <Text as="h4" mt="6" mb="2" color="white" fontSize="2xl" textAlign="center">Les chefs de clan</Text>
               <Grid templateColumns={{base:"1", md:'repeat(3, 1fr)'}} gap={4}>
-                {wpChief.map((user: any) => {
+                {wpChief.sort((a,b) => a.id - b.id).map((user: any) => {
                   return <Stack className="user hoverPop" bg="blackAlpha.600" borderRadius="xl" p="2" cursor="pointer" onClick={() => window.open(`https://highrise.game/fr/profile/${user.name}`, "_blank")}>
                   <Stack>
                     <Text textAlign="center" fontSize="2xl">{ user.name }</Text>
@@ -254,7 +254,7 @@ const Home: FC = () => {
                   </AccordionButton>
                   <AccordionPanel>
                     <Grid templateColumns={{base:"1", md:'repeat(3, 1fr)'}} gap={4}>
-                      {wpAdmins.map((user:any) => {
+                      {wpAdmins.sort((a,b) => a.id - b.id).map((user:any) => {
                         return <Stack className="user hoverPop" bg="blackAlpha.600" borderRadius="xl" p="2" cursor="pointer" onClick={() => window.open(`https://highrise.game/fr/profile/${user.name}`, "_blank")}>
                         <Stack>
                           <Text textAlign="center" fontSize="2xl">{ user.name }</Text>
