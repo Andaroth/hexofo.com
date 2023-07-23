@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 
 import { Link } from "react-router-dom";
 
@@ -9,11 +9,11 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import 'video-react/dist/video-react.css';
 
-import { Player } from 'video-react';
-
 import TopBar from "../components/TopBar";
 
 import { useNavigate } from "react-router-dom";
+
+import Blogroll from "../components/Blogroll";
 
 import Footer from "../components/Footer";
 
@@ -47,132 +47,39 @@ const Home: FC = () => {
       navigate(link)
     }
   }
-  const events: Array<{
-    name: string
-    date: string
-    img?: string
-    video?: null,
-    content: Array<string>,
-    link?: {
-      url: string
-      label: string
-    },
-    reveal?: Date
-  }> = [
-    {
-      name: "Summer Beach Party",
-      date: "21 juin à 21h (CET)",
-      img: "./events/230621.jpg",
-      video: null,
-      content: [
-        "Fêtons l'été et la fête de la musique avec DJ_Jeebee et HEXOFO à la plage !",
-      ],
-      link: {
-        url: "https://highrise.game/fr/room/64731141beb8e126fd72bd82",
-        label: "Voir la salle"
-      },
-    },
-    {
-      name: "HR Live HexoVoice #001",
-      date: "05 Mai à 19h (CET)",
-      img: "./events/230505.jpg",
-      video: null,
-      content: [
-        "Découvrez les talents de HR France lors de notre grand concours de chant sur HR Live !",
-      ]
-    },
-    {
-      name: "TXC x HEXOFO",
-      date: "23 Avril à 20h30 (CET)",
-      img: "./events/230423.jpg",
-      video: null,
-      content: [
-        "Venez assister à une soirée DJ en live avec DJ_Jeebee et UntraceableDJ !",
-      ],
-      link: {
-        url: "https://highrise.game/fr/room/633983fad770224f9e568ef5",
-        label: "Voir la salle"
-      }
-    },
-    {
-      name: "Camelico radio live",
-      date: "19 Avril à 21h (CET)",
-      img: "./events/230419.jpg",
-      video: null,
-      content: [
-        "Regardez la redif de DJ_Camelico en live sur RADIOEXTREMIX.BE 💚",
-      ],
-      link: {
-        url: "https://www.facebook.com/radioextremix/videos/207035345397371/",
-        label: "Voir la rediffusion"
-      }
-    },
-    {
-      name: "Jeebee x Camelico",
-      date: "18 Avril",
-      img: "./events/230418.jpg",
-      video: null,
-      content: [
-        "Soirée mix avec les DJ Jeebee & Camelico 💚",
-      ],
-      link: {
-        url: "https://highrise.game/fr/room/63789528c37ffb06f07b4c1f", // 63789528c37ffb06f07b4c1f
-        label: "Voir la salle"
-      }
-    },
-    {
-      name: "HR Live FAQ NFT",
-      date: "7 Avril à 21h (CET)",
-      img: "./events/230407.jpg",
-      video: null,
-      content: [
-        "Soirée Questions/Réponses sur les différents NFT de HighRise 💚",
-      ],
-      link: {
-        url: "https://highrise.game/fr/room/63ac759c2ed5e6f11019f14f",
-        label: "Voir la salle"
-      }
-    },
-    {
-      name: "HR Live #HEXOFO",
-      date: "24 Mars à 20h (CET)",
-      img: "./events/230324.jpg",
-      video: null,
-      content: [
-        "Soirée DJ organisée par l’incroyable clan #HEXOFO avec DJ_Jeebee, UntraceableDJ et Just.Joke ! 💚",
-      ],
-      link: {
-        url: "https://highrise.game/fr/room/63deadb458755bdf24dd7c27",
-        label: "Voir la salle"
-      }
-    },
-    {
-      name: "Karaoke #HEXOFO",
-      date: "13 Mars à 18h (CET)",
-      img: "./events/230318.jpg",
-      video: null,
-      content: [
-        "Karaoke Hexofo Open-Mic (17+) gratuit !! ",
-      ],
-      link: {
-        url: "https://highrise.game/fr/room/63ac759c2ed5e6f11019f14f",
-        label: "Voir la salle"
-      }
-    },
-    {
-      name: "Giveaway #HEXOFO",
-      date: "06 Mars à 18h (CET)",
-      img: "./events/230306.jpg",
-      video: null,
-      content: [
-        "Giveaway par #HEXOFO ! 🎁 ✨ 2 x 100 #GOLD à GAGNER !! ",
-      ],
-      link: {
-        url: "https://highrise.game/fr/post/6405dff14d11b0cd816ea85f",
-        label: "Voir la publication"
-      }
-    },
-  ];
+
+  const [wpEvents, setArticles]: [Array<any>, any] = useState([])
+  const [wpMedias, setMedias]: [Array<any>, any] = useState([])
+  const WP_API = "https://hexofo.com/blog/wp-json/wp/v2/"
+  
+  useEffect(() => {
+    if (!wpEvents.length) {
+      fetch(WP_API + "media?per_page=30").then((res) => res.json()).then(medias => {
+        setMedias(medias)
+        fetch(WP_API + "posts?categories=4").then((res) => res.json()).then(res => {
+          const articles: Array<any> = []
+          res.forEach((article: any) => {
+            const matchMedia = wpMedias.find((media: any) => media.id === article.featured_media)
+            const date = new Date(article.date)
+            const month = ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",][date.getMonth()]
+            const day = date.getDate()
+            const hours = date.getHours()
+            const minutes = ('0' + (date.getMinutes())).slice(-2)
+            const wpArticle:any = {
+              name: article.title.rendered,
+              date: `${day} ${month} à ${hours}h${minutes}`,
+              img: matchMedia?.source_url || "https://hexofo.com/logo512.png",
+              // content: article.alt_text,
+              // url: article.link
+            }
+            articles.push(wpArticle)
+          })
+          setArticles(articles);
+        })
+      })
+    }
+  })
+
 
   const shouldOpenCalendar = ():boolean => window.location.href.includes('/calend') || window.location.href.includes('/date')
   const shouldOpenCollab = ():boolean => window.location.href.includes('/collab') || window.location.href.includes('/event') || window.location.href.includes('/hrlive')
@@ -310,34 +217,52 @@ const Home: FC = () => {
                 <Stack className="user hoverPop" bg="blackAlpha.600" borderRadius="xl" p="2" cursor="pointer" onClick={() => window.open("https://highrise.game/fr/profile/Cyeme", "_blank")}>
                   <Stack>
                     <Text textAlign="center" fontSize="2xl">Cyeme</Text>
-                    <Text textAlign="center" fontSize="sm" lineHeight="36px">Admin / Organisatrice</Text>
+                    <Text textAlign="center" fontSize="sm" lineHeight="36px">Organisatrice</Text>
                   </Stack>
                 </Stack>
                 <Stack className="user hoverPop" bg="blackAlpha.600" borderRadius="xl" p="2" cursor="pointer" onClick={() => window.open("https://highrise.game/fr/profile/Elf_ie", "_blank")}>
                   <Stack>
                     <Text textAlign="center" fontSize="2xl">Elf_ie</Text>
-                    <Text textAlign="center" fontSize="sm" lineHeight="36px">Admin / Modératrice</Text>
+                    <Text textAlign="center" fontSize="sm" lineHeight="36px">Modératrice</Text>
                   </Stack>
                 </Stack>
                 <Stack className="user hoverPop" bg="blackAlpha.600" borderRadius="xl" p="2" cursor="pointer" onClick={() => window.open("https://highrise.game/fr/profile/D.Chtulhu", "_blank")}>
                   <Stack>
                     <Text textAlign="center" fontSize="2xl">D.Chtulhu</Text>
-                    <Text textAlign="center" fontSize="sm" lineHeight="36px">Admin / Senior</Text>
+                    <Text textAlign="center" fontSize="sm" lineHeight="36px">Senior</Text>
                   </Stack>
                 </Stack>
               </Grid>
-              <Text as="h4" mt="6" mb="2" color="white" fontSize="2xl" textAlign="center">Responsables</Text>
-              <Grid templateColumns={{base:"1", md:'repeat(2, 1fr)'}} gap={4}>
+              <Text as="h4" mt="6" mb="2" color="white" fontSize="2xl" textAlign="center">Admins</Text>
+              <Grid templateColumns={{base:"1", md:'repeat(3, 1fr)'}} gap={4}>
                 <Stack className="user hoverPop" bg="blackAlpha.600" borderRadius="xl" p="2" cursor="pointer" onClick={() => window.open("https://highrise.game/fr/profile/NOmade49", "_blank")}>
                   <Stack>
                     <Text textAlign="center" fontSize="2xl">NOmade49</Text>
-                    <Text textAlign="center" fontSize="sm" lineHeight="36px">Admin / Recruteur</Text>
                   </Stack>
                 </Stack>
                 <Stack className="user hoverPop" bg="blackAlpha.600" borderRadius="xl" p="2" cursor="pointer" onClick={() => window.open("https://highrise.game/fr/profile/wardaaz", "_blank")}>
                   <Stack>
                     <Text textAlign="center" fontSize="2xl">wardaaz</Text>
-                    <Text textAlign="center" fontSize="sm" lineHeight="36px">Admin / Recruteuse</Text>
+                  </Stack>
+                </Stack>
+                <Stack className="user hoverPop" bg="blackAlpha.600" borderRadius="xl" p="2" cursor="pointer" onClick={() => window.open("https://highrise.game/fr/profile/Kyzzle", "_blank")}>
+                  <Stack>
+                    <Text textAlign="center" fontSize="2xl">Kyzzle</Text>
+                  </Stack>
+                </Stack>
+                <Stack className="user hoverPop" bg="blackAlpha.600" borderRadius="xl" p="2" cursor="pointer" onClick={() => window.open("https://highrise.game/fr/profile/R4FAEL_pt", "_blank")}>
+                  <Stack>
+                    <Text textAlign="center" fontSize="2xl">R4FAEL_pt</Text>
+                  </Stack>
+                </Stack>
+                <Stack className="user hoverPop" bg="blackAlpha.600" borderRadius="xl" p="2" cursor="pointer" onClick={() => window.open("https://highrise.game/fr/profile/BasiicInkie", "_blank")}>
+                  <Stack>
+                    <Text textAlign="center" fontSize="2xl">BasiicInkie</Text>
+                  </Stack>
+                </Stack>
+                <Stack className="user hoverPop" bg="blackAlpha.600" borderRadius="xl" p="2" cursor="pointer" onClick={() => window.open("https://highrise.game/fr/profile/Ard0ise_", "_blank")}>
+                  <Stack>
+                    <Text textAlign="center" fontSize="2xl">Ard0ise_</Text>
                   </Stack>
                 </Stack>
               </Grid>
@@ -351,7 +276,7 @@ const Home: FC = () => {
         </Stack>
       </Stack>
 
-      { events.length ? <Stack as="section" id="upcoming"
+      { wpEvents.length ? <Stack as="section" id="upcoming"
         bg="blackAlpha.400"
         mt="0 !important"
         minH={{base:"100vh", md:"initial"}}
@@ -373,33 +298,23 @@ const Home: FC = () => {
                         pauseOnFocus={true}
                         slidesToShow={1}
                         slide="article"
-                      >
-                        { events
-                          .filter(ev => ev.reveal ? ev.reveal < new Date() : true)
-                          .map(ev => <Stack as="article" key={events.indexOf(ev)} textAlign="center" pb="4">
-                          { ev.name || ev.date ? <Stack color="white" mb="2" justifyContent="space-between">
-                            { ev.name ? <Text fontSize="2xl">{ ev.name }</Text> : ''}
-                            { ev.date ? <Text fontSize="xl" lineHeight="28px">{ ev.date }</Text> : ''}
-                          </Stack> : ''}
-                          { ev.img ? <Flex my="2" justifyContent="center">
+                    >
+                        {wpEvents.map(ev => <Stack as="article" key={wpEvents.indexOf(ev)} textAlign="center" pb="4">
+                          <Stack color="white" mb="2" justifyContent="space-between">
+                            <Text fontSize="2xl">{ev.name}</Text>
+                            <Text fontSize="xl" lineHeight="28px">{ev.date}</Text>
+                            <Flex my="2" justifyContent="center">
                             <Image w="240px" h="240px" borderRadius="lg"
                               src={ev.img} alt={`${ev.name} thumbnail`} 
                               cursor={ ev.link ? "pointer" : "initial" }
                               onClick={() => ev.link ? window.open(ev.link.url, "_blank") : null}
                             />
-                          </Flex> : '' }
-                          { ev.video ? <Flex justifyContent="center">
-                            <AspectRatio w="280px" ratio={1} borderRadius="lg" overflow="hidden" flexDirection="column" justifyContent="center">
-                              <Player height={280} fluid={false} src={ev.video} autoPlay muted playsInline />
-                            </AspectRatio>
-                          </Flex> : ''}
-                          { ev.content ? <Stack px="4" flexGrow="1">
-                            { ev.content.map(c => <Text key={ev.content.indexOf(c)} textAlign="center" fontSize={{base:"lg", md:"xl"}} color="white" w={{base:"240px", md:"400px"}} maxW="calc(100vw - 88px)" mx="auto">{ c }</Text>) }
-                          </Stack> : ''}
-                          { ev.link ? <Flex justifyContent="center"><Button mt="2" borderRadius="24px" rightIcon={!ev.link.url.startsWith('./') ? <ExternalLinkIcon /> : undefined} onClick={() => ev.link ? window.open(ev.link.url, "_blank") : null}>{ ev.link.label }</Button></Flex> : ''}
-                        </Stack>)}
+                            </Flex>
+                            </Stack>
+                          </Stack>
+                        )}
 
-                        <Stack as="article" textAlign="center">
+                        <Stack as="article" textAlign="center" mb="2">
                           <Stack color="white" mb="2" justifyContent="space-between">
                             <Text fontSize="2xl">Abonne-toi !</Text>
                           </Stack>
@@ -415,7 +330,7 @@ const Home: FC = () => {
                           <Stack px="4" flexGrow="1">
                             <Text textAlign="center" color="white">Suis notre actualité sur HighRise <br/>pour ne manquer aucune soirée!</Text>
                           </Stack>
-                          <Flex justifyContent="center"><Button mt="2" rightIcon={<ExternalLinkIcon />} borderRadius="24px" onClick={() => window.open("https://highrise.game/fr/profile/AndaLixe", "_blank")}>Voir plus</Button></Flex>
+                          {/* <Flex justifyContent="center"><Button mt="2" rightIcon={<ExternalLinkIcon />} borderRadius="24px" onClick={() => window.open("https://highrise.game/fr/profile/AndaLixe", "_blank")}>Voir plus</Button></Flex> */}
                         </Stack>
                       </Slider>
                     </Box>
@@ -428,7 +343,7 @@ const Home: FC = () => {
                       </Flex>
                       <Flex justifyContent="center">
                         <Scroll to="main" smooth={true}>
-                          <Button minW={{base:"160px", md: "auto"}} as="div" py="6" cursor="pointer" color="black" bg="#0F0" borderBottom="4px solid #070" _hover={{bg: "#0C0"}} rightIcon={<ChevronDownIcon />} borderRadius="xl">Rejoins-nous !</Button>
+                          <Button minW={{base:"160px", md: "auto"}} as="div" py="6" cursor="pointer" color="black" bg="#0F0" borderBottom="4px solid #070" _hover={{bg: "#0C0"}} rightIcon={<ChevronDownIcon />} borderRadius="xl">En savoir plus</Button>
                         </Scroll>
                       </Flex>
                     </Flex>
@@ -467,13 +382,15 @@ const Home: FC = () => {
                   <Stack my="6"><Button py="12" px="8" borderBottom="4px solid #070" colorScheme="whatsapp" onClick={() => handleNavigate("/guide")}>Guide Hexofo</Button></Stack>
                   <Stack my="6"><Button py="12" px="8" borderBottom="4px solid #070" colorScheme="whatsapp" rightIcon={<ExternalLinkIcon />}  onClick={() => window.open('https://bit.ly/hexoshop', "_blank")}><span className="noMobile">Notre&nbsp;</span>Boutique</Button></Stack>
                   {/* <Stack my="6"><Button py="12" px="8" borderBottom="4px solid #777" rightIcon={<ExternalLinkIcon />} onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLScc3HjIt7VB0LK-IMGOWdTokFMVLPsG6etj0rJrj0YlCc73OQ/viewform?usp=sf_link', "_blank")}><span className="noMobile">Formulaire de&nbsp;</span>Collaboration</Button></Stack> */}
-                  <Stack my="6"><Button py="12" px="8" borderBottom="4px solid #777" rightIcon={<ExternalLinkIcon />} onClick={() => window.open('https://highrise.helpshift.com/hc/fr/', "_blank")}>Aide HighRise</Button></Stack>
+                  <Stack my="6"><Button py="12" px="8" borderBottom="4px solid #777" rightIcon={<ExternalLinkIcon />} onClick={() => window.open('https://hexofo.com/blog', "_blank")}>Le Blog</Button></Stack>
                 </Box>
               </Stack>
             </Flex>
           </Stack>
         </Flex>
       </Stack>
+
+      <Blogroll />
 
       <Footer />
       
@@ -554,6 +471,10 @@ const Home: FC = () => {
         {
           label: "Boutique",
           to: "https://hexofo.myspreadshop.fr/"
+        },
+        {
+          label: "Blog",
+          to: "https://hexofo.com/blog"
         },
       ]}
       scrolls={[
