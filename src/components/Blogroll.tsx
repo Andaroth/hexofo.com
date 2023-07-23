@@ -39,8 +39,8 @@ const Blogroll: FC = () => {
   })
 
   return <Stack id="blog" bg="black" background="#070" py="4" style={{ marginTop: '0'}}>
-    <Text as="h3" fontSize="xl" color="white" textAlign="center">Articles de notre blog</Text>
-      <Flex mt="4" justifyContent="center">
+    { wpArticles.length ? <Text as="h3" fontSize="xl" mb="4" color="white" textAlign="center">Articles de notre blog</Text> : ''}
+      <Flex justifyContent="center">
         <Flex maxW="100vw" overflowX="auto" justifyContent="left" pl={ wpArticles.length ? "48px" : "0"}>
           <Flex alignSelf="center">
             { wpArticles.length ? wpArticles.map((article: wpArticle) => <Stack key={wpArticles.indexOf(article)}
@@ -55,12 +55,12 @@ const Blogroll: FC = () => {
               <Flex maxW="200px" overflow="hidden">
                 <Text color="white" textOverflow="ellipsis">{ article.title }</Text>
               </Flex>
-            </Stack>) : <Stack>
+            </Stack>) : <Stack cursor="pointer" onClick={() => window.open('https://hexofo.com/blog', '_blank')} pb="2" mb="4">
               <AspectRatio w="200px" ratio={1}>
                 <Image src="./AndaLixe_noob.png" alt="loading" w="200px" h="200px" borderRadius="xl" />    
               </AspectRatio>
               <Flex maxW="200px" overflow="hidden">
-                <Text as="a" href="./blog" target="_blank" rel="noreferrer" color="white" fontWeight="bold">Visitez notre blog !</Text>
+                <Text m="0 auto" textAlign="center"  color="white" fontWeight="bold">Visitez notre blog !</Text>
               </Flex>
             </Stack>}
           </Flex>
