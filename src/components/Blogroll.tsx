@@ -13,6 +13,8 @@ const Blogroll: FC = () => {
   const [wpArticles, setArticles]: [Array<any>, any] = useState([])
   const [wpMedias, setMedias]: [Array<any>, any] = useState([])
   const WP_API = "https://hexofo.com/blog/wp-json/wp/v2/"
+
+  const decodeHtmlCharCodes = (str: string) => str.replace(/(&#(\d+);)/g, (match, capture, charCode) => String.fromCharCode(charCode));
   
   useEffect(() => {
     if (!wpArticles.length) {
@@ -23,7 +25,7 @@ const Blogroll: FC = () => {
           res.forEach((article: any) => {
             const matchMedia = wpMedias.find((media: any) => media.id === article.featured_media)
             const wpArticle:wpArticle = {
-              title: article.title.rendered,
+              title: decodeHtmlCharCodes(article.title.rendered),
               thumbnail: matchMedia?.source_url || "https://hexofo.com/logo512.png",
               alt: matchMedia?.alt_text,
               url: article.link
