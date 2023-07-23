@@ -33,7 +33,13 @@ import {
   ModalHeader,
   ModalBody,
   ModalCloseButton,
-  Spinner
+  Spinner,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+  Spacer
 } from '@chakra-ui/react';
 
 import { ExternalLinkIcon, ChevronDownIcon, CalendarIcon } from '@chakra-ui/icons';
@@ -70,12 +76,29 @@ const Home: FC = () => {
               date: `${day} ${month} à ${hours}h${minutes}`,
               img: matchMedia?.source_url || "https://hexofo.com/logo512.png",
               // content: article.alt_text,
-              // url: article.link
+              link: article.link
             }
             articles.push(wpArticle)
           })
           setArticles(articles);
         })
+      })
+    }
+  })
+
+  const [wpUsers, setUsers]: [Array<any>, any] = useState([])
+  const [wpFonda, setFonda]: [Array<any>, any] = useState([])
+  const [wpChief, setChief]: [Array<any>, any] = useState([])
+  const [wpAdmins, setAdmins]: [Array<any>, any] = useState([])
+  
+  useEffect(() => {
+    if (!wpUsers.length) {
+      fetch(WP_API + "users?per_page=20").then((res) => res.json()).then(users => {
+        setUsers(users)
+        setFonda(users.filter((u:any) => u.roles.includes('founder')))
+        setChief(users.filter((u:any) => u.roles.includes('superchief')))
+        setAdmins(users.filter((u:any) => u.roles.includes('crewadmin')))
+        console.log('users', wpFonda, wpChief, wpAdmins)
       })
     }
   })
@@ -214,64 +237,45 @@ const Home: FC = () => {
               </Grid>
               <Text as="h4" mt="6" mb="2" color="white" fontSize="2xl" textAlign="center">Les chefs de clan</Text>
               <Grid templateColumns={{base:"1", md:'repeat(3, 1fr)'}} gap={4}>
-                <Stack className="user hoverPop" bg="blackAlpha.600" borderRadius="xl" p="2" cursor="pointer" onClick={() => window.open("https://highrise.game/fr/profile/Cyeme", "_blank")}>
+                {wpChief.map((user: any) => {
+                  return <Stack className="user hoverPop" bg="blackAlpha.600" borderRadius="xl" p="2" cursor="pointer" onClick={() => window.open(`https://highrise.game/fr/profile/${user.name}`, "_blank")}>
                   <Stack>
-                    <Text textAlign="center" fontSize="2xl">Cyeme</Text>
-                    <Text textAlign="center" fontSize="sm" lineHeight="36px">Organisatrice</Text>
+                    <Text textAlign="center" fontSize="2xl">{ user.name }</Text>
+                    <Text textAlign="center" fontSize="sm" lineHeight="36px">{ user.description }</Text>
                   </Stack>
                 </Stack>
-                <Stack className="user hoverPop" bg="blackAlpha.600" borderRadius="xl" p="2" cursor="pointer" onClick={() => window.open("https://highrise.game/fr/profile/Elf_ie", "_blank")}>
-                  <Stack>
-                    <Text textAlign="center" fontSize="2xl">Elf_ie</Text>
-                    <Text textAlign="center" fontSize="sm" lineHeight="36px">Modératrice</Text>
-                  </Stack>
-                </Stack>
-                <Stack className="user hoverPop" bg="blackAlpha.600" borderRadius="xl" p="2" cursor="pointer" onClick={() => window.open("https://highrise.game/fr/profile/D.Chtulhu", "_blank")}>
-                  <Stack>
-                    <Text textAlign="center" fontSize="2xl">D.Chtulhu</Text>
-                    <Text textAlign="center" fontSize="sm" lineHeight="36px">Senior</Text>
-                  </Stack>
-                </Stack>
+                })}
               </Grid>
-              <Text as="h4" mt="6" mb="2" color="white" fontSize="2xl" textAlign="center">Admins</Text>
-              <Grid templateColumns={{base:"1", md:'repeat(3, 1fr)'}} gap={4}>
-                <Stack className="user hoverPop" bg="blackAlpha.600" borderRadius="xl" p="2" cursor="pointer" onClick={() => window.open("https://highrise.game/fr/profile/NOmade49", "_blank")}>
-                  <Stack>
-                    <Text textAlign="center" fontSize="2xl">NOmade49</Text>
-                  </Stack>
-                </Stack>
-                <Stack className="user hoverPop" bg="blackAlpha.600" borderRadius="xl" p="2" cursor="pointer" onClick={() => window.open("https://highrise.game/fr/profile/wardaaz", "_blank")}>
-                  <Stack>
-                    <Text textAlign="center" fontSize="2xl">wardaaz</Text>
-                  </Stack>
-                </Stack>
-                <Stack className="user hoverPop" bg="blackAlpha.600" borderRadius="xl" p="2" cursor="pointer" onClick={() => window.open("https://highrise.game/fr/profile/Kyzzle", "_blank")}>
-                  <Stack>
-                    <Text textAlign="center" fontSize="2xl">Kyzzle</Text>
-                  </Stack>
-                </Stack>
-                <Stack className="user hoverPop" bg="blackAlpha.600" borderRadius="xl" p="2" cursor="pointer" onClick={() => window.open("https://highrise.game/fr/profile/R4FAEL_pt", "_blank")}>
-                  <Stack>
-                    <Text textAlign="center" fontSize="2xl">R4FAEL_pt</Text>
-                  </Stack>
-                </Stack>
-                <Stack className="user hoverPop" bg="blackAlpha.600" borderRadius="xl" p="2" cursor="pointer" onClick={() => window.open("https://highrise.game/fr/profile/BasiicInkie", "_blank")}>
-                  <Stack>
-                    <Text textAlign="center" fontSize="2xl">BasiicInkie</Text>
-                  </Stack>
-                </Stack>
-                <Stack className="user hoverPop" bg="blackAlpha.600" borderRadius="xl" p="2" cursor="pointer" onClick={() => window.open("https://highrise.game/fr/profile/Ard0ise_", "_blank")}>
-                  <Stack>
-                    <Text textAlign="center" fontSize="2xl">Ard0ise_</Text>
-                  </Stack>
-                </Stack>
-              </Grid>
+
+              <Accordion allowToggle>
+                <AccordionItem my="4" border="0">
+                  <AccordionButton bg="transparent" w="100%">
+                    <Button as="h4" mt="6" mb="2" color="white" fontSize="2xl" textAlign="center" m="0 auto" size="lg" colorScheme="green" rightIcon={<AccordionIcon />}>Voir les admins</Button>
+                  </AccordionButton>
+                  <AccordionPanel>
+                    <Grid templateColumns={{base:"1", md:'repeat(3, 1fr)'}} gap={4}>
+                      {wpAdmins.map((user:any) => {
+                        return <Stack className="user hoverPop" bg="blackAlpha.600" borderRadius="xl" p="2" cursor="pointer" onClick={() => window.open(`https://highrise.game/fr/profile/${user.name}`, "_blank")}>
+                        <Stack>
+                          <Text textAlign="center" fontSize="2xl">{ user.name }</Text>
+                        </Stack>
+                      </Stack>
+                      }) }
+                    </Grid>
+                  </AccordionPanel>
+                </AccordionItem>
+              </Accordion>
             </Container>
           </Flex>
-          <Flex justifyContent="space-around" pt={{base:"calc(100vw - 48px)", md:"4"}} pb="8">
+          <Flex justifyContent="space-around" pt={{ base: "calc(100vw - 48px)", md: "4" }} pb="8">
+            <Spacer />
+            <Button as="div" bg="#0F0" borderBottom="4px solid #070" color="black" cursor="pointer" borderRadius="18px" h="36px" rightIcon={<ExternalLinkIcon />} mr="2"
+              onClick={() => window.open('https://hexofo.com/blog', '_blank')}
+            >Notre blog</Button>
             <Scroll to="upcoming" smooth={true}>
               <Button as="div" bg="white" borderBottom="4px solid #CCC" color="black" cursor="pointer" borderRadius="18px" h="36px" rightIcon={<ChevronDownIcon />}>Nos soirées</Button>
             </Scroll>
+            <Spacer />
           </Flex>
         </Stack>
       </Stack>
@@ -299,15 +303,15 @@ const Home: FC = () => {
                         slidesToShow={1}
                         slide="article"
                     >
-                        {wpEvents.map(ev => <Stack as="article" key={wpEvents.indexOf(ev)} textAlign="center" pb="4">
-                          <Stack color="white" mb="2" justifyContent="space-between">
+                      {wpEvents.map(ev => <Stack as="article" key={wpEvents.indexOf(ev)} textAlign="center" pb="4">
+                        <Stack color="white" mb="2" justifyContent="space-between"
+>
                             <Text fontSize="2xl">{ev.name}</Text>
                             <Text fontSize="xl" lineHeight="28px">{ev.date}</Text>
                             <Flex my="2" justifyContent="center">
-                            <Image w="240px" h="240px" borderRadius="lg"
-                              src={ev.img} alt={`${ev.name} thumbnail`} 
+                            <Image w="240px" h="240px" borderRadius="lg" src={ev.img} alt={`${ev.name} thumbnail`}
                               cursor={ ev.link ? "pointer" : "initial" }
-                              onClick={() => ev.link ? window.open(ev.link.url, "_blank") : null}
+                              onClick={() => ev.link ? window.open(ev.link, "_blank") : null}
                             />
                             </Flex>
                             </Stack>
@@ -355,6 +359,8 @@ const Home: FC = () => {
         </Stack>
       </Stack> : ''}
 
+      <Blogroll />
+
       <Stack as="section" id="main"
         backgroundImage={{base:"url('./hexofo_big_mobile.jpg')", md:"url('./hexofo_big.jpg')"}}
         backgroundPosition={{base:"center", md:"top"}}
@@ -389,8 +395,6 @@ const Home: FC = () => {
           </Stack>
         </Flex>
       </Stack>
-
-      <Blogroll />
 
       <Footer />
       
