@@ -55,7 +55,14 @@ const Blogroll: FC = () => {
               <Flex maxW="200px" overflow="hidden">
                 <Text color="white" textOverflow="ellipsis">{ article.title }</Text>
               </Flex>
-            </Stack>) : <Text color="white" fontWeight="bold">Aucun article !</Text>}
+            </Stack>) : <Stack>
+              <AspectRatio w="200px" ratio={1}>
+                <Image src="./AndaLixe_noob.png" alt="loading" w="200px" h="200px" borderRadius="xl" />    
+              </AspectRatio>
+              <Flex maxW="200px" overflow="hidden">
+                <Text color="white" fontWeight="bold">Chargement ...</Text>
+              </Flex>
+            </Stack>}
           </Flex>
       </Flex>
     </Flex>
