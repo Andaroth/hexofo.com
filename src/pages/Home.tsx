@@ -105,6 +105,39 @@ const Home: FC = () => {
     }
   })
 
+  const [videoVisible,setVideoVisible]:[boolean,any] = useState(false)
+
+  useEffect(() => {
+    function getOffset(el:any) {
+      const rect = el.getBoundingClientRect();
+      return {
+        left: rect.left + window.scrollX,
+        top: rect.top + window.scrollY
+      };
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!videoVisible) {
+        const { scrollY, innerHeight } = window;
+        const visibleStep = scrollY + innerHeight
+        const videoContainer = document.getElementById('videoContainer')
+        if (videoContainer) {
+          requestAnimationFrame(() => {
+            const { top } = getOffset(videoContainer)
+            console.log(visibleStep,top, visibleStep >= top)
+            if (visibleStep >= top) {
+              console.log('setVisible')
+              setVideoVisible(true)
+            }
+          })
+        }
+        else setVideoVisible(false)
+      } else window.removeEventListener('scroll', () => {})
+    })
+  })
+
+  useEffect(() => window.removeEventListener('scroll', () => {}))
+
 
   const shouldOpenCalendar = ():boolean => window.location.href.includes('/calend') || window.location.href.includes('/date')
   const shouldOpenCollab = ():boolean => window.location.href.includes('/collab') || window.location.href.includes('/event') || window.location.href.includes('/hrlive')
@@ -258,7 +291,7 @@ const Home: FC = () => {
                     <Button as="h4" mt="6" mb="2" color="white" fontSize="2xl" textAlign="center" m="0 auto" size="lg" colorScheme="green" rightIcon={<AccordionIcon />}>Voir les admins</Button>
                   </AccordionButton>
                   <AccordionPanel>
-                    <Grid templateColumns={{base:"1", md:'repeat(3, 1fr)'}} gap={4}>
+                    <Grid templateColumns={{base:"1", md:`repeat(${ wpAdmins.length > 4 ? 3 : 2}, 1fr)`}} gap={4}>
                       {wpAdmins.length ? wpAdmins.sort((a,b) => a.id - b.id).map((user:any) => {
                         return <Stack className="user hoverPop" bg="blackAlpha.600" borderRadius="xl" p="2" cursor="pointer" onClick={() => window.open(`https://highrise.game/fr/profile/${user.name}`, "_blank")}>
                         <Stack>
@@ -378,10 +411,10 @@ const Home: FC = () => {
           <Stack justifyContent="center">
             <Flex>
               <Stack justifyContent="center" className="player noMobile" py="4" mr="6">
-                <AspectRatio h="500px" w="360px" ratio={1} overflow="hidden">
-                  <Flex justifyContent="center" borderRadius="lg">
+                <AspectRatio h="500px" w="360px" ratio={1} overflow="hidden" id="videoContainer">
+                  { videoVisible ? <Flex justifyContent="center" borderRadius="lg">
                     <video width="360px" height="auto" src="./video/hexofo.mov" muted autoPlay loop />
-                  </Flex>
+                  </Flex> : <></>}
                 </AspectRatio>
               </Stack>
               <Stack justifyContent="space-around">
