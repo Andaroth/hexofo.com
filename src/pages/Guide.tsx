@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from "react";
+import { FC, useState } from "react";
 
 import { Stack, Flex, Text, Image, InputGroup,InputRightElement, Input, Button, Spacer } from "@chakra-ui/react";
 import { MdSearch } from "react-icons/md"
@@ -8,36 +8,12 @@ import { ExternalLinkIcon } from "@chakra-ui/icons";
 import TopBar from "../components/TopBar";
 import Footer from "../components/Footer";
 
+import { state } from "../AppState";
+import { useSnapshot } from "valtio";
+
 const Guide: FC = () => {
+    const { wpArticles } = useSnapshot(state)
     const [searchText, setSearchText]: [string, any] = useState("");
-
-    const [wpArticles, setArticles]: [Array<any>, any] = useState([])
-    const WP_API = "https://hexofo.com/blog/wp-json/wp/v2/"
-
-    const decodeHtmlCharCodes = (str: string) => {
-        str = str.replace(/(&#(\d+);)/g, (match, capture, charCode) => String.fromCharCode(charCode))
-        str = str.replace(/<script[^>]*>([\S\s]*?)<\/script>/gmi, '');
-        str = str.replace(/<\/?\w(?:[^"'>]|"[^"]*"|'[^']*')*>/gmi, '');
-        return str
-    };
-
-    useEffect(() => {
-    if (!wpArticles.length) {
-
-        fetch(WP_API + "posts?categories=3").then((res) => res.json()).then(res => {
-          const articles: Array<any> = []
-          res.forEach((article: any) => {
-            const wpArticle:any = {
-                title: decodeHtmlCharCodes(article.title.rendered),
-                content: decodeHtmlCharCodes(article.content.rendered),
-                url: article.link
-            }
-            articles.push(wpArticle)
-          })
-          setArticles(articles);
-        })
-    }
-  })
 
     const trends = [
         { label: "Salles", value: "salles" },
@@ -187,7 +163,7 @@ const Guide: FC = () => {
                                         <Flex>
                                             <Stack>
                                                 <Text fontWeight="bold">{ data.title }</Text>
-                                                <Text>{ data.tags.includes('blog') ? data.content.slice(1,100) + '... Clique ici pour lire l\'article !' : data.content }</Text>
+                                                <Text>{ data.tags.includes('blog') && data.content ? data.content.slice(1,100) + '... Clique ici pour lire l\'article !' : data.content }</Text>
                                             </Stack>
                                             { data.link ? <Spacer /> : ''}
                                             { data.link ? <ExternalLinkIcon /> : ''}

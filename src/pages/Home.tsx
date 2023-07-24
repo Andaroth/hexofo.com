@@ -58,7 +58,7 @@ const Home: FC = () => {
     }
   }
 
-  const { wpArticles, wpUsers } = useSnapshot(state)
+  const { wpEvents, wpUsers } = useSnapshot(state)
 
   const isWide = () => window.innerWidth > 769
 
@@ -312,7 +312,7 @@ const Home: FC = () => {
                         slidesToShow={1}
                         slide="article"
                     >
-                      {wpArticles.map(ev => <Stack as="article" key={wpArticles.indexOf(ev)} textAlign="center" pb="4">
+                      {wpEvents.map(ev => <Stack as="article" key={wpEvents.indexOf(ev)} textAlign="center" pb="4">
                         <Stack color="white" mb="2" justifyContent="space-between"
 >
                             <Text fontSize="2xl">{ev.name}</Text>
