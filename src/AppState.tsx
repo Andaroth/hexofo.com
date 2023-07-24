@@ -45,6 +45,8 @@ export const fetchUsers = (callback?: () => void) => {
 }
 
 export const fetchEvents = (callback?: () => void) => {
+    if (!state.wpMedias.length) fetchMedias()
+
     if (!state.wpEvents.length)fetch(WP_API + "posts?categories=4").then((res) => res.json()).then(res => {
         const formatEvents: Array<any> = []
         res.forEach((article: any) => {
@@ -69,6 +71,8 @@ export const fetchEvents = (callback?: () => void) => {
 }
 
 export const fetchArticles = (callback?: () => void) => {
+    if (!state.wpMedias.length) fetchMedias()
+    
     if (!state.wpArticles.length) fetch(WP_API + "posts?categories=1,3,6").then((res) => res.json()).then(res => {
         const formatArticles: Array<any> = []
         res.forEach((article: any) => {

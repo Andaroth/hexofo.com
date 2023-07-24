@@ -58,10 +58,9 @@ const Home: FC = () => {
     }
   }
 
-  fetchMedias()
-
-  const { wpEvents, wpUsers } = useSnapshot(state)
+  const { wpEvents, wpUsers, wpMedias } = useSnapshot(state)
   if (!wpUsers.length) fetchUsers()
+  if (!wpMedias.length) fetchMedias()
 
   const isWide = () => window.innerWidth > 769
 

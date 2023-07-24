@@ -8,7 +8,7 @@ import { ExternalLinkIcon } from "@chakra-ui/icons";
 import TopBar from "../components/TopBar";
 import Footer from "../components/Footer";
 
-import { state, fetchArticles } from "../AppState";
+import { state, fetchArticles, fetchMedias } from "../AppState";
 import { useSnapshot } from "valtio";
 
 const Guide: FC = () => {
