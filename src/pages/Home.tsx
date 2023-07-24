@@ -61,7 +61,7 @@ const Home: FC = () => {
   const decodeHtmlCharCodes = (str: string) => str.replace(/(&#(\d+);)/g, (match, capture, charCode) => String.fromCharCode(charCode));
   
   useEffect(() => {
-    if (!wpEvents.length) {
+    if (!wpEvents.length && blogVisible) {
       fetch(WP_API + "media?per_page=30").then((res) => res.json()).then(medias => {
         setMedias(medias)
         fetch(WP_API + "posts?categories=4").then((res) => res.json()).then(res => {
@@ -106,6 +106,7 @@ const Home: FC = () => {
   })
 
   const [videoVisible,setVideoVisible]:[boolean,any] = useState(false)
+  const [blogVisible,setBlogVisible]:[boolean,any] = useState(false)
 
   useEffect(() => {
     function getOffset(el:any) {
@@ -117,22 +118,25 @@ const Home: FC = () => {
     }
 
     window.addEventListener('scroll', () => {
+      const { scrollY, innerHeight } = window;
+      const visibleStep = scrollY + innerHeight
       if (!videoVisible) {
-        const { scrollY, innerHeight } = window;
-        const visibleStep = scrollY + innerHeight
         const videoContainer = document.getElementById('videoContainer')
-        if (videoContainer) {
-          requestAnimationFrame(() => {
-            const { top } = getOffset(videoContainer)
-            console.log(visibleStep,top, visibleStep >= top)
-            if (visibleStep >= top) {
-              console.log('setVisible')
-              setVideoVisible(true)
-            }
-          })
-        }
+        if (videoContainer) requestAnimationFrame(() => {
+          const { top } = getOffset(videoContainer)
+          if (visibleStep >= top) setVideoVisible(true)
+        })
         else setVideoVisible(false)
-      } else window.removeEventListener('scroll', () => {})
+      }
+      if (!blogVisible) {
+        const blogContainer = document.getElementById('upcoming')
+        if (blogContainer) requestAnimationFrame(() => {
+          const { top } = getOffset(blogContainer)
+          if (visibleStep >= top) setBlogVisible(true)
+        })
+        else setBlogVisible(false)
+      }
+      if (videoVisible && blogVisible) window.removeEventListener('scroll', () => {})
     })
   })
 
