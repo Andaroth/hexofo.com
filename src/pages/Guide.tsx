@@ -8,12 +8,14 @@ import { ExternalLinkIcon } from "@chakra-ui/icons";
 import TopBar from "../components/TopBar";
 import Footer from "../components/Footer";
 
-import { state } from "../AppState";
+import { state, fetchArticles } from "../AppState";
 import { useSnapshot } from "valtio";
 
 const Guide: FC = () => {
     const { wpArticles } = useSnapshot(state)
     const [searchText, setSearchText]: [string, any] = useState("");
+
+    if (!wpArticles.length) fetchArticles()
 
     const trends = [
         { label: "Salles", value: "salles" },
