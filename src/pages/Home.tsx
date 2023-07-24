@@ -54,6 +54,8 @@ const Home: FC = () => {
     }
   }
 
+  const isWide = () => window.innerWidth > 769
+
   const [wpEvents, setArticles]: [Array<any>, any] = useState([])
   const [wpMedias, setMedias]: [Array<any>, any] = useState([])
   const WP_API = "https://hexofo.com/blog/wp-json/wp/v2/"
@@ -416,7 +418,7 @@ const Home: FC = () => {
             <Flex>
               <Stack justifyContent="center" className="player noMobile" py="4" mr="6">
                 <AspectRatio h="500px" w="360px" ratio={1} overflow="hidden" id="videoContainer">
-                  { videoVisible ? <Flex justifyContent="center" borderRadius="lg">
+                  { videoVisible && isWide() ? <Flex justifyContent="center" borderRadius="lg">
                     <video width="360px" height="auto" src="./video/hexofo.mov" muted autoPlay loop />
                   </Flex> : <></>}
                 </AspectRatio>
