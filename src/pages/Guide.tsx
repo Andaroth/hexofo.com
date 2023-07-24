@@ -29,7 +29,7 @@ const Guide: FC = () => {
           res.forEach((article: any) => {
             const wpArticle:any = {
                 title: decodeHtmlCharCodes(article.title.rendered),
-                content: decodeHtmlCharCodes(article.content.rendered).slice(1,100) + '... Clique ici pour lire l\'article !',
+                content: decodeHtmlCharCodes(article.content.rendered),
                 url: article.link
             }
             articles.push(wpArticle)
@@ -187,7 +187,7 @@ const Guide: FC = () => {
                                         <Flex>
                                             <Stack>
                                                 <Text fontWeight="bold">{ data.title }</Text>
-                                                <Text>{ data.content }</Text>
+                                                <Text>{ data.tags.includes('blog') ? data.content.slice(1,100) + '... Clique ici pour lire l\'article !' : data.content }</Text>
                                             </Stack>
                                             { data.link ? <Spacer /> : ''}
                                             { data.link ? <ExternalLinkIcon /> : ''}
