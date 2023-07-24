@@ -17,6 +17,10 @@ import Blogroll from "../components/Blogroll";
 
 import Footer from "../components/Footer";
 
+import { state } from "../AppState";
+
+import { useSnapshot } from "valtio";
+
 import {
   Container,
   Stack,
@@ -54,62 +58,19 @@ const Home: FC = () => {
     }
   }
 
+  const { wpArticles, wpUsers } = useSnapshot(state)
+
   const isWide = () => window.innerWidth > 769
 
-  const [wpArticles, setArticles]: [Array<any>, any] = useState([])
-  const [wpMedias, setMedias]: [Array<any>, any] = useState([])
-  const WP_API = "https://hexofo.com/blog/wp-json/wp/v2/"
-  
-  const decodeHtmlCharCodes = (str: string) => str.replace(/(&#(\d+);)/g, (match, capture, charCode) => String.fromCharCode(charCode));
-
-  // useEffect(() => {
-  //   if (!wpMedias.length) fetch(WP_API + "media?per_page=360").then((res) => res.json()).then(medias => setMedias(medias))
-  // })
-  
-  useEffect(() => {
-    if (!wpArticles.length && blogVisible) {
-      fetch(WP_API + "media?per_page=30").then((res) => res.json()).then(medias => {
-        setMedias(medias)
-        fetch(WP_API + "posts?categories=4").then((res) => res.json()).then(res => {
-          const articles: Array<any> = []
-          res.forEach((article: any) => {
-            const matchMedia = wpMedias.find((media: any) => media.id === article.featured_media)
-            const date = new Date(article.date)
-            const month = ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",][date.getMonth()]
-            const day = date.getDate()
-            const hours = date.getHours()
-            const minutes = ('0' + (date.getMinutes())).slice(-2)
-            const wpArticle:any = {
-              name: decodeHtmlCharCodes(article.title.rendered),
-              date: `${day} ${month} à ${hours}h${minutes}`,
-              img: matchMedia?.source_url || "./logo512.png",
-              // content: article.alt_text,
-              link: article.link
-            }
-            articles.push(wpArticle)
-          })
-          setArticles(articles);
-        })
-      })
-    }
-  })
-
-  const [wpUsers, setUsers]: [Array<any>, any] = useState([])
-  // const [wpFonda, setFonda]: [Array<any>, any] = useState([])
   const [wpChief, setChief]: [Array<any>, any] = useState([])
   const [wpAdmins, setAdmins]: [Array<any>, any] = useState([])
   
   useEffect(() => {
-    if (!wpUsers.length) {
-      fetch(WP_API + "users?per_page=20").then((res) => res.json()).then(users => {
-        setUsers(users)
-        // setFonda(users.filter((u:any) => u.roles.includes('founder')))
-        setChief(users.filter((u:any) => u.roles.includes('superchief')))
-        setAdmins(users.filter((u:any) => u.roles.includes('crewadmin')))
-        // console.log('users', wpFonda, wpChief, wpAdmins)
-      })
+    if (wpUsers.length) {
+      setChief(wpUsers.filter((u:any) => u.roles.includes('superchief')))
+      setAdmins(wpUsers.filter((u:any) => u.roles.includes('crewadmin')))
     }
-  })
+  }, [wpUsers])
 
   const [videoVisible,setVideoVisible]:[boolean,any] = useState(false)
   const [blogVisible,setBlogVisible]:[boolean,any] = useState(false)
