@@ -56,37 +56,40 @@ const Home: FC = () => {
 
   const isWide = () => window.innerWidth > 769
 
-  const [wpEvents, setArticles]: [Array<any>, any] = useState([])
+  const [wpArticles, setArticles]: [Array<any>, any] = useState([])
   const [wpMedias, setMedias]: [Array<any>, any] = useState([])
   const WP_API = "https://hexofo.com/blog/wp-json/wp/v2/"
   
   const decodeHtmlCharCodes = (str: string) => str.replace(/(&#(\d+);)/g, (match, capture, charCode) => String.fromCharCode(charCode));
 
-  useEffect(() => {
-    if (!wpMedias.length) fetch(WP_API + "media?per_page=360").then((res) => res.json()).then(medias => setMedias(medias))
-  })
+  // useEffect(() => {
+  //   if (!wpMedias.length) fetch(WP_API + "media?per_page=360").then((res) => res.json()).then(medias => setMedias(medias))
+  // })
   
   useEffect(() => {
-    if (!wpEvents.length && blogVisible) {
-      fetch(WP_API + "posts?categories=4").then((res) => res.json()).then(res => {
-        const articles: Array<any> = []
-        res.forEach((article: any) => {
-          const matchMedia = wpMedias.find((media: any) => media.id === article.featured_media)
-          const date = new Date(article.date)
-          const month = ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",][date.getMonth()]
-          const day = date.getDate()
-          const hours = date.getHours()
-          const minutes = ('0' + (date.getMinutes())).slice(-2)
-          const wpArticle:any = {
-            name: decodeHtmlCharCodes(article.title.rendered),
-            date: `${day} ${month} à ${hours}h${minutes}`,
-            img: matchMedia?.source_url || "./logo512.png",
-            // content: article.alt_text,
-            link: article.link
-          }
-          articles.push(wpArticle)
+    if (!wpArticles.length && blogVisible) {
+      fetch(WP_API + "media?per_page=30").then((res) => res.json()).then(medias => {
+        setMedias(medias)
+        fetch(WP_API + "posts?categories=4").then((res) => res.json()).then(res => {
+          const articles: Array<any> = []
+          res.forEach((article: any) => {
+            const matchMedia = wpMedias.find((media: any) => media.id === article.featured_media)
+            const date = new Date(article.date)
+            const month = ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre",][date.getMonth()]
+            const day = date.getDate()
+            const hours = date.getHours()
+            const minutes = ('0' + (date.getMinutes())).slice(-2)
+            const wpArticle:any = {
+              name: decodeHtmlCharCodes(article.title.rendered),
+              date: `${day} ${month} à ${hours}h${minutes}`,
+              img: matchMedia?.source_url || "./logo512.png",
+              // content: article.alt_text,
+              link: article.link
+            }
+            articles.push(wpArticle)
+          })
+          setArticles(articles);
         })
-        setArticles(articles);
       })
     }
   })
@@ -280,7 +283,7 @@ const Home: FC = () => {
               <Text as="h4" mt="6" mb="2" color="white" fontSize="2xl" textAlign="center">Les chefs de clan</Text>
               <Grid templateColumns={{base:"1", md:'repeat(3, 1fr)'}} gap={4}>
                 {wpChief.length ? wpChief.sort((a,b) => a.id - b.id).map((user: any) => {
-                  return <Stack className="user hoverPop" bg="blackAlpha.600" borderRadius="xl" p="2" cursor="pointer" onClick={() => window.open(`https://highrise.game/fr/profile/${user.name}`, "_blank")}>
+                  return <Stack key={wpChief.indexOf(user)} className="user hoverPop" bg="blackAlpha.600" borderRadius="xl" p="2" cursor="pointer" onClick={() => window.open(`https://highrise.game/fr/profile/${user.name}`, "_blank")}>
                   <Stack>
                     <Text textAlign="center" fontSize="2xl">{ user.name }</Text>
                     <Text textAlign="center" fontSize="sm" lineHeight="36px">{ user.description }</Text>
@@ -300,7 +303,7 @@ const Home: FC = () => {
                   <AccordionPanel>
                     <Grid templateColumns={{base:"1", md:`repeat(${ wpAdmins.length > 4 ? 3 : 2}, 1fr)`}} gap={4}>
                       {wpAdmins.length ? wpAdmins.sort((a,b) => a.id - b.id).map((user:any) => {
-                        return <Stack className="user hoverPop" bg="blackAlpha.600" borderRadius="xl" p="2" cursor="pointer" onClick={() => window.open(`https://highrise.game/fr/profile/${user.name}`, "_blank")}>
+                        return <Stack key={wpAdmins.indexOf(user)} className="user hoverPop" bg="blackAlpha.600" borderRadius="xl" p="2" cursor="pointer" onClick={() => window.open(`https://highrise.game/fr/profile/${user.name}`, "_blank")}>
                         <Stack>
                           <Text textAlign="center" fontSize="2xl">{ user.name }</Text>
                         </Stack>
@@ -348,7 +351,7 @@ const Home: FC = () => {
                         slidesToShow={1}
                         slide="article"
                     >
-                      {wpEvents.map(ev => <Stack as="article" key={wpEvents.indexOf(ev)} textAlign="center" pb="4">
+                      {wpArticles.map(ev => <Stack as="article" key={wpArticles.indexOf(ev)} textAlign="center" pb="4">
                         <Stack color="white" mb="2" justifyContent="space-between"
 >
                             <Text fontSize="2xl">{ev.name}</Text>
