@@ -17,7 +17,7 @@ import Blogroll from "../components/Blogroll";
 
 import Footer from "../components/Footer";
 
-import { state } from "../AppState";
+import { state, fetchMedias, fetchUsers, fetchEvents } from "../AppState";
 
 import { useSnapshot } from "valtio";
 
@@ -58,7 +58,10 @@ const Home: FC = () => {
     }
   }
 
+  fetchMedias()
+
   const { wpEvents, wpUsers } = useSnapshot(state)
+  if (!wpUsers.length) fetchUsers()
 
   const isWide = () => window.innerWidth > 769
 
@@ -99,13 +102,16 @@ const Home: FC = () => {
         const blogContainer = document.getElementById('upcoming')
         if (blogContainer) requestAnimationFrame(() => {
           const { top } = getOffset(blogContainer)
-          if (visibleStep >= top) setBlogVisible(true)
+          if (visibleStep >= top) {
+            if (!wpEvents.length) fetchEvents()
+            setBlogVisible(true)
+          }
         })
         else setBlogVisible(false)
       }
       if (videoVisible && blogVisible) window.removeEventListener('scroll', () => {})
     })
-  })
+  }, [setVideoVisible,videoVisible,blogVisible,setBlogVisible,wpEvents])
 
   useEffect(() => window.removeEventListener('scroll', () => {}))
 
