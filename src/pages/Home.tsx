@@ -69,8 +69,8 @@ const Home: FC = () => {
   
   useEffect(() => {
     if (wpUsers.length) {
-      setChief(wpUsers.filter((u:any) => u.roles.includes('superchief')))
-      setAdmins(wpUsers.filter((u:any) => u.roles.includes('crewadmin')))
+      setChief(wpUsers.filter((u:any) => u.roles?.includes('superchief')))
+      setAdmins(wpUsers.filter((u:any) => u.roles?.includes('crewadmin')))
     }
   }, [wpUsers])
 
